@@ -17,8 +17,6 @@
 	<dependencyManagement>
 		<dependencies>
 			<!-- Project modules -->
-			<dependency>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<repositories>
@@ -98,7 +96,6 @@
 					<version>2.9</version>
 					<configuration>
 						<downloadSources>true</downloadSources>
-						<wtpversion>${wtp.version}</wtpversion>
 					</configuration>
 				</plugin>
 				<plugin>
