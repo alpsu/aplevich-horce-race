@@ -10,7 +10,7 @@ public class Race {
 
     private Long id;
 
-    private String name;
+    private String desc;
 
     private String distance;
 
@@ -28,16 +28,16 @@ public class Race {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+
+    public String getDesc() {
+        return desc;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setDesc(String name) {
+        this.desc = desc;
     }
 
     public String getDistance() {

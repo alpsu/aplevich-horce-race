@@ -17,13 +17,15 @@ public class Bet {
 
     private BigDecimal sum;
 
+    private Currency currency;
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public BetType getType() {
         return type;
@@ -56,4 +58,13 @@ public class Bet {
     public void setSum(BigDecimal sum) {
         this.sum = sum;
     }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
 }
