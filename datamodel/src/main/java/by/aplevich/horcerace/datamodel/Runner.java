@@ -21,9 +21,9 @@ public class Runner {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public double getKoefficient() {
         return koefficient;

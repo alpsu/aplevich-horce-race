@@ -1,26 +1,102 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>by.aplevich.horcerace</groupId>
+
+    <groupId>by.aplevich.horcerace</groupId>
 	<artifactId>parent-project</artifactId>
 	<version>1.0.0</version>
-	<packaging>pom</packaging>
-	<properties>
+
+    <packaging>pom</packaging>
+
+    <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<common.project.version>1.0</common.project.version>
+		<common.project.version>1.0.0</common.project.version>
+        <spring.version>4.1.5.RELEASE</spring.version>
 	</properties>
-	<modules>
+
+    <modules>
 		 <module>datamodel</module>
 		 <module>dataaccess</module>
 		 <module>services</module>
 		 <module>webapp</module>
 	</modules>
-	<dependencyManagement>
+
+    <dependencyManagement>
 		<dependencies>
-			<!-- Project modules -->
+            <dependency>
+                <groupId>by.aplevich.horcerace</groupId>
+                <artifactId>datamodel</artifactId>
+                <version>$(common.project.version)</version>
+            </dependency>
+            <dependency>
+                <groupId>by.aplevich.horcerace</groupId>
+                <artifactId>dataaccess</artifactId>
+                <version>$(common.project.version)</version>
+            </dependency>
+            <dependency>
+                <groupId>by.aplevich.horcerace</groupId>
+                <artifactId>services</artifactId>
+                <version>$(common.project.version)</version>
+            </dependency>
+            <dependency>
+                <groupId>by.aplevich.horcerace</groupId>
+                <artifactId>webapp</artifactId>
+                <version>$(common.project.version)</version>
+            </dependency>
+            <!-- Spring framework -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
+            </dependency>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-web-api</artifactId>
+                <version>7.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- JUnit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
+
 	<repositories>
-		<repository>
+		<!--
+        <repository>
 			<id>JBoss</id>
 			<name>JBoss Repsitory</name>
 			<layout>default</layout>
@@ -37,7 +113,9 @@
 			<url>http://download.java.net/maven/2/</url>
 			<layout>default</layout>
 		</repository>
+        -->
 	</repositories>
+
 	<build>
 		<resources>
 			<resource>
@@ -74,36 +152,37 @@
 		<plugins>
 			
 		</plugins>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<inherited>true</inherited>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.0</version>
-					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
-						<encoding>UTF-8</encoding>
-						<showWarnings>true</showWarnings>
-						<showDeprecation>true</showDeprecation>
-					</configuration>
-				</plugin>
-				
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-eclipse-plugin</artifactId>
-					<version>2.9</version>
-					<configuration>
-						<downloadSources>true</downloadSources>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.4</version>
-				</plugin>
-			</plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <inherited>true</inherited>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.2</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <encoding>UTF-8</encoding>
+                        <showWarnings>true</showWarnings>
+                        <showDeprecation>true</showDeprecation>
+                    </configuration>
+                </plugin>
+                <!--
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-eclipse-plugin</artifactId>
+                    <version>2.9</version>
+                    <configuration>
+                        <downloadSources>true</downloadSources>
+                    </configuration>
+                </plugin>
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+            </plugins>
 		</pluginManagement>
 	</build>
 </project>

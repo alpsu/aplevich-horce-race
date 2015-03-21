@@ -16,17 +16,15 @@ public class User {
 
     private UserRole role;
 
-    private Currency currency;
-
     private List<Bet> bets;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+   // public void setId(Long id) {
+   //     this.id = id;
+   // }
 
     public String getName() {
         return name;
@@ -58,14 +56,6 @@ public class User {
 
     public void setRole(UserRole role) {
         this.role = role;
-    }
-
-    public Currency getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
     }
 
     public List<Bet> getBets() {
