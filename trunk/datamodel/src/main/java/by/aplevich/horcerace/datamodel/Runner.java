@@ -1,20 +1,27 @@
 package by.aplevich.horcerace.datamodel;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Details of runner
  */
+@Entity
 public class Runner {
-
+    @Id
+    @GeneratedValue
     private Long id;
-
+    @Column
     private double koefficient;
-
+    @Column
     private Integer place;
-
+    @Column
     private Horce horce;
-
+    @Column
     private Jockey jockey;
-
+    @Column
     private Race race;
 
     public Long getId() {

@@ -1,22 +1,31 @@
 package by.aplevich.horcerace.datamodel;
 
+import by.aplevich.horcerace.datamodel.enums.BetType;
+import by.aplevich.horcerace.datamodel.enums.Currency;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
 /**
  * Bet details
  */
+@Entity
 public class Bet {
-
+    @Id
+    @GeneratedValue
     private Long id;
-
+    @Column
     private BetType type;
-
+    @Column
     private Race race;
-
+    @Column
     private User user;
-
+    @Column
     private BigDecimal sum;
-
+    @Column
     private Currency currency;
 
     public Long getId() {

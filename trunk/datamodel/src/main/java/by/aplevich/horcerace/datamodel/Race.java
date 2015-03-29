@@ -1,27 +1,34 @@
 package by.aplevich.horcerace.datamodel;
 
+import javax.annotation.Generated;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Details of race
  */
+@Entity
 public class Race {
-
+    @Id
+    @GeneratedValue
     private Long id;
-
+    @Column
     private String desc;
-
+    @Column
     private String distance;
-
+    @Column
     private Date start;
-
+    @Column
     private Integer quantity;
-
+    //TODO
     private List<Bet> bets;
-
+    //TODO
     private List<Runner> runners;
-
+    @Column
     private Place place;
 
     public Long getId() {

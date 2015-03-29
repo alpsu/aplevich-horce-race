@@ -1,14 +1,21 @@
 package by.aplevich.horcerace.datamodel;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Jockey details
  */
+@Entity
 public class Jockey {
-
+    @Id
+    @GeneratedValue
     private Long id;
-
+    @Column
     private String firstNmae;
-
+    @Column
     private String lastName;
 
     public Long getId() {
