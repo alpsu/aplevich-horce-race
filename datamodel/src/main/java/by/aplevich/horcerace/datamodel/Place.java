@@ -1,16 +1,22 @@
 package by.aplevich.horcerace.datamodel;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.List;
 
 /**
  * Places of race
  */
+@Entity
 public class Place {
-
+    @Id
+    @GeneratedValue
     private Long id;
-
+    @Column
     private String name;
-
+    //TODO
     private List<Race> races;
 
     public Long getId() {

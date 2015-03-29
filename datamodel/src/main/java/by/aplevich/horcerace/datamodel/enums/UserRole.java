@@ -1,4 +1,4 @@
-package by.aplevich.horcerace.datamodel;
+package by.aplevich.horcerace.datamodel.enums;
 
 /**
  * List of roles in system

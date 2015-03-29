@@ -1,26 +1,28 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
     <groupId>by.aplevich.horcerace</groupId>
-	<artifactId>parent-project</artifactId>
-	<version>1.0.0</version>
+    <artifactId>parent-project</artifactId>
+    <version>1.0.0</version>
 
     <packaging>pom</packaging>
 
     <properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.1.5.RELEASE</spring.version>
-	</properties>
+        <hibernate.version>4.3.8.Final</hibernate.version>
+    </properties>
 
     <modules>
-		 <module>datamodel</module>
-		 <module>dataaccess</module>
-		 <module>services</module>
-		 <module>webapp</module>
-	</modules>
+        <module>datamodel</module>
+        <module>dataaccess</module>
+        <module>services</module>
+        <module>webapp</module>
+    </modules>
 
     <dependencyManagement>
-		<dependencies>
+        <dependencies>
             <dependency>
                 <groupId>by.aplevich.horcerace</groupId>
                 <artifactId>datamodel</artifactId>
@@ -72,6 +74,33 @@
                 <artifactId>spring-test</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!-- Hibernate/JPA -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.javax.persistence</groupId>
+                <artifactId>hibernate-jpa-2.1-api</artifactId>
+                <version>1.0.0.Draft-16</version>
+            </dependency>
+            <!-- Apache Commons -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.3.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-dbcp2</artifactId>
+                <version>2.1</version>
+            </dependency>
 
             <dependency>
                 <groupId>javax.inject</groupId>
@@ -112,66 +141,66 @@
                 <version>2.2</version>
             </dependency>
         </dependencies>
-	</dependencyManagement>
+    </dependencyManagement>
 
-	<repositories>
-		<!--
+    <repositories>
+        <!--
         <repository>
-			<id>JBoss</id>
-			<name>JBoss Repsitory</name>
-			<layout>default</layout>
-			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-		</repository>
-		<repository>
-			<id>spring-maven-external</id>
-			<name>Springframework Maven External Repository</name>
-			<url>http://repo.springsource.org/libs-release-remote/</url>
-		</repository>
-		<repository>
-			<id>java-net</id>
-			<name>Java.net Repository for Maven</name>
-			<url>http://download.java.net/maven/2/</url>
-			<layout>default</layout>
-		</repository>
+            <id>JBoss</id>
+            <name>JBoss Repsitory</name>
+            <layout>default</layout>
+            <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+        </repository>
+        <repository>
+            <id>spring-maven-external</id>
+            <name>Springframework Maven External Repository</name>
+            <url>http://repo.springsource.org/libs-release-remote/</url>
+        </repository>
+        <repository>
+            <id>java-net</id>
+            <name>Java.net Repository for Maven</name>
+            <url>http://download.java.net/maven/2/</url>
+            <layout>default</layout>
+        </repository>
         -->
-	</repositories>
+    </repositories>
 
-	<build>
-		<resources>
-			<resource>
-				<filtering>false</filtering>
-				<directory>src/main/resources</directory>
-			</resource>
-			<resource>
-				<filtering>false</filtering>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**</include>
-				</includes>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</resource>
-		</resources>
-		<testResources>
-			<testResource>
-				<filtering>false</filtering>
-				<directory>src/test/resources</directory>
-			</testResource>
-			<testResource>
-				<filtering>false</filtering>
-				<directory>src/test/java</directory>
-				<includes>
-					<include>**</include>
-				</includes>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</testResource>
-		</testResources>
-		<plugins>
-			
-		</plugins>
+    <build>
+        <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <filtering>false</filtering>
+                <directory>src/test/resources</directory>
+            </testResource>
+            <testResource>
+                <filtering>false</filtering>
+                <directory>src/test/java</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
+        <plugins>
+
+        </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -201,6 +230,6 @@
                     <version>2.6</version>
                 </plugin>
             </plugins>
-		</pluginManagement>
-	</build>
+        </pluginManagement>
+    </build>
 </project>

@@ -1,16 +1,23 @@
 package by.aplevich.horcerace.datamodel;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Horce details
  */
+@Entity
 public class Horce {
-
+    @Id
+    @GeneratedValue
     private Long id;
-
+    @Column
     private String name;
-
+    @Column
     private String trainer;
-
+    @Column
     private Integer age;
 
     public Long getId() {
