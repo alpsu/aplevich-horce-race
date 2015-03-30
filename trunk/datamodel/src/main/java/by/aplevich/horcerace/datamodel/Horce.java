@@ -1,9 +1,6 @@
 package by.aplevich.horcerace.datamodel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Horce details
@@ -11,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Horce {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private String name;
