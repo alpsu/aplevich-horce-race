@@ -1,6 +1,7 @@
 package by.aplevich.horcerace.services.impl;
 
 import by.aplevich.horcerace.dataaccess.RaceDao;
+import by.aplevich.horcerace.datamodel.Race;
 import by.aplevich.horcerace.services.RaceService;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +13,10 @@ import javax.inject.Inject;
 @Service
 public class RaceServiceImpl implements RaceService {
     @Inject
-    private RaceDao raceDao;
+    private RaceDao dao;
+
+    @Override
+    public Race get(Long id) {
+        return dao.getById(id);
+    }
 }

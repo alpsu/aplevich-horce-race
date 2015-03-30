@@ -1,5 +1,6 @@
 package by.aplevich.horcerace.services;
 
+import by.aplevich.horcerace.datamodel.Horce;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,5 +26,7 @@ public class HorceServiceTest {
     public void Test(){
         LOGGER.warn("HorceServiceTest log message");
         Assert.assertNotNull(horceService);
+        Horce horce = horceService.get(1l);
+        Assert.assertNotNull(horce);
     }
 }

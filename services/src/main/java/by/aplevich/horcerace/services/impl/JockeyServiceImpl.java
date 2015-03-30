@@ -1,6 +1,7 @@
 package by.aplevich.horcerace.services.impl;
 
 import by.aplevich.horcerace.dataaccess.JockeyDao;
+import by.aplevich.horcerace.datamodel.Jockey;
 import by.aplevich.horcerace.services.JockeyService;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +13,10 @@ import javax.inject.Inject;
 @Service
 public class JockeyServiceImpl implements JockeyService{
     @Inject
-    private JockeyDao jockeyDao;
+    private JockeyDao dao;
+
+    @Override
+    public Jockey get(Long id) {
+        return dao.getById(id);
+    }
 }

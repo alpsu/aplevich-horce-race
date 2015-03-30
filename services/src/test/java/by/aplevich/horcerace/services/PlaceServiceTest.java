@@ -1,5 +1,6 @@
 package by.aplevich.horcerace.services;
 
+import by.aplevich.horcerace.datamodel.Place;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,5 +26,7 @@ public class PlaceServiceTest {
     public void Test(){
         LOGGER.warn("PlaceServiceTest log message");
         Assert.assertNotNull(placeService);
+        Place place = placeService.get(1l);
+        Assert.assertNotNull(place);
     }
 }
