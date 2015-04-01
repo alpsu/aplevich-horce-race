@@ -2,9 +2,17 @@ package by.aplevich.horcerace.services;
 
 import by.aplevich.horcerace.datamodel.User;
 
-/**
- * Created by admin on 21.03.2015.
- */
+import javax.transaction.Transactional;
+
 public interface UserService {
     User get(Long id);
+
+    /*@Transactional
+    void createNewUser(User user);
+
+    @Transactional
+    void updateUser(User user);
+
+    @Transactional
+    void deteteUser(Long id);*/
 }
