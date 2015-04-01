@@ -75,5 +75,4 @@ public class Bet {
     public void setCurrency(Currency currency) {
         this.currency = currency;
     }
-
 }
