@@ -2,10 +2,7 @@ package by.aplevich.horcerace.datamodel;
 
 import by.aplevich.horcerace.datamodel.enums.UserRole;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -14,26 +11,25 @@ import java.util.List;
 @Entity
 public class User {
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String name;
+
     @Column
     private String login;
+
     @Column
     private String password;
+
     @Column
+    @Enumerated(EnumType.ORDINAL)
     private UserRole role;
-    //TODO
-    private List<Bet> bets;
 
     public Long getId() {
         return id;
     }
-
-    // public void setId(Long id) {
-    //     this.id = id;
-    // }
 
     public String getName() {
         return name;
@@ -65,13 +61,5 @@ public class User {
 
     public void setRole(UserRole role) {
         this.role = role;
-    }
-
-    public List<Bet> getBets() {
-        return bets;
-    }
-
-    public void setBets(List<Bet> bets) {
-        this.bets = bets;
     }
 }

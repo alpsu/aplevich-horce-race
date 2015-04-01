@@ -1,9 +1,6 @@
 package by.aplevich.horcerace.datamodel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Jockey details
@@ -11,34 +8,31 @@ import javax.persistence.Id;
 @Entity
 public class Jockey {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
-    private String firstNmae;
+    private String fName;
     @Column
-    private String lastName;
+    private String lName;
 
     public Long getId() {
         return id;
     }
 
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-
-    public String getFirstNmae() {
-        return firstNmae;
+    public String getFName() {
+        return fName;
     }
 
-    public void setFirstNmae(String firstNmae) {
-        this.firstNmae = firstNmae;
+    public void setFName(String fName) {
+        this.fName = fName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLName() {
+        return lName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLName(String lName) {
+        this.lName = lName;
     }
 }

@@ -3,10 +3,7 @@ package by.aplevich.horcerace.datamodel;
 import by.aplevich.horcerace.datamodel.enums.BetType;
 import by.aplevich.horcerace.datamodel.enums.Currency;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
@@ -15,26 +12,29 @@ import java.math.BigDecimal;
 @Entity
 public class Bet {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
+    @Enumerated(EnumType.ORDINAL)
     private BetType type;
-    @Column
+
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Race.class)
     private Race race;
-    @Column
+
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
     private User user;
+
     @Column
     private BigDecimal sum;
+
     @Column
+    @Enumerated(EnumType.ORDINAL)
     private Currency currency;
 
     public Long getId() {
         return id;
     }
-
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public BetType getType() {
         return type;
