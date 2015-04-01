@@ -1,9 +1,6 @@
 package by.aplevich.horcerace.datamodel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Details of runner
@@ -11,26 +8,27 @@ import javax.persistence.Id;
 @Entity
 public class Runner {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private double koefficient;
+
     @Column
     private Integer place;
-    @Column
+
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Horce.class)
     private Horce horce;
-    @Column
+
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Jockey.class)
     private Jockey jockey;
-    @Column
+
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Race.class)
     private Race race;
 
     public Long getId() {
         return id;
     }
-
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public double getKoefficient() {
         return koefficient;
