@@ -2,9 +2,17 @@ package by.aplevich.horcerace.services;
 
 import by.aplevich.horcerace.datamodel.Horce;
 
-/**
- * Created by admin on 25.03.2015.
- */
+import javax.transaction.Transactional;
+
 public interface HorceService {
     Horce get(Long id);
+
+    @Transactional
+    void saveOrUpdate(Horce horce);
+
+    @Transactional
+    void delete(Horce horce);
+
+    @Transactional
+    void deleteAll();
 }

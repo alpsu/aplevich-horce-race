@@ -1,32 +1,54 @@
 package by.aplevich.horcerace.services;
 
+import by.aplevich.horcerace.AbstractServiceTest;
 import by.aplevich.horcerace.datamodel.Horce;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
 
-/**
- * Created by admin on 25.03.2015.
- */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-context.xml"})
-public class HorceServiceTest {
+
+public class HorceServiceTest extends AbstractServiceTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(HorceServiceTest.class);
 
     @Inject
     private HorceService horceService;
 
+    @Before
+    public void cleanUpData() {
+        LOGGER.info("Instance of HorceService is injected. Class is: {}", horceService.getClass().getName());
+        horceService.deleteAll();
+    }
+
     @Test
-    public void Test(){
-        LOGGER.warn("HorceServiceTest log message");
-        Assert.assertNotNull(horceService);
-        Horce horce = horceService.get(1l);
-        Assert.assertNotNull(horce);
+    public void basicCRUDTest() {
+        Horce horce = createHorce();
+        horceService.saveOrUpdate(horce);
+
+        Horce horceFromDB = horceService.get(horce.getId());
+        Assert.assertNotNull(horceFromDB);
+        Assert.assertEquals(horceFromDB.getName(), horce.getName());
+        Assert.assertEquals(horceFromDB.getTrainer(), horce.getTrainer());
+        Assert.assertEquals(horceFromDB.getAge(), horce.getAge());
+
+        horceFromDB.setName("newName");
+        horceService.saveOrUpdate(horceFromDB);
+        Horce horceFromDbUpdated = horceService.get(horce.getId());
+        Assert.assertEquals(horceFromDbUpdated.getName(), horceFromDB.getName());
+        Assert.assertNotEquals(horceFromDbUpdated.getName(), horce.getName());
+
+        horceService.delete(horceFromDbUpdated);
+        Assert.assertNull(horceService.get(horce.getId()));
+    }
+
+    private Horce createHorce() {
+        Horce horce = new Horce();
+        horce.setAge(randomInteger(4, 9));
+        horce.setName(randomString("horce-"));
+        horce.setTrainer(randomString("trainer-"));
+        return horce;
     }
 }

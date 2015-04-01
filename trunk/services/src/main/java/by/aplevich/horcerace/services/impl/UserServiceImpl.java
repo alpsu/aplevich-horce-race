@@ -7,9 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 
-/**
- * Created by admin on 21.03.2015.
- */
 @Service
 public class UserServiceImpl implements UserService{
     @Inject
