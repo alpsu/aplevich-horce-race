@@ -70,4 +70,16 @@ public class Race {
     public void setPlace(Place place) {
         this.place = place;
     }
+
+    @Override
+    public String toString() {
+        return "Race{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", distance='" + distance + '\'' +
+                ", start=" + start +
+                ", quantity=" + quantity +
+                ", place=" + place +
+                '}';
+    }
 }

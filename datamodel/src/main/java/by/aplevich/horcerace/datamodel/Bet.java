@@ -75,4 +75,16 @@ public class Bet {
     public void setCurrency(Currency currency) {
         this.currency = currency;
     }
+
+    @Override
+    public String toString() {
+        return "Bet{" +
+                "currency=" + currency +
+                ", id=" + id +
+                ", type=" + type +
+                ", race=" + race +
+                ", user=" + user +
+                ", sum=" + sum +
+                '}';
+    }
 }
