@@ -35,4 +35,13 @@ public class Jockey {
     public void setLName(String lName) {
         this.lName = lName;
     }
+
+    @Override
+    public String toString() {
+        return "Jockey{" +
+                "id=" + id +
+                ", fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                '}';
+    }
 }

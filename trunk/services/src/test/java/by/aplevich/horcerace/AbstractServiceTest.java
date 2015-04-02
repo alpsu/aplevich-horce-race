@@ -13,7 +13,7 @@ import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-context.xml"})
-public class AbstractServiceTest {
+public abstract class AbstractServiceTest {
     protected static final RandomData RANDOM_DATA = new RandomDataImpl();
     private final static Random random = new Random();
     private static final int RANDOM_STRING_SIZE = 8;

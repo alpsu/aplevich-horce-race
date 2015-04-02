@@ -47,4 +47,14 @@ public class Horce {
     public void setAge(Integer age) {
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "Horce{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", trainer='" + trainer + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }

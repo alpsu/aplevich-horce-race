@@ -7,12 +7,12 @@ import javax.transaction.Transactional;
 public interface UserService {
     User get(Long id);
 
-    /*@Transactional
+    @Transactional
     void createNewUser(User user);
 
     @Transactional
     void updateUser(User user);
 
     @Transactional
-    void deteteUser(Long id);*/
+    void deteteUser(Long id);
 }

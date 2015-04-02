@@ -69,4 +69,16 @@ public class Runner {
     public void setRace(Race race) {
         this.race = race;
     }
+
+    @Override
+    public String toString() {
+        return "Runner{" +
+                "id=" + id +
+                ", koefficient=" + koefficient +
+                ", place=" + place +
+                ", horce=" + horce +
+                ", jockey=" + jockey +
+                ", race=" + race +
+                '}';
+    }
 }
