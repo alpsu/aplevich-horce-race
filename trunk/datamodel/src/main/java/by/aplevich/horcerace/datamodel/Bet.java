@@ -22,8 +22,8 @@ public class Bet {
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Race.class)
     private Race race;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
-    private User user;
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = UserAccount.class)
+    private UserAccount user;
 
     @Column
     private BigDecimal sum;
@@ -52,11 +52,11 @@ public class Bet {
         this.race = race;
     }
 
-    public User getUser() {
+    public UserAccount getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserAccount user) {
         this.user = user;
     }
 

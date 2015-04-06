@@ -1,7 +1,7 @@
 package by.aplevich.horcerace.services;
 
 import by.aplevich.horcerace.AbstractServiceTest;
-import by.aplevich.horcerace.datamodel.User;
+import by.aplevich.horcerace.datamodel.UserAccount;
 import by.aplevich.horcerace.datamodel.enums.UserRole;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,28 +20,28 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void crudTest() {
-        final User userOne = createUser();
+        UserAccount userOne = createUser();
         userService.createNewUser(userOne);
 
-        final User createdUser = userService.get(userOne.getId());
-        Assert.assertNotNull(createdUser);
-        /*Assert.assertEquals(createdUser.getName(), user.getName());
-        Assert.assertEquals(createdUser.getLogin(), user.getLogin());
-        Assert.assertEquals(createdUser.getPassword(), user.getPassword());
-        Assert.assertEquals(createdUser.getRole(), user.getRole());
+        final UserAccount createdUserAccount = userService.get(userOne.getId());
+        Assert.assertNotNull(createdUserAccount);
+        Assert.assertEquals(createdUserAccount.getName(), userOne.getName());
+        Assert.assertEquals(createdUserAccount.getLogin(), userOne.getLogin());
+        Assert.assertEquals(createdUserAccount.getPassword(), userOne.getPassword());
+        Assert.assertEquals(createdUserAccount.getRole(), userOne.getRole());
 
-        userService.deteteUser(user.getId());
-        Assert.assertNull(userService.get(user.getId()));*/
+        userService.deteteUser(userOne.getId());
+        Assert.assertNull(userService.get(userOne.getId()));
     }
 
-   /* @Test
+    @Test
     public void uniqueConstraintsTest() {
-        final User user = createUser();
+        final UserAccount user = createUser();
         final String login = randomString("login");
         user.setLogin(login);
         userService.createNewUser(user);
 
-        final User duplicateUser = createUser();
+        final UserAccount duplicateUser = createUser();
         duplicateUser.setLogin(login);
         try {
             userService.createNewUser(duplicateUser);
@@ -53,9 +53,8 @@ public class UserServiceTest extends AbstractServiceTest {
         duplicateUser.setLogin(randomString("login"));
         userService.createNewUser(duplicateUser);
     }
-*/
-    private User createUser() {
-        final User userTwo = new User();
+    private UserAccount createUser() {
+        final UserAccount userTwo = new UserAccount();
         userTwo.setLogin(randomString("login-"));
         userTwo.setPassword(randomString("pass-"));
         userTwo.setName(randomString("name-"));

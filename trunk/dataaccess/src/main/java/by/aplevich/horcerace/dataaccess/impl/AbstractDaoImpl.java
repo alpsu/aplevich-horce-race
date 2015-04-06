@@ -1,13 +1,12 @@
 package by.aplevich.horcerace.dataaccess.impl;
 
+import by.aplevich.horcerace.dataaccess.AbstractDao;
+import org.apache.commons.lang3.Validate;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
-import org.apache.commons.lang3.Validate;
-
-import by.aplevich.horcerace.dataaccess.AbstractDao;
-
 import java.util.List;
 
 public abstract class AbstractDaoImpl<ID, Entity> implements AbstractDao<ID, Entity> {

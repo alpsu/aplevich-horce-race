@@ -1,15 +1,15 @@
 SET search_path TO 'public';
 
-CREATE TABLE "user" (
+CREATE TABLE user_account (
   id       SERIAL                 NOT NULL,
   name     CHARACTER VARYING(100) NOT NULL,
   login    CHARACTER VARYING(60)  NOT NULL,
   password CHARACTER VARYING(35)  NOT NULL,
   role     SMALLINT               NOT NULL DEFAULT 0,
-  CONSTRAINT user_pkey PRIMARY KEY (id),
-  CONSTRAINT user_login_key UNIQUE (login)
+  CONSTRAINT user_account_pkey PRIMARY KEY (id),
+  CONSTRAINT user_account_login_key UNIQUE (login)
 );
-COMMENT ON TABLE "user" IS 'Таблица пользователей';
+COMMENT ON TABLE user_account IS 'Таблица пользователей';
 
 CREATE TABLE horce (
   id      SERIAL                 NOT NULL,
@@ -74,18 +74,18 @@ CREATE TABLE runner (
 COMMENT ON TABLE runner IS 'Участники забегов';
 
 CREATE TABLE bet (
-  id       SERIAL         NOT NULL,
-  type     SMALLINT       NOT NULL DEFAULT 0,
-  race_id  INTEGER        NOT NULL,
-  user_id  INTEGER        NOT NULL,
-  currency SMALLINT       NOT NULL DEFAULT 0,
-  sum      DECIMAL(14, 2) NOT NULL,
+  id              SERIAL         NOT NULL,
+  type            SMALLINT       NOT NULL DEFAULT 0,
+  race_id         INTEGER        NOT NULL,
+  user_account_id INTEGER        NOT NULL,
+  currency        SMALLINT       NOT NULL DEFAULT 0,
+  sum             DECIMAL(14, 2) NOT NULL,
   CONSTRAINT bet_pkey PRIMARY KEY (id),
   CONSTRAINT bet_race_id_fkey FOREIGN KEY (race_id)
   REFERENCES race (id) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT bet_user_id_fkey FOREIGN KEY (user_id)
-  REFERENCES "user" (id) MATCH SIMPLE
+  CONSTRAINT bet_user_account_id_fkey FOREIGN KEY (user_account_id)
+  REFERENCES user_account (id) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 COMMENT ON TABLE bet IS 'Сделанные ставки';

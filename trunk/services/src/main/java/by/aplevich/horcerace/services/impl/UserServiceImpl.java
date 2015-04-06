@@ -1,7 +1,7 @@
 package by.aplevich.horcerace.services.impl;
 
 import by.aplevich.horcerace.dataaccess.UserDao;
-import by.aplevich.horcerace.datamodel.User;
+import by.aplevich.horcerace.datamodel.UserAccount;
 import by.aplevich.horcerace.services.UserService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -18,19 +18,19 @@ public class UserServiceImpl implements UserService{
     private UserDao dao;
 
     @Override
-    public User get(Long id) {
+    public UserAccount get(Long id) {
         return dao.getById(id);
     }
 
     @Override
-    public void createNewUser(User userOne) {
+    public void createNewUser(UserAccount userOne) {
         Validate.isTrue(userOne.getId() == null,
                 "This method should be called for 'not saved yet' user only. Use UPDATE instead");
         dao.insert(userOne);
     }
 
     @Override
-    public void updateUser(User userOne) {
+    public void updateUser(UserAccount userOne) {
         dao.update(userOne);
     }
 

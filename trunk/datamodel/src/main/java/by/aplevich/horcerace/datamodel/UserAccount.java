@@ -9,7 +9,7 @@ import java.util.List;
  * Contains user data
  */
 @Entity
-public class User {
+public class UserAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -65,7 +65,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserAccount{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", login='" + login + '\'' +
