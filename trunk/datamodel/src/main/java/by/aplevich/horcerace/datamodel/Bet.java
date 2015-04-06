@@ -10,11 +10,7 @@ import java.math.BigDecimal;
  * Bet details
  */
 @Entity
-public class Bet {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Bet extends AbstractEntity {
     @Column
     @Enumerated(EnumType.ORDINAL)
     private BetType type;
@@ -31,10 +27,6 @@ public class Bet {
     @Column
     @Enumerated(EnumType.ORDINAL)
     private Currency currency;
-
-    public Long getId() {
-        return id;
-    }
 
     public BetType getType() {
         return type;
@@ -80,7 +72,7 @@ public class Bet {
     public String toString() {
         return "Bet{" +
                 "currency=" + currency +
-                ", id=" + id +
+                ", id=" + getId() +
                 ", type=" + type +
                 ", race=" + race +
                 ", user=" + user +

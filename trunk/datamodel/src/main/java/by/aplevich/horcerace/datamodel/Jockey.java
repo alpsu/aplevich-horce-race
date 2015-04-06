@@ -6,19 +6,11 @@ import javax.persistence.*;
  * Jockey details
  */
 @Entity
-public class Jockey {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Jockey extends AbstractEntity {
     @Column
     private String fName;
     @Column
     private String lName;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getFName() {
         return fName;
@@ -39,7 +31,7 @@ public class Jockey {
     @Override
     public String toString() {
         return "Jockey{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", fName='" + fName + '\'' +
                 ", lName='" + lName + '\'' +
                 '}';

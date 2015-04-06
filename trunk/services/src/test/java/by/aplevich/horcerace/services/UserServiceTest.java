@@ -53,6 +53,7 @@ public class UserServiceTest extends AbstractServiceTest {
         duplicateUser.setLogin(randomString("login"));
         userService.createNewUser(duplicateUser);
     }
+
     private UserAccount createUser() {
         final UserAccount userTwo = new UserAccount();
         userTwo.setLogin(randomString("login-"));
