@@ -2,6 +2,8 @@ package by.aplevich.horcerace.dataaccess.impl;
 
 import by.aplevich.horcerace.dataaccess.AbstractDao;
 import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,6 +13,7 @@ import java.util.List;
 
 public abstract class AbstractDaoImpl<ID, Entity> implements AbstractDao<ID, Entity> {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDaoImpl.class);
     private final Class<Entity> entityClass;
     private EntityManager em;
 
@@ -65,10 +68,15 @@ public abstract class AbstractDaoImpl<ID, Entity> implements AbstractDao<ID, Ent
 
     @PersistenceContext
     protected void setEntityManager(final EntityManager em) {
+        LOGGER.info("Set EM {} to class {}", em.hashCode(), getClass().getName());
         this.em = em;
     }
 
     private Class<Entity> getEntityClass() {
         return entityClass;
+    }
+
+    public EntityManager getEm() {
+        return em;
     }
 }

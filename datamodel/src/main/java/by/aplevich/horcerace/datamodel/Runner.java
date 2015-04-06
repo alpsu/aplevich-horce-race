@@ -6,11 +6,7 @@ import javax.persistence.*;
  * Details of runner
  */
 @Entity
-public class Runner {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Runner extends AbstractEntity {
     @Column
     private double koefficient;
 
@@ -25,10 +21,6 @@ public class Runner {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Race.class)
     private Race race;
-
-    public Long getId() {
-        return id;
-    }
 
     public double getKoefficient() {
         return koefficient;
@@ -73,7 +65,7 @@ public class Runner {
     @Override
     public String toString() {
         return "Runner{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", koefficient=" + koefficient +
                 ", place=" + place +
                 ", horce=" + horce +

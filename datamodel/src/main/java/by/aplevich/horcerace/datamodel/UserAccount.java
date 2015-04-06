@@ -9,11 +9,7 @@ import java.util.List;
  * Contains user data
  */
 @Entity
-public class UserAccount {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class UserAccount extends AbstractEntity {
     @Column
     private String name;
 
@@ -26,10 +22,6 @@ public class UserAccount {
     @Column
     @Enumerated(EnumType.ORDINAL)
     private UserRole role;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -66,7 +58,7 @@ public class UserAccount {
     @Override
     public String toString() {
         return "UserAccount{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +

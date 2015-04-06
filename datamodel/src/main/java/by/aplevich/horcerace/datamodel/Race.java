@@ -7,11 +7,7 @@ import java.util.Date;
  * Details of race
  */
 @Entity
-public class Race {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Race extends AbstractEntity {
     @Column
     private String description;
 
@@ -26,10 +22,6 @@ public class Race {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Place.class)
     private Place place;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getDescription() {
         return description;
@@ -74,7 +66,7 @@ public class Race {
     @Override
     public String toString() {
         return "Race{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", description='" + description + '\'' +
                 ", distance='" + distance + '\'' +
                 ", start=" + start +

@@ -7,17 +7,9 @@ import java.util.List;
  * Places of race
  */
 @Entity
-public class Place {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Place extends AbstractEntity {
     @Column
     private String name;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -30,7 +22,7 @@ public class Place {
     @Override
     public String toString() {
         return "Place{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 '}';
     }

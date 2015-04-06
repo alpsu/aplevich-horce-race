@@ -6,11 +6,7 @@ import javax.persistence.*;
  * Horce details
  */
 @Entity
-public class Horce {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Horce extends AbstractEntity {
     @Column
     private String name;
 
@@ -19,10 +15,6 @@ public class Horce {
 
     @Column
     private Integer age;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -51,7 +43,7 @@ public class Horce {
     @Override
     public String toString() {
         return "Horce{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", trainer='" + trainer + '\'' +
                 ", age=" + age +
