@@ -8,32 +8,32 @@ import javax.persistence.*;
 @Entity
 public class Jockey extends AbstractEntity {
     @Column
-    private String fName;
+    private String fname;
     @Column
-    private String lName;
+    private String lname;
 
-    public String getFName() {
-        return fName;
+    public String getFname() {
+        return fname;
     }
 
-    public void setFName(String fName) {
-        this.fName = fName;
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
-    public String getLName() {
-        return lName;
+    public String getLname() {
+        return lname;
     }
 
-    public void setLName(String lName) {
-        this.lName = lName;
+    public void setLname(String lname) {
+        this.lname = lname;
     }
 
     @Override
     public String toString() {
         return "Jockey{" +
                 "id=" + getId() +
-                ", fName='" + fName + '\'' +
-                ", lName='" + lName + '\'' +
+                ", fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
                 '}';
     }
 }

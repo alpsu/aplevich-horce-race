@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 
-
 public class HorceServiceTest extends AbstractServiceTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(HorceServiceTest.class);
 
@@ -42,13 +41,5 @@ public class HorceServiceTest extends AbstractServiceTest {
 
         horceService.delete(horceFromDbUpdated);
         Assert.assertNull(horceService.get(horce.getId()));
-    }
-
-    private Horce createHorce() {
-        Horce horce = new Horce();
-        horce.setAge(randomInteger(4, 9));
-        horce.setName(randomString("horce-"));
-        horce.setTrainer(randomString("trainer-"));
-        return horce;
     }
 }

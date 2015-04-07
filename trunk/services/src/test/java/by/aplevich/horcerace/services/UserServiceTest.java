@@ -2,7 +2,6 @@ package by.aplevich.horcerace.services;
 
 import by.aplevich.horcerace.AbstractServiceTest;
 import by.aplevich.horcerace.datamodel.UserAccount;
-import by.aplevich.horcerace.datamodel.enums.UserRole;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -10,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
-import java.util.Arrays;
 
 public class UserServiceTest extends AbstractServiceTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceTest.class);
@@ -52,14 +50,5 @@ public class UserServiceTest extends AbstractServiceTest {
 
         duplicateUser.setLogin(randomString("login"));
         userService.createNewUser(duplicateUser);
-    }
-
-    private UserAccount createUser() {
-        final UserAccount userTwo = new UserAccount();
-        userTwo.setLogin(randomString("login-"));
-        userTwo.setPassword(randomString("pass-"));
-        userTwo.setName(randomString("name-"));
-        userTwo.setRole(randomFromCollection(Arrays.asList(UserRole.values())));
-        return userTwo;
     }
 }
