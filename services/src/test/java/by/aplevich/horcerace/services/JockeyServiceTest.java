@@ -1,29 +1,47 @@
 package by.aplevich.horcerace.services;
 
+import by.aplevich.horcerace.AbstractServiceTest;
+import by.aplevich.horcerace.datamodel.Jockey;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
 
-/**
- * Created by admin on 25.03.2015.
- */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-context.xml"})
-public class JockeyServiceTest {
+public class JockeyServiceTest extends AbstractServiceTest{
     private static final Logger LOGGER = LoggerFactory.getLogger(JockeyServiceTest.class);
 
     @Inject
     private JockeyService jockeyService;
 
+    @Before
+    public void cleanUpData() {
+        LOGGER.info("Instance of JockeyService is injected. Class is: {}", jockeyService.getClass().getName());
+        jockeyService.deleteAll();
+    }
+
     @Test
-    public void Test(){
-        LOGGER.warn("JockeyServiceTest log message");
-        Assert.assertNotNull(jockeyService);
+    public void basicCRUDTest() {
+        Jockey jockey = createJockey();
+        jockeyService.saveOrUpdate(jockey);
+
+        Jockey jockeyFromDB = jockeyService.get(jockey.getId());
+        Assert.assertNotNull(jockeyFromDB);
+        Assert.assertEquals(jockeyFromDB.getFname(), jockey.getFname());
+        Assert.assertEquals(jockeyFromDB.getLname(), jockey.getLname());
+
+        jockeyFromDB.setFname("newFname");
+        jockeyFromDB.setLname("newLname");
+        jockeyService.saveOrUpdate(jockeyFromDB);
+        Jockey jockeyFromDbUpdated = jockeyService.get(jockey.getId());
+        Assert.assertEquals(jockeyFromDbUpdated.getFname(), jockeyFromDB.getFname());
+        Assert.assertEquals(jockeyFromDbUpdated.getLname(), jockeyFromDB.getLname());
+        Assert.assertNotEquals(jockeyFromDbUpdated.getFname(), jockey.getFname());
+        Assert.assertNotEquals(jockeyFromDbUpdated.getLname(), jockey.getLname());
+
+        jockeyService.delete(jockeyFromDbUpdated);
+        Assert.assertNull(jockeyService.get(jockey.getId()));
     }
 }

@@ -1,5 +1,10 @@
 package by.aplevich.horcerace;
 
+import by.aplevich.horcerace.datamodel.Horce;
+import by.aplevich.horcerace.datamodel.Jockey;
+import by.aplevich.horcerace.datamodel.Place;
+import by.aplevich.horcerace.datamodel.UserAccount;
+import by.aplevich.horcerace.datamodel.enums.UserRole;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.math3.random.RandomData;
 import org.apache.commons.math3.random.RandomDataImpl;
@@ -85,5 +90,34 @@ public abstract class AbstractServiceTest {
         return start + (int) Math.round(Math.random() * (end - start));
     }
 
-}
+    protected Horce createHorce() {
+        Horce horce = new Horce();
+        horce.setAge(randomInteger(4, 9));
+        horce.setName(randomString("horce-"));
+        horce.setTrainer(randomString("trainer-"));
+        return horce;
+    }
 
+
+    protected UserAccount createUser() {
+        UserAccount userTwo = new UserAccount();
+        userTwo.setLogin(randomString("login-"));
+        userTwo.setPassword(randomString("pass-"));
+        userTwo.setName(randomString("name-"));
+        userTwo.setRole(randomFromCollection(Arrays.asList(UserRole.values())));
+        return userTwo;
+    }
+
+    protected Jockey createJockey() {
+        Jockey jockey = new Jockey();
+        jockey.setFname(randomString("first name - "));
+        jockey.setLname(randomString("last name - "));
+        return jockey;
+    }
+
+    protected Place createPlace() {
+        Place place = new Place();
+        place.setName(randomString("place-"));
+        return place;
+    }
+}

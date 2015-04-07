@@ -1,32 +1,42 @@
 package by.aplevich.horcerace.services;
 
+import by.aplevich.horcerace.AbstractServiceTest;
 import by.aplevich.horcerace.datamodel.Place;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
 
-/**
- * Created by admin on 25.03.2015.
- */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-context.xml"})
-public class PlaceServiceTest {
+public class PlaceServiceTest extends AbstractServiceTest{
     private static final Logger LOGGER = LoggerFactory.getLogger(PlaceServiceTest.class);
 
     @Inject
     private PlaceService placeService;
 
+    @Before
+    public void cleanUpData() {
+        LOGGER.info("Instance of PlaceService is injected. Class is: {}", placeService.getClass().getName());
+        placeService.deleteAll();
+    }
+
     @Test
-    public void Test(){
-        LOGGER.warn("PlaceServiceTest log message");
-        Assert.assertNotNull(placeService);
-//        Place place = placeService.get(1l);
-//        Assert.assertNotNull(place);
+    public void basicCRUDTest() {
+        Place place = createPlace();
+        placeService.saveOrUpdate(place);
+
+        Place placeFromDB = placeService.get(place.getId());
+        Assert.assertNotNull(placeFromDB);
+        Assert.assertEquals(placeFromDB.getName(), place.getName());
+
+        placeFromDB.setName("newPlace");
+        placeService.saveOrUpdate(placeFromDB);
+        Place placeFromDbUpdated = placeService.get(place.getId());
+        Assert.assertEquals(placeFromDbUpdated.getName(), placeFromDB.getName());
+
+        placeService.delete(placeFromDbUpdated);
+        Assert.assertNull(placeService.get(place.getId()));
     }
 }
