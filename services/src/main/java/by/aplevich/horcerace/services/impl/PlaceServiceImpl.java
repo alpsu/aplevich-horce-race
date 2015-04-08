@@ -17,13 +17,6 @@ public class PlaceServiceImpl implements PlaceService{
     @Inject
     private PlaceDao dao;
 
-    @PostConstruct
-    private void init() {
-        // this method will be called by Spring after bean instantiation. Can be
-        // used for any initialization process.
-        LOGGER.info("Instance of PlaceService is created. Class is: {}", getClass().getName());
-    }
-
     @Override
     public Place get(Long id) {
         return dao.getById(id);

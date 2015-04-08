@@ -19,4 +19,6 @@ public class BetServiceImpl implements BetService {
     public Bet get(Long id) {
         return dao.getById(id);
     }
+
+
 }

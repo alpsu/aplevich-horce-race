@@ -3,6 +3,7 @@ package by.aplevich.horcerace.services;
 import by.aplevich.horcerace.AbstractServiceTest;
 import by.aplevich.horcerace.datamodel.UserAccount;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,11 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Inject
     private UserService userService;
+
+    @Before
+    public void cleanUpData() {
+        userService.deleteAll();
+    }
 
     @Test
     public void crudTest() {
@@ -50,5 +56,21 @@ public class UserServiceTest extends AbstractServiceTest {
 
         duplicateUser.setLogin(randomString("login"));
         userService.createNewUser(duplicateUser);
+    }
+
+    @Test
+    public void updateUserTest() {
+        final UserAccount user = createUser();
+        userService.createNewUser(user);
+
+        final UserAccount createdUserAccount = userService.get(user.getId());
+        createdUserAccount.setName("NewUserName");
+        userService.updateUser(createdUserAccount);
+        final UserAccount createdUserAccountFromDB = userService.get(createdUserAccount.getId());
+        Assert.assertEquals(createdUserAccountFromDB.getName(), createdUserAccount.getName());
+
+        userService.deteteUser(createdUserAccountFromDB.getId());
+        Assert.assertNull(userService.get(createdUserAccountFromDB.getId()));
+
     }
 }
