@@ -18,7 +18,6 @@ public class JockeyServiceTest extends AbstractServiceTest{
 
     @Before
     public void cleanUpData() {
-        LOGGER.info("Instance of JockeyService is injected. Class is: {}", jockeyService.getClass().getName());
         jockeyService.deleteAll();
     }
 

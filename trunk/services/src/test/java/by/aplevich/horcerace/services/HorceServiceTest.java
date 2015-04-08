@@ -18,7 +18,6 @@ public class HorceServiceTest extends AbstractServiceTest {
 
     @Before
     public void cleanUpData() {
-        LOGGER.info("Instance of HorceService is injected. Class is: {}", horceService.getClass().getName());
         horceService.deleteAll();
     }
 

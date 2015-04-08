@@ -1,5 +1,6 @@
 package by.aplevich.horcerace.dataaccess;
 
+import javax.persistence.metamodel.SingularAttribute;
 import java.util.List;
 
 public interface AbstractDao<ID, Entity> {
@@ -17,4 +18,6 @@ public interface AbstractDao<ID, Entity> {
     Entity insert(Entity entity);
 
     Entity update(Entity entity);
+
+    List<Entity> getAllByFieldRestriction(final SingularAttribute<? super Entity, ?> attribute, final Object value);
 }

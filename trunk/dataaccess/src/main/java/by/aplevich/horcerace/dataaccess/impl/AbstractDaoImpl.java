@@ -8,7 +8,10 @@ import org.slf4j.LoggerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.SingularAttribute;
 import java.util.List;
 
 public abstract class AbstractDaoImpl<ID, Entity> implements AbstractDao<ID, Entity> {
@@ -60,10 +63,10 @@ public abstract class AbstractDaoImpl<ID, Entity> implements AbstractDao<ID, Ent
 
     @Override
     public List<Entity> getAll() {
-        final CriteriaQuery<Entity> query = em.getCriteriaBuilder().createQuery(getEntityClass());
+        final CriteriaBuilder builder = em.getCriteriaBuilder();
+        final CriteriaQuery<Entity> query = builder.createQuery(getEntityClass());
         query.from(getEntityClass());
-        final List<Entity> lst = em.createQuery(query).getResultList();
-        return lst;
+        return em.createQuery(query).getResultList();
     }
 
     @PersistenceContext
@@ -78,5 +81,16 @@ public abstract class AbstractDaoImpl<ID, Entity> implements AbstractDao<ID, Ent
 
     public EntityManager getEm() {
         return em;
+    }
+
+    @Override
+    public List<Entity> getAllByFieldRestriction(final SingularAttribute<? super Entity, ?> attribute, final Object value) {
+        Validate.notNull(value, "Search attributes can't be empty. Attribute: " + attribute.getName());
+        final CriteriaBuilder builder = em.getCriteriaBuilder();
+        final CriteriaQuery<Entity> criteria = builder.createQuery(getEntityClass());
+        final Root<Entity> root = criteria.from(getEntityClass());
+        criteria.select(root).distinct(true);
+        criteria.where(builder.equal(root.get(attribute), value));
+        return em.createQuery(criteria).getResultList();
     }
 }

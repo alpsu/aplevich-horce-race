@@ -17,13 +17,6 @@ public class HorceServiceImpl implements HorceService{
     @Inject
     private HorceDao dao;
 
-    @PostConstruct
-    private void init() {
-        // this method will be called by Spring after bean instantiation. Can be
-        // used for any initialization process.
-        LOGGER.info("Instance of HorceService is created. Class is: {}", getClass().getName());
-    }
-
     @Override
     public Horce get(Long id) {
         return dao.getById(id);

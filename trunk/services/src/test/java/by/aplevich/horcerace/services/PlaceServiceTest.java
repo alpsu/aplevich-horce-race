@@ -18,7 +18,6 @@ public class PlaceServiceTest extends AbstractServiceTest{
 
     @Before
     public void cleanUpData() {
-        LOGGER.info("Instance of PlaceService is injected. Class is: {}", placeService.getClass().getName());
         placeService.deleteAll();
     }
 
