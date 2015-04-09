@@ -27,7 +27,7 @@ public class Race extends AbstractEntity {
         return description;
     }
 
-    public void setDescription(String name) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

@@ -1,10 +1,8 @@
 package by.aplevich.horcerace.services;
 
-import by.aplevich.horcerace.datamodel.Bet;
 import by.aplevich.horcerace.datamodel.UserAccount;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 public interface UserService {
     UserAccount get(Long id);
@@ -20,6 +18,4 @@ public interface UserService {
 
     @Transactional
     void deleteAll();
-
-    List<Bet> getAllBets(UserAccount user);
 }

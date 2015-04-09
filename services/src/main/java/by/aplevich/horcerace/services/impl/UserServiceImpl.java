@@ -1,7 +1,6 @@
 package by.aplevich.horcerace.services.impl;
 
 import by.aplevich.horcerace.dataaccess.UserDao;
-import by.aplevich.horcerace.datamodel.Bet;
 import by.aplevich.horcerace.datamodel.UserAccount;
 import by.aplevich.horcerace.services.UserService;
 import org.apache.commons.lang3.Validate;
@@ -10,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -50,9 +48,4 @@ public class UserServiceImpl implements UserService{
         dao.deleteAll();
     }
 
-    @Override
-    public List<Bet> getAllBets(UserAccount user) {
-        //todo
-        return null;
-    }
 }
