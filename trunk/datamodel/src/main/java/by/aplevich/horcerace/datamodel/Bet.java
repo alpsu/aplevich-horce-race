@@ -15,8 +15,8 @@ public class Bet extends AbstractEntity {
     @Enumerated(EnumType.ORDINAL)
     private BetType type;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Race.class)
-    private Race race;
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Runner.class)
+    private Runner runner;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = UserAccount.class)
     private UserAccount user;
@@ -36,12 +36,12 @@ public class Bet extends AbstractEntity {
         this.type = type;
     }
 
-    public Race getRace() {
-        return race;
+    public Runner getRunner() {
+        return runner;
     }
 
-    public void setRace(Race race) {
-        this.race = race;
+    public void setRunner(Runner runner) {
+        this.runner = runner;
     }
 
     public UserAccount getUser() {
@@ -74,7 +74,7 @@ public class Bet extends AbstractEntity {
                 "currency=" + currency +
                 ", id=" + getId() +
                 ", type=" + type +
-                ", race=" + race +
+                ", runner=" + runner +
                 ", user=" + user +
                 ", sum=" + sum +
                 '}';

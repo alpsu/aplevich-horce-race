@@ -7,11 +7,8 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 
-/**
- * Created by admin on 25.03.2015.
- */
 @Service
-public class RunnerServiceImmp implements RunnerService {
+public class RunnerServiceImpl implements RunnerService {
     @Inject
     private RunnerDao dao;
 

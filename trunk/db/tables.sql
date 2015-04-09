@@ -76,13 +76,13 @@ COMMENT ON TABLE runner IS 'Участники забегов';
 CREATE TABLE bet (
   id              SERIAL         NOT NULL,
   type            SMALLINT       NOT NULL DEFAULT 0,
-  race_id         INTEGER        NOT NULL,
+  runner_id INTEGER NOT NULL,
   user_account_id INTEGER        NOT NULL,
   currency        SMALLINT       NOT NULL DEFAULT 0,
   sum             DECIMAL(14, 2) NOT NULL,
   CONSTRAINT bet_pkey PRIMARY KEY (id),
-  CONSTRAINT bet_race_id_fkey FOREIGN KEY (race_id)
-  REFERENCES race (id) MATCH SIMPLE
+  CONSTRAINT bet_runner_id_fkey FOREIGN KEY (runner_id)
+  REFERENCES runner (id) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT bet_user_account_id_fkey FOREIGN KEY (user_account_id)
   REFERENCES user_account (id) MATCH SIMPLE
