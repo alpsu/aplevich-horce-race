@@ -16,8 +16,13 @@ public class PlaceServiceTest extends AbstractServiceTest{
     @Inject
     private PlaceService placeService;
 
+    @Inject
+    private RaceService raceService;
+
     @Before
-    public void cleanUpData() {
+    public void cleanUpData()
+    {
+        raceService.deleteAll();
         placeService.deleteAll();
     }
 

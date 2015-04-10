@@ -16,8 +16,12 @@ public class JockeyServiceTest extends AbstractServiceTest{
     @Inject
     private JockeyService jockeyService;
 
+    @Inject
+    private RunnerService runnerService;
+
     @Before
     public void cleanUpData() {
+        runnerService.deleteAll();
         jockeyService.deleteAll();
     }
 

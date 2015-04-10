@@ -245,6 +245,7 @@
                     <configuration>
                         <source>1.8</source>
                         <target>1.8</target>
+                        <compilerArgument>-proc:none</compilerArgument>
                         <encoding>UTF-8</encoding>
                         <showWarnings>true</showWarnings>
                         <showDeprecation>true</showDeprecation>
