@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import java.util.List;
 
 public class RaceServiceTest extends AbstractServiceTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(RaceServiceTest.class);
@@ -20,8 +21,12 @@ public class RaceServiceTest extends AbstractServiceTest {
     @Inject
     private PlaceService placeService;
 
+    @Inject
+    private RunnerService runnerService;
+
     @Before
     public void cleanUpData() {
+        runnerService.deleteAll();
         raceService.deleteAll();
     }
 
@@ -35,18 +40,24 @@ public class RaceServiceTest extends AbstractServiceTest {
 
         Race raceFromDB = raceService.get(race.getId());
         Assert.assertNotNull(raceFromDB);
-        // todo: compare all fields and do test getAllRaceByPlace and do it test
-//        Assert.assertEquals(horceFromDB.getName(), race.getName());
-//        Assert.assertEquals(horceFromDB.getTrainer(), race.getTrainer());
-//        Assert.assertEquals(horceFromDB.getAge(), race.getAge());
-//
-//        horceFromDB.setName("newName");
-//        horceService.saveOrUpdate(horceFromDB);
-//        Horce horceFromDbUpdated = horceService.get(race.getId());
-//        Assert.assertEquals(horceFromDbUpdated.getName(), horceFromDB.getName());
-//        Assert.assertNotEquals(horceFromDbUpdated.getName(), race.getName());
-//
-//        horceService.delete(horceFromDbUpdated);
-//        Assert.assertNull(horceService.get(race.getId()));
+        Assert.assertEquals(raceFromDB.getDescription(), race.getDescription());
+        Assert.assertEquals(raceFromDB.getDistance(), race.getDistance());
+        Assert.assertEquals(raceFromDB.getQuantity(), race.getQuantity());
+        Assert.assertEquals(raceFromDB.getStart().getTime(), race.getStart().getTime());
+    }
+
+    @Test
+    public void getAllRacesTest() {
+        Race raceOne = createRace();
+        Race raceTwo = createRace();
+        Place place = createPlace();
+        placeService.saveOrUpdate(place);
+        raceOne.setPlace(placeService.get(place.getId()));
+        raceTwo.setPlace(placeService.get(place.getId()));
+        raceService.saveOrUpdate(raceOne);
+        raceService.saveOrUpdate(raceTwo);
+
+        List<Race> races = raceService.getAllRaceByPlace(place);
+        Assert.assertEquals(races.size(), 2);
     }
 }

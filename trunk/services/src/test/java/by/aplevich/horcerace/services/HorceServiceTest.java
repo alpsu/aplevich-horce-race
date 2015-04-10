@@ -16,8 +16,12 @@ public class HorceServiceTest extends AbstractServiceTest {
     @Inject
     private HorceService horceService;
 
+    @Inject
+    private RunnerService runnerService;
+
     @Before
     public void cleanUpData() {
+        runnerService.deleteAll();
         horceService.deleteAll();
     }
 

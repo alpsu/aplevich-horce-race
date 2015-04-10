@@ -74,7 +74,7 @@ public abstract class AbstractServiceTest {
         return null;
     }
 
-    public static Date randomDate() {
+    static Date randomDate() {
         final int year = randBetween(1900, 2010);
         final GregorianCalendar gc = new GregorianCalendar();
         gc.set(Calendar.YEAR, year);
@@ -125,5 +125,11 @@ public abstract class AbstractServiceTest {
         race.setStart(randomDate());
         race.setQuantity(randBetween(3, 6));
         return race;
+    }
+
+    protected Runner createRunner() {
+        Runner runner = new Runner();
+        runner.setKoefficient(randomDouble());
+        return runner;
     }
 }
