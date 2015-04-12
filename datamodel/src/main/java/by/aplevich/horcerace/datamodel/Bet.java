@@ -11,22 +11,26 @@ import java.math.BigDecimal;
  */
 @Entity
 public class Bet extends AbstractEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column
     @Enumerated(EnumType.ORDINAL)
     private BetType type;
-
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Runner.class)
     private Runner runner;
-
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = UserAccount.class)
-    private UserAccount user;
-
+    private UserAccount userAccount;
     @Column
     private BigDecimal sum;
-
     @Column
     @Enumerated(EnumType.ORDINAL)
     private Currency currency;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
 
     public BetType getType() {
         return type;
@@ -44,12 +48,12 @@ public class Bet extends AbstractEntity {
         this.runner = runner;
     }
 
-    public UserAccount getUser() {
-        return user;
+    public UserAccount getUserAccount() {
+        return userAccount;
     }
 
-    public void setUser(UserAccount user) {
-        this.user = user;
+    public void setUserAccount(UserAccount user) {
+        this.userAccount = user;
     }
 
     public BigDecimal getSum() {
@@ -75,7 +79,7 @@ public class Bet extends AbstractEntity {
                 ", id=" + getId() +
                 ", type=" + type +
                 ", runner=" + runner +
-                ", user=" + user +
+                ", user=" + userAccount +
                 ", sum=" + sum +
                 '}';
     }

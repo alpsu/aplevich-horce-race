@@ -29,7 +29,7 @@ public class JockeyServiceImpl implements JockeyService{
         } else {
             LOGGER.debug("Update: {}", jockey);
             dao.update(jockey);
-        }
+    }
     }
 
     @Override

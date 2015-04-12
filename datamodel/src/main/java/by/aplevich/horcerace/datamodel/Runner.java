@@ -7,20 +7,24 @@ import javax.persistence.*;
  */
 @Entity
 public class Runner extends AbstractEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column
     private double koefficient;
-
     @Column
     private Integer place;
-
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Horce.class)
     private Horce horce;
-
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Jockey.class)
     private Jockey jockey;
-
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Race.class)
     private Race race;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
 
     public double getKoefficient() {
         return koefficient;

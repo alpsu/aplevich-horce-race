@@ -8,20 +8,24 @@ import java.util.Date;
  */
 @Entity
 public class Race extends AbstractEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column
     private String description;
-
     @Column
     private String distance;
-
     @Column
     private Date start;
-
     @Column
     private Integer quantity;
-
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Place.class)
     private Place place;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
 
     public String getDescription() {
         return description;

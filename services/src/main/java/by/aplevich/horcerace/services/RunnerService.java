@@ -10,7 +10,7 @@ public interface RunnerService {
     Runner get(Long id);
 
     @Transactional
-    void createRunner(Runner runner);
+    void saveOrUpdate(Runner runner);
 
     @Transactional
     void delete(Runner runner);

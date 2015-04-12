@@ -1,14 +1,19 @@
 package by.aplevich.horcerace;
 
 import by.aplevich.horcerace.datamodel.*;
+import by.aplevich.horcerace.datamodel.enums.BetType;
+import by.aplevich.horcerace.datamodel.enums.Currency;
 import by.aplevich.horcerace.datamodel.enums.UserRole;
+import by.aplevich.horcerace.services.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.math3.random.RandomData;
 import org.apache.commons.math3.random.RandomDataImpl;
+import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
@@ -19,6 +24,21 @@ public abstract class AbstractServiceTest {
     protected static final RandomData RANDOM_DATA = new RandomDataImpl();
     private final static Random random = new Random();
     private static final int RANDOM_STRING_SIZE = 8;
+
+    @Inject
+    protected BetService betService;
+    @Inject
+    protected HorceService horceService;
+    @Inject
+    protected JockeyService jockeyService;
+    @Inject
+    protected PlaceService placeService;
+    @Inject
+    protected RaceService raceService;
+    @Inject
+    protected RunnerService runnerService;
+    @Inject
+    protected UserService userService;
 
     public static String randomString() {
         return RandomStringUtils.randomAlphabetic(RANDOM_STRING_SIZE);
@@ -92,6 +112,7 @@ public abstract class AbstractServiceTest {
         horce.setAge(randomInteger(4, 9));
         horce.setName(randomString("horce"));
         horce.setTrainer(randomString("trainer"));
+        horceService.saveOrUpdate(horce);
         return horce;
     }
 
@@ -102,6 +123,7 @@ public abstract class AbstractServiceTest {
         userTwo.setPassword(randomString("pass"));
         userTwo.setName(randomString("name"));
         userTwo.setRole(randomFromCollection(Arrays.asList(UserRole.values())));
+        userService.createNewUser(userTwo);
         return userTwo;
     }
 
@@ -109,27 +131,69 @@ public abstract class AbstractServiceTest {
         Jockey jockey = new Jockey();
         jockey.setFname(randomString("first name"));
         jockey.setLname(randomString("last name"));
+        jockeyService.saveOrUpdate(jockey);
         return jockey;
     }
 
     protected Place createPlace() {
         Place place = new Place();
         place.setName(randomString("place"));
+        placeService.saveOrUpdate(place);
         return place;
     }
 
     protected Race createRace() {
         Race race = new Race();
+        Place place = createPlace();
         race.setDescription(randomString("desc"));
         race.setDistance(randomString("distance"));
         race.setStart(randomDate());
         race.setQuantity(randBetween(3, 6));
+        race.setPlace(place);
+        placeService.saveOrUpdate(place);
+        raceService.saveOrUpdate(race);
         return race;
     }
 
     protected Runner createRunner() {
         Runner runner = new Runner();
+        Horce horce = createHorce();
+        horceService.saveOrUpdate(horce);
+        Jockey jockey = createJockey();
+        jockeyService.saveOrUpdate(jockey);
+        Race race = createRace();
+        raceService.saveOrUpdate(race);
         runner.setKoefficient(randomDouble());
+        runner.setHorce(horce);
+        runner.setJockey(jockey);
+        runner.setRace(race);
+        runnerService.saveOrUpdate(runner);
         return runner;
+    }
+
+    protected Bet createBet() {
+        Bet bet = new Bet();
+        bet.setType(randomFromCollection(Arrays.asList(BetType.values())));
+        bet.setCurrency(randomFromCollection(Arrays.asList(Currency.values())));
+        bet.setSum(randomBigDecimal());
+        Runner runner = createRunner();
+        runnerService.saveOrUpdate(runner);
+        UserAccount userAccount = createUser();
+        userService.updateUser(userAccount);
+        bet.setUserAccount(userAccount);
+        bet.setRunner(runner);
+        betService.saveOrUpdate(bet);
+        return bet;
+    }
+
+    @Before
+    public void cleanUpData() {
+        betService.deleteAll();
+        runnerService.deleteAll();
+        raceService.deleteAll();
+        userService.deleteAll();
+        jockeyService.deleteAll();
+        placeService.deleteAll();
+        horceService.deleteAll();
     }
 }

@@ -1,15 +1,22 @@
 package by.aplevich.horcerace.datamodel;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Places of race
  */
 @Entity
 public class Place extends AbstractEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column
     private String name;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
