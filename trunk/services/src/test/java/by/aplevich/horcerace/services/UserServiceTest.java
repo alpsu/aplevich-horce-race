@@ -3,29 +3,18 @@ package by.aplevich.horcerace.services;
 import by.aplevich.horcerace.AbstractServiceTest;
 import by.aplevich.horcerace.datamodel.UserAccount;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 
 public class UserServiceTest extends AbstractServiceTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceTest.class);
 
-    @Inject
-    private UserService userService;
-
-    @Before
-    public void cleanUpData() {
-        userService.deleteAll();
-    }
-
     @Test
     public void crudTest() {
         UserAccount userOne = createUser();
-        userService.createNewUser(userOne);
 
         final UserAccount createdUserAccount = userService.get(userOne.getId());
         Assert.assertNotNull(createdUserAccount);
@@ -43,25 +32,24 @@ public class UserServiceTest extends AbstractServiceTest {
         final UserAccount user = createUser();
         final String login = randomString("login");
         user.setLogin(login);
-        userService.createNewUser(user);
+        userService.updateUser(user);
 
         final UserAccount duplicateUser = createUser();
         duplicateUser.setLogin(login);
         try {
-            userService.createNewUser(duplicateUser);
+            userService.updateUser(duplicateUser);
             Assert.fail("Not unique login can`t be saved ");
         } catch (final PersistenceException e) {
 
         }
 
         duplicateUser.setLogin(randomString("login"));
-        userService.createNewUser(duplicateUser);
+        userService.updateUser(duplicateUser);
     }
 
     @Test
     public void updateUserTest() {
         final UserAccount user = createUser();
-        userService.createNewUser(user);
 
         final UserAccount createdUserAccount = userService.get(user.getId());
         createdUserAccount.setName("NewUserName");
@@ -71,6 +59,5 @@ public class UserServiceTest extends AbstractServiceTest {
 
         userService.deteteUser(createdUserAccountFromDB.getId());
         Assert.assertNull(userService.get(createdUserAccountFromDB.getId()));
-
     }
 }

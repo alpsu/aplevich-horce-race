@@ -7,14 +7,20 @@ import javax.persistence.*;
  */
 @Entity
 public class Horce extends AbstractEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column
     private String name;
-
     @Column
     private String trainer;
-
     @Column
     private Integer age;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

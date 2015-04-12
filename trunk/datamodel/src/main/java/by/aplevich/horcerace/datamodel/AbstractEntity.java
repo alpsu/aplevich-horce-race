@@ -1,8 +1,5 @@
 package by.aplevich.horcerace.datamodel;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
@@ -10,12 +7,21 @@ import javax.persistence.MappedSuperclass;
  */
 
 @MappedSuperclass
-public class AbstractEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public abstract class AbstractEntity {
+    public abstract Long getId();
 
-    public Long getId() {
-        return id;
+    @Override
+    public int hashCode() {
+        return getId() != null ? getId().hashCode() : super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AbstractEntity)) return false;
+
+        AbstractEntity that = (AbstractEntity) o;
+
+        return !(getId() != null ? !getId().equals(that.getId()) : that.getId() != null);
     }
 }

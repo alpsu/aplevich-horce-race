@@ -5,7 +5,6 @@ import by.aplevich.horcerace.datamodel.Race;
 import by.aplevich.horcerace.datamodel.Runner;
 import by.aplevich.horcerace.datamodel.Runner_;
 import by.aplevich.horcerace.services.RunnerService;
-import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -27,10 +26,14 @@ public class RunnerServiceImpl implements RunnerService {
     }
 
     @Override
-    public void createRunner(Runner runner) {
-        Validate.isTrue(runner.getId() == null, "This method should be called for 'not saved runner yet' runner. Only");
-        LOGGER.debug("Create runnner: {}", runner);
-        dao.insert(runner);
+    public void saveOrUpdate(Runner runner) {
+        if (runner.getId() == null) {
+            LOGGER.debug("Save new: {}", runner);
+            dao.insert(runner);
+        } else {
+            LOGGER.debug("Update: {}", runner);
+            dao.update(runner);
+        }
     }
 
     @Override
@@ -58,7 +61,7 @@ public class RunnerServiceImpl implements RunnerService {
 
     @Override
     public List<Runner> getAllRunnerByRace(Race race) {
-       LOGGER.debug("Get all runner in race: {}", race);
+        LOGGER.debug("Get all runner in race: {}", race);
         return dao.getAllByFieldRestriction(Runner_.race, race.getId());
     }
 }

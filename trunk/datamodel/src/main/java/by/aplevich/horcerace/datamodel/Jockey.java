@@ -7,10 +7,18 @@ import javax.persistence.*;
  */
 @Entity
 public class Jockey extends AbstractEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column
     private String fname;
     @Column
     private String lname;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
 
     public String getFname() {
         return fname;
