@@ -31,8 +31,8 @@ public class RaceServiceTest extends AbstractServiceTest {
         Race raceTwo = createRace();
         Place place = createPlace();
         placeService.saveOrUpdate(place);
-        raceOne.setPlace(placeService.get(place.getId()));
-        raceTwo.setPlace(placeService.get(place.getId()));
+        raceOne.setPlace(place);
+        raceTwo.setPlace(place);
         raceService.saveOrUpdate(raceOne);
         raceService.saveOrUpdate(raceTwo);
 
