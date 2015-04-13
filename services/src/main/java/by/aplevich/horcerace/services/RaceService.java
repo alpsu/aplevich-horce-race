@@ -19,4 +19,6 @@ public interface RaceService {
     void delete(Race race);
 
     List<Race> getAllRaceByPlace(Place place);
+
+    List<Race> getAllRacesWithPlace();
 }

@@ -50,4 +50,9 @@ public class RaceServiceImpl implements RaceService {
         LOGGER.debug("Get all race in place: {}", place);
         return dao.getAllByFieldRestriction(Race_.place, place.getId());
     }
+
+    @Override
+    public List<Race> getAllRacesWithPlace() {
+        return dao.getAllRacesWithPlace();
+    }
 }
