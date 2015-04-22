@@ -1,5 +1,8 @@
 package by.aplevich.horcerace.wicketweb;
 
+import java.io.File;
+import java.net.URL;
+
 import org.apache.wicket.util.time.Duration;
 import org.eclipse.jetty.plus.webapp.EnvConfiguration;
 import org.eclipse.jetty.server.Server;
@@ -8,9 +11,6 @@ import org.eclipse.jetty.webapp.Configuration;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.eclipse.jetty.webapp.WebInfConfiguration;
 import org.eclipse.jetty.webapp.WebXmlConfiguration;
-
-import java.io.File;
-import java.net.URL;
 
 public class WicketJettyRunner {
 
@@ -38,9 +38,9 @@ public class WicketJettyRunner {
          * // Certificate that expires about half way september 2021. Do not //
          * use this certificate anywhere important as the passwords are //
          * available in the source.
-         *
+         * 
          * connector.setConfidentialPort(8443);
-         *
+         * 
          * final SslContextFactory factory = new SslContextFactory();
          * factory.setKeyStoreResource(keystore);
          * factory.setKeyStorePassword("wicket");
@@ -49,7 +49,7 @@ public class WicketJettyRunner {
          * sslConnector = new SslSocketConnector(factory);
          * sslConnector.setMaxIdleTime(timeout); sslConnector.setPort(8443);
          * sslConnector.setAcceptors(4); server.addConnector(sslConnector);
-         *
+         * 
          * System.out.println(
          * "SSL access to the quickstart has been enabled on port 8443");
          * System.out.println(
@@ -59,7 +59,6 @@ public class WicketJettyRunner {
         final WebAppContext bb = new WebAppContext();
         bb.setServer(server);
         bb.setContextPath("/");
-        //bb.setDescriptor("src/main/WEB-INF/web.xml");
         bb.setWar("src/main/webapp");
 
         // START JMX SERVER
@@ -74,7 +73,7 @@ public class WicketJettyRunner {
         final EnvConfiguration envConfiguration = new EnvConfiguration();
         final URL url = new File("src/main/webapp/WEB-INF/jetty-env.xml").toURI().toURL();
         envConfiguration.setJettyEnvXml(url);
-        bb.setConfigurations(new Configuration[]{new WebInfConfiguration(), envConfiguration, new WebXmlConfiguration()});
+        bb.setConfigurations(new Configuration[] { new WebInfConfiguration(), envConfiguration, new WebXmlConfiguration() });
 
         try {
             System.out.println(">>> STARTING EMBEDDED JETTY SERVER, PRESS ANY KEY TO STOP");
