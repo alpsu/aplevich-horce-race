@@ -14,7 +14,7 @@
         <hibernate.version>4.3.9.Final</hibernate.version>
         <common.project.version>1.0</common.project.version>
         <jetty.version>8.1.16.v20140903</jetty.version>
-        <wicket.version>7.0.0-M5</wicket.version>
+        <wicket.version>6.19.0</wicket.version>
         <!--<jetty.version>7.6.13.v20130916</jetty.version>-->
     </properties>
 
@@ -232,6 +232,17 @@
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>1.1.0.Final</version>
+            </dependency>
+            <!--Wicket-JQuery-ui -->
+            <dependency>
+                <groupId>com.googlecode.wicket-jquery-ui</groupId>
+                <artifactId>wicket-jquery-ui</artifactId>
+                <version>6.18.1</version> <!-- or 1.5.11 -->
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.wicket-jquery-ui</groupId>
+                <artifactId>wicket-jquery-ui-theme-uilightness</artifactId>
+                <version>6.18.0</version>
             </dependency>
             <!-- JUnit -->
             <dependency>
