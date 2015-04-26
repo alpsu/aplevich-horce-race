@@ -40,7 +40,7 @@ public class UserServiceTest extends AbstractServiceTest {
             userService.updateUser(duplicateUser);
             Assert.fail("Not unique login can`t be saved ");
         } catch (final PersistenceException e) {
-
+            e.printStackTrace();
         }
 
         duplicateUser.setLogin(randomString("login"));

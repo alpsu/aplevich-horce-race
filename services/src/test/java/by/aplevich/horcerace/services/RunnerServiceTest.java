@@ -25,28 +25,28 @@ public class RunnerServiceTest extends AbstractServiceTest {
     @Test
     public void getAllRunnersTest() {
         LOGGER.debug("Starting getAllRunnersTest");
-        Runner runnerOne = createRunner();
-        Runner runnerTwo = createRunner();
+        int num = randomInteger(2, 5);
         Race race = createRace();
-        runnerOne.setRace(race);
-        runnerTwo.setRace(race);
-        runnerService.saveOrUpdate(runnerOne);
-        runnerService.saveOrUpdate(runnerTwo);
+        for (int i = 0; i < num; i++) {
+            Runner runner = createRunner();
+            runner.setRace(race);
+            runnerService.saveOrUpdate(runner);
+        }
 
         List<Runner> runners = runnerService.getAllRunnerByRace(race);
-        Assert.assertEquals(runners.size(), 2);
+        Assert.assertEquals(runners.size(), num);
     }
 
     @Test
     public void deleteAllInRaceTest() {
         LOGGER.debug("Starting deleteAllInRaceTest");
-        Runner runnerOne = createRunner();
-        Runner runnerTwo = createRunner();
+        int num = randomInteger(2, 5);
         Race race = createRace();
-        runnerOne.setRace(race);
-        runnerTwo.setRace(race);
-        runnerService.saveOrUpdate(runnerOne);
-        runnerService.saveOrUpdate(runnerTwo);
+        for (int i = 0; i < num; i++) {
+            Runner runner = createRunner();
+            runner.setRace(race);
+            runnerService.saveOrUpdate(runner);
+        }
 
         runnerService.deleteAllInRace(race);
         List<Runner> runners = runnerService.getAllRunnerByRace(race);

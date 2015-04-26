@@ -27,16 +27,16 @@ public class RaceServiceTest extends AbstractServiceTest {
 
     @Test
     public void getAllRacesTest() {
-        Race raceOne = createRace();
-        Race raceTwo = createRace();
+        int num = randomInteger(2, 5);
+
         Place place = createPlace();
-        placeService.saveOrUpdate(place);
-        raceOne.setPlace(place);
-        raceTwo.setPlace(place);
-        raceService.saveOrUpdate(raceOne);
-        raceService.saveOrUpdate(raceTwo);
+        for (int i = 0; i < num; i++) {
+            Race race = createRace();
+            race.setPlace(place);
+            raceService.saveOrUpdate(race);
+        }
 
         List<Race> races = raceService.getAllRaceByPlace(place);
-        Assert.assertEquals(races.size(), 2);
+        Assert.assertEquals(races.size(), num);
     }
 }
