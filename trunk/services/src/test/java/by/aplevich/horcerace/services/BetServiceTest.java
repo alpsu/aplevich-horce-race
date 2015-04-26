@@ -26,43 +26,44 @@ public class BetServiceTest extends AbstractServiceTest {
     @Test
     public void getAllBetsByUser() {
         LOGGER.debug("Starting getAllBetsByUser");
-        Bet betOne = createBet();
-        Bet betTwo = createBet();
+        int num = randomInteger(2, 5);
         UserAccount user = createUser();
-        betOne.setUserAccount(user);
-        betTwo.setUserAccount(user);
-        betService.saveOrUpdate(betOne);
-        betService.saveOrUpdate(betTwo);
+        for (int i = 0; i < num; i++) {
+            Bet bet = createBet();
+            bet.setUserAccount(user);
+            betService.saveOrUpdate(bet);
+        }
 
         List<Bet> bets = betService.getAllBetsByUser(user);
-        Assert.assertEquals(bets.size(), 2);
+        Assert.assertEquals(bets.size(), num);
     }
 
     @Test
     public void getAllBetsByRunner() {
         LOGGER.debug("Starting getAllBetsByRunner");
-        Bet betOne = createBet();
-        Bet betTwo = createBet();
+
+        int num = randomInteger(2, 5);
         Runner runner = createRunner();
-        betOne.setRunner(runner);
-        betTwo.setRunner(runner);
-        betService.saveOrUpdate(betOne);
-        betService.saveOrUpdate(betTwo);
+        for (int i = 0; i < num; i++) {
+            Bet bet = createBet();
+            bet.setRunner(runner);
+            betService.saveOrUpdate(bet);
+        }
 
         List<Bet> bets = betService.getAllBetsByRunner(runner);
-        Assert.assertEquals(bets.size(), 2);
+        Assert.assertEquals(bets.size(), num);
     }
 
     @Test
     public void deleteAllByUser() {
         LOGGER.debug("Starting deleteAllByUserTest");
-        Bet betOne = createBet();
-        Bet betTwo = createBet();
+        int num = randomInteger(2, 5);
         UserAccount user = createUser();
-        betOne.setUserAccount(user);
-        betTwo.setUserAccount(user);
-        betService.saveOrUpdate(betOne);
-        betService.saveOrUpdate(betTwo);
+        for (int i = 0; i < num; i++) {
+            Bet bet = createBet();
+            bet.setUserAccount(user);
+            betService.saveOrUpdate(bet);
+        }
 
         betService.deleteAllByUser(user);
         List<Bet> bets = betService.getAllBetsByUser(user);
@@ -72,14 +73,14 @@ public class BetServiceTest extends AbstractServiceTest {
     @Test
     public void deleteAllByRunner() {
         LOGGER.debug("Starting deleteAllByUserTest");
-        Bet betOne = createBet();
-        Bet betTwo = createBet();
-        Runner runner = createRunner();
-        betOne.setRunner(runner);
-        betTwo.setRunner(runner);
-        betService.saveOrUpdate(betOne);
-        betService.saveOrUpdate(betTwo);
 
+        int num = randomInteger(2, 5);
+        Runner runner = createRunner();
+        for (int i = 0; i < num; i++) {
+            Bet bet = createBet();
+            bet.setRunner(runner);
+            betService.saveOrUpdate(bet);
+        }
         betService.deleteAllByRunner(runner);
         List<Bet> bets = betService.getAllBetsByRunner(runner);
         Assert.assertEquals(bets.size(), 0);

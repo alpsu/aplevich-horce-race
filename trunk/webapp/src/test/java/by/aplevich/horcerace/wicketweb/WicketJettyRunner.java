@@ -1,8 +1,5 @@
 package by.aplevich.horcerace.wicketweb;
 
-import java.io.File;
-import java.net.URL;
-
 import org.apache.wicket.util.time.Duration;
 import org.eclipse.jetty.plus.webapp.EnvConfiguration;
 import org.eclipse.jetty.server.Server;
@@ -11,6 +8,9 @@ import org.eclipse.jetty.webapp.Configuration;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.eclipse.jetty.webapp.WebInfConfiguration;
 import org.eclipse.jetty.webapp.WebXmlConfiguration;
+
+import java.io.File;
+import java.net.URL;
 
 public class WicketJettyRunner {
 
@@ -60,7 +60,7 @@ public class WicketJettyRunner {
         bb.setServer(server);
         bb.setContextPath("/");
         bb.setWar("src/main/webapp");
-
+        //WebAppContext bb = new WebAppContext("/src/main/webapp", "/");
         // START JMX SERVER
         // MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
         // MBeanContainer mBeanContainer = new MBeanContainer(mBeanServer);
