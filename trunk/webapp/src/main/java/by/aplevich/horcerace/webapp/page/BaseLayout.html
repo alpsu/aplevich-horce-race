@@ -5,13 +5,153 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title wicket:id="headerTitle">[Page title]</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="css/layout.css"/>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <wicket:header-items/>
     <link href="./images/apply.png" type="image/vnd.microsoft.icon" rel="icon"/>
 </head>
 <body>
-<div style="border: 3px solid red; padding: 10px;">
-    <wicket:child/>
+<div id="body_wrapper">
+    <div id="rightcolumn">
+        <!-- Start Page Header -->
+        <div id="page_header">
+            <h1><span>Slave to the Game</span></h1>
+
+            <h3><span>Online Gaming Community</span></h3>
+        </div>
+        <!-- End of Page Header -->
+        <!-- Start of Main Navigation Menu -->
+        <div id="mainnav">
+            <ul>
+                <li id="mainnav_01"><a href="#"><span>Home</span></a></li>
+                <li id="mainnav_02"><a href="#"><span>Roster</span></a></li>
+                <li id="mainnav_03"><a href="#"><span>About Us</span></a></li>
+                <li id="mainnav_04"><a href="#"><span>Matches</span></a></li>
+                <li id="mainnav_05"><a href="#"><span>Downloads</span></a></li>
+                <li id="mainnav_06"><a href="#"><span>Servers</span></a></li>
+                <li id="mainnav_07"><a href="#"><span>Sponsors</span></a></li>
+                <li id="mainnav_08"><a href="#"><span>Links</span></a></li>
+                <li id="mainnav_09"><a href="#"><span>Forum</span></a></li>
+                <li id="mainnav_10"><a href="#"><span>Admin</span></a></li>
+                <li id="mainnav_11"><a href="#"><span>Members</span></a></li>
+            </ul>
+            <div class="clearthis">&nbsp;</div>
+        </div>
+        <!-- End of Main Navigation Menu -->
+        <!-- Start of Center Column -->
+        <div id="centercolumn">
+            <wicket:child/>
+        </div>
+        <!-- End of Center Column -->
+        <!-- Start of Right Sidebar -->
+        <div id="rightsidebar">
+            <!-- Start of Team Roster -->
+            <div id="teamroster">
+                <div id="teamroster_header">
+                    <h2><span>Team Roster</span></h2>
+                </div>
+                <div id="teamroster_content">
+                    <div id="teamroster_categories"><a href="#">Staff</a> | <a href="#">Captains</a></div>
+                    <ul>
+                        <li id="roster_twitch"><a href="#">twitch</a></li>
+                        <li id="roster_rock"><a href="#">rock</a></li>
+                        <li id="roster_badkarma"><a href="#">BadKarma</a></li>
+                        <li id="roster_mostly"><a href="#">mostly</a></li>
+                        <li id="roster_thebowl"><a href="#">TheBowl</a></li>
+                        <li id="roster_doggerz"><a href="#">doggerz</a></li>
+                        <li id="roster_drew"><a href="#">Drew</a></li>
+                        <li id="roster_nogusta"><a href="#">Nogusta</a></li>
+                    </ul>
+                    <div class="clearthis">&nbsp;</div>
+                    <div class="more_button"><a href="#"><span>More</span></a></div>
+                </div>
+            </div>
+            <!-- End of Team Roster -->
+            <!-- Start of Team Sponsors -->
+            <div id="teamsponsors">
+                <h2><span>Team Sponsors</span></h2>
+
+                <div id="teamsponsors_content"><a href="#"><img src="images/teamsponsors_surrealmedia.jpg" width="186"
+                                                                height="63" alt="Surreal Media"/></a>
+
+                    <div class="more_button"><a href="#"><span>More</span></a></div>
+                </div>
+            </div>
+            <!-- End of Team Sponsors -->
+        </div>
+        <!-- End of Right Sidebar -->
+        <div class="clearthis">&nbsp;</div>
+    </div>
+    <!-- Start of Left Column -->
+    <div id="leftcolumn">
+        <!-- Start of Recent Record -->
+        <div id="recentrecord">
+            <h2><span>Recent Record</span></h2>
+            <ul>
+                <li>TWL : 105 - 43 - 6</li>
+                <li>OGL : 101 - 35 - 16</li>
+                <li>TWL : 105 - 43 - 6</li>
+            </ul>
+            <div class="clearthis">&nbsp;</div>
+        </div>
+        <!-- End of Recent Record -->
+        <!-- Start of Left Sidebar -->
+        <div id="leftsidebar">
+            <!-- Start of Latest Matches -->
+            <div id="latestmatch">
+                <h2><span>Latest Match</span></h2>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li>s2tg&#62;Dark|</li>
+                    <li>s2tg&#62;[#tS]</li>
+                    <li>s2tg&#62;WFC</li>
+                    <li>s2tg&#62;sinister</li>
+                    <li>s2tg&#62;|CoL|</li>
+                    <li>s2tg&#60;=3rd=</li>
+                    <li>s2tg&#60;|AAA|</li>
+                    <li>s2tg&#62;=[R.E.C]=</li>
+                    <li>s2tg&#60;|CBW|</li>
+                    <li>s2tg&#62;witw</li>
+                </ul>
+                <div class="more_button"><a href="#"><span>More</span></a></div>
+                <div class="clearthis">&nbsp;</div>
+            </div>
+            <!-- End of Latest Matches -->
+            <!-- Start of Gaming Services -->
+            <div id="gamingservices">
+                <h2><span>Gaming Services</span></h2>
+                <ul>
+                    <li>CoD:UO 205.234.150.42:28960</li>
+                    <li>CoD:UO 205.234.150.42:28961</li>
+                    <li>Teamspeak 66.225.194.130:7900</li>
+                </ul>
+                <div class="more_button"><a href="#"><span>More</span></a></div>
+                <div class="clearthis">&nbsp;</div>
+            </div>
+            <!-- End of Gaming Services -->
+            <!-- Start of Quick Links -->
+            <div id="quicklinks">
+                <h2><span>Quick Links</span></h2>
+                <ul>
+                    <li><a href="#">TeamWarfare League</a></li>
+                    <li><a href="#">OGL Online Gaming League</a></li>
+                    <li><a href="#">F.E.A.R Portal</a></li>
+                    <li><a href="#">GotFrag</a></li>
+                </ul>
+                <div class="more_button"><a href="#"><span>More</span></a></div>
+                <div class="clearthis">&nbsp;</div>
+            </div>
+            <!-- End of Quick Links -->
+        </div>
+        <!-- End of Left Sidebar -->
+    </div>
+    <!-- End of Left Column -->
+    <div class="clearthis">&nbsp;</div>
+    <!-- Start of Page Footer -->
+    <div id="page_footer">
+        <small>Web design by <a href="http://www.freewebsitetemplates.com">Free Website Templates</a></small>
+    </div>
 </div>
+
 </body>
 </html>
