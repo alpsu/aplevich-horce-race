@@ -1,7 +1,7 @@
 package by.aplevich.horcerace.webapp.app;
 
-import by.aplevich.horcerace.webapp.page.HomePage;
 import by.aplevich.horcerace.webapp.page.LoginPage;
+import by.aplevich.horcerace.webapp.page.home.HomePage;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
