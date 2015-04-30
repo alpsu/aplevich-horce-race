@@ -1,13 +1,14 @@
 package by.aplevich.horcerace.datamodel;
 
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 /**
  * Common fields in all datamodel classe
  */
 
 @MappedSuperclass
-public abstract class AbstractEntity {
+public abstract class AbstractEntity implements Serializable{
     public abstract Long getId();
 
     @Override
@@ -16,6 +17,7 @@ public abstract class AbstractEntity {
     }
 
     @Override
+    //
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof AbstractEntity)) return false;
