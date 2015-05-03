@@ -3,6 +3,7 @@ package by.aplevich.horcerace.services;
 import by.aplevich.horcerace.datamodel.Place;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface PlaceService {
     Place get(Long id);
@@ -15,4 +16,6 @@ public interface PlaceService {
 
     @Transactional
     void deleteAll();
+
+    List<Place> getAllPlaces();
 }

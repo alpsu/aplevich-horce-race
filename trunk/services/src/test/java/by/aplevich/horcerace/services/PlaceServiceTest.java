@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 public class PlaceServiceTest extends AbstractServiceTest{
     private static final Logger LOGGER = LoggerFactory.getLogger(PlaceServiceTest.class);
 
@@ -26,4 +28,18 @@ public class PlaceServiceTest extends AbstractServiceTest{
         placeService.delete(placeFromDbUpdated);
         Assert.assertNull(placeService.get(place.getId()));
     }
+
+    @Test
+    public void getAllPlaceTest() {
+        int num = randomInteger(2, 5);
+
+        for (int i = 0; i < num; i++) {
+            Place place = createPlace();
+            placeService.saveOrUpdate(place);
+        }
+
+        List<Place> places = placeService.getAllPlaces();
+        Assert.assertEquals(places.size(), num);
+    }
+
 }

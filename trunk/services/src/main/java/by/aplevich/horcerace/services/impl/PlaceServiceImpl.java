@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class PlaceServiceImpl implements PlaceService{
@@ -42,5 +43,10 @@ public class PlaceServiceImpl implements PlaceService{
     public void deleteAll() {
         LOGGER.debug("Remove all places");
         dao.deleteAll();
+    }
+
+    @Override
+    public List<Place> getAllPlaces() {
+        return dao.getAllPlaces();
     }
 }
