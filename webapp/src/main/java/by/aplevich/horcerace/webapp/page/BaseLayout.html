@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns:wicket="http://wicket.apache.org" xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<html xmlns:wicket="http://wicket.apache.org" xmlns="http://www.w3.org/1999/html"
+      lang="ru">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title wicket:id="headerTitle">[Page title]</title>
@@ -15,9 +16,12 @@
     <div id="rightcolumn">
         <!-- Start Page Header -->
         <div id="page_header">
-            <h1><span>Лошадиные скачки</span></h1>
-
-            <h3><span>Делайте ваши ставки, господа</span></h3>
+            <h1><span>
+                <wicket:message key="p.base.title" />
+            </span></h1>
+            <h3><span>
+                <wicket:message key="p.base.title2" />
+            </span></h3>
         </div>
         <!-- End of Page Header -->
         <!-- Start of Main Navigation Menu -->
@@ -75,6 +79,7 @@
     <div id="leftcolumn">
         <!-- Start of Recent Record -->
         <div id="recentrecord">
+            <img src="../images/logo.jpg" />
             <div class="clearthis">&nbsp;</div>
         </div>
         <!-- End of Recent Record -->
@@ -89,19 +94,6 @@
                         <wicket:container wicket:id="id"/>
                         <div wicket:id="place-panel"></div>
                     </wicket:container>
-
-
-                    <!--<li><a href="#">Home</a></li>-->
-                    <!--<li>s2tg&#62;Dark|</li>-->
-                    <!--<li>s2tg&#62;[#tS]</li>-->
-                    <!--<li>s2tg&#62;WFC</li>-->
-                    <!--<li>s2tg&#62;sinister</li>-->
-                    <!--<li>s2tg&#62;|CoL|</li>-->
-                    <!--<li>s2tg&#60;=3rd=</li>-->
-                    <!--<li>s2tg&#60;|AAA|</li>-->
-                    <!--<li>s2tg&#62;=[R.E.C]=</li>-->
-                    <!--<li>s2tg&#60;|CBW|</li>-->
-                    <!--<li>s2tg&#62;witw</li>-->
                 </ul>
                 <!--<div class="more_button"><a href="#"><span>More</span></a></div>-->
                 <div class="clearthis">&nbsp;</div>

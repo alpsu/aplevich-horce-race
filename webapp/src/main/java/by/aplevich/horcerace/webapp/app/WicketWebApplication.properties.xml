@@ -2,5 +2,9 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <entry key="p.home.adminlink">К админской странице</entry>
-    <entry key="p.home.title">Домашняя старница</entry>
+    <entry key="p.home.title">Всегда играй</entry>
+    <entry key="p.base.title">Лошадиные скачки</entry>
+    <entry key="p.base.title2">Делайте ваши ставки, господа</entry>
+    <entry key="p.base.altlogo">Картинка</entry>
+    <entry key="p.home.text">Home Page content</entry>
 </properties>
