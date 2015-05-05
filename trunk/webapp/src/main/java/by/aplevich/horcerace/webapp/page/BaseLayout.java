@@ -27,7 +27,6 @@ public abstract class BaseLayout extends WebPage {
             @Override
             protected void populateItem(ListItem<Place> item) {
                 Place place = item.getModelObject();
-                item.add(new Label("id", place.getId()).setVisible(false));
                 item.add((new PlacePanel("place-panel", place)));
             }
         });

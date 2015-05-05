@@ -28,4 +28,9 @@ public class TournamentDetailsPage extends BaseLayout{
         this.place = place;
         this.pageCreator = pageCreator;
     }
+
+    public TournamentDetailsPage(Place place) {
+        super();
+        this.place = place;
+    }
 }
