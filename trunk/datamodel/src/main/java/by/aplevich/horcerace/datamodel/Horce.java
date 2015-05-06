@@ -1,6 +1,9 @@
 package by.aplevich.horcerace.datamodel;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Horce details
@@ -10,11 +13,20 @@ public class Horce extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
+    @NotNull
+    @Size(max = 100)
     private String name;
+
     @Column
+    @NotNull
+    @Size(max = 100)
     private String trainer;
+
     @Column
+    @NotNull
+    @Min(value = 0)
     private Integer age;
 
     @Override
