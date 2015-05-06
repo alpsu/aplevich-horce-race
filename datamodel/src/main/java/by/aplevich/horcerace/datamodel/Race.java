@@ -1,6 +1,9 @@
 package by.aplevich.horcerace.datamodel;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -11,15 +14,28 @@ public class Race extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
+    @NotNull
+    @Size(max = 250)
     private String description;
+
     @Column
+    @NotNull
+    @Size(max = 50)
     private String distance;
+
     @Column
+    @NotNull
     private Date start;
+
     @Column
+    @NotNull
+    @Min(value = 4)
     private Integer quantity;
+
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Place.class)
+    @NotNull
     private Place place;
 
     @Override

@@ -3,6 +3,9 @@ package by.aplevich.horcerace.datamodel;
 import by.aplevich.horcerace.datamodel.enums.UserRole;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Contains user data
@@ -12,13 +15,24 @@ public class UserAccount extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
+    @NotNull
+    @Size(max = 100)
     private String name;
+
     @Column
+    @NotNull
+    @Size(max = 60, min = 6)
     private String login;
+
     @Column
+    @NotNull
+    @Size(max = 35, min = 8)
     private String password;
+
     @Column
+    @NotNull
     @Enumerated(EnumType.ORDINAL)
     private UserRole role;
 

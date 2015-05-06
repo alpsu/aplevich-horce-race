@@ -4,6 +4,9 @@ import by.aplevich.horcerace.datamodel.enums.BetType;
 import by.aplevich.horcerace.datamodel.enums.Currency;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
@@ -14,16 +17,28 @@ public class Bet extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     @Enumerated(EnumType.ORDINAL)
+    @NotNull
     private BetType type;
+
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Runner.class)
+    @NotNull
     private Runner runner;
+
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = UserAccount.class)
+    @NotNull
     private UserAccount userAccount;
+
     @Column
+    @NotNull
+    @Max(value = 999999999)
+    @Min(value = 0)
     private BigDecimal sum;
+
     @Column
+    @NotNull
     @Enumerated(EnumType.ORDINAL)
     private Currency currency;
 

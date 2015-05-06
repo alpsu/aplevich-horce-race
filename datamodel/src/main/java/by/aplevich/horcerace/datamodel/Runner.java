@@ -1,6 +1,10 @@
 package by.aplevich.horcerace.datamodel;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Details of runner
@@ -10,15 +14,28 @@ public class Runner extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
+    @NotNull
+    @Min(value = 0)
     private double koefficient;
+
     @Column
+    @NotNull
+    @Min(value = 0)
+    @Max(value = 15)
     private Integer place;
+
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Horce.class)
+    @NotNull
     private Horce horce;
+
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Jockey.class)
+    @NotNull
     private Jockey jockey;
+
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Race.class)
+    @NotNull
     private Race race;
 
     @Override
