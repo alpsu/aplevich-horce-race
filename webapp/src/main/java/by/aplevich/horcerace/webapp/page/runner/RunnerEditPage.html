@@ -1,0 +1,18 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+    <form wicket:id="form">
+        <table>
+            <tr>
+                <td><label wicket:for="name">
+                    <wicket:message key="p.placeEdit.name"/>
+                    :</label></td>
+                <td><input wicket:id="name" wicket:message="title:p.placeEdit.name" type="text" class="inputfld"></td>
+            </tr>
+        </table>
+        <div>
+            <button type="submit" wicket:id="sumbit-link">
+                <wicket:message key="save"></wicket:message>
+            </button>
+        </div>
+    </form>
+
+</wicket:extend>
