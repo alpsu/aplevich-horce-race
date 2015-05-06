@@ -8,18 +8,6 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 
 public class TournamentDetailsPage extends BaseLayout{
-
-    @Override
-    protected void onInitialize() {
-        super.onInitialize();
-        add(new TournamentPanel("panel-tournament", place));
-    }
-
-    @Override
-    protected IModel<String> getPageTitle() {
-        return new ResourceModel("p.tournamentpage.title");
-    }
-
     private Place place;
     private PageCreator pageCreator;
 
@@ -32,5 +20,16 @@ public class TournamentDetailsPage extends BaseLayout{
     public TournamentDetailsPage(Place place) {
         super();
         this.place = place;
+    }
+
+    @Override
+    protected void onInitialize() {
+        super.onInitialize();
+        add(new TournamentPanel("panel-tournament", place));
+    }
+
+    @Override
+    protected IModel<String> getPageTitle() {
+        return new ResourceModel("p.tournamentpage.title");
     }
 }

@@ -7,6 +7,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -22,6 +23,7 @@ public abstract class BaseLayout extends WebPage {
     protected void onInitialize() {
         super.onInitialize();
         add(new Label("headerTitle", getPageTitle()));
+        add(new FeedbackPanel("feedbackpanel"));
         final List<Place> allPlaces = placeService.getAllPlaces();
         add(new ListView<Place>("list-panel", allPlaces) {
             @Override

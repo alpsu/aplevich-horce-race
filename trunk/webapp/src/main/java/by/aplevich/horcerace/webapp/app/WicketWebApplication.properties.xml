@@ -9,6 +9,16 @@
     <entry key="p.home.text">Home Page content</entry>
     <entry key="p.tournamentpage.text">Страница данных по турниру</entry>
     <entry key="p.tournamentpage.title">Данные по турниру</entry>
+    <entry key="p.placeEdit.name">Название турнира</entry>
+    <entry key="p.placeEdit.caption">Редактирование турнира</entry>
+    <entry key="p.horceEdit.caption">Редактирование данных лошади</entry>
+    <entry key="p.horceEdit.name">Кличка лошади</entry>
+    <entry key="p.horceEdit.trainer">Тренер лошади</entry>
+    <entry key="p.horceEdit.age">Возраст лошади</entry>
+    <entry key="save">Сохранить</entry>
+    <entry key="add">+</entry>
+    <entry key="edit">Редактировать</entry>
+
 
     <entry key="javax.validation.constraints.Min.message">Значение '${label}' должно быть больше или равно ${value}</entry>
     <entry key="javax.validation.constraints.Max.message">Значение '${label}' должно быть меньше или равно ${value}</entry>

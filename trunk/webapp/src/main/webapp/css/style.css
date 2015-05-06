@@ -566,3 +566,28 @@ li#roster_nogusta {
 	position: relative;
 	top: -20px;
 }
+
+.savebtn {
+	text-align: center;
+}
+
+.inputfld {
+	border: 1px solid grey;
+}
+
+.feedbackPanel .feedbackPanelINFO {
+	background-color: green;
+}
+
+.feedbackPanel .feedbackPanelERROR {
+	background-color: red;
+}
+
+.feedbackPanel .feedbackPanelWARNING {
+	background-color: yellow;
+}
+
+caption {
+	caption-side: top;
+	text-align: center;
+}

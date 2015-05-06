@@ -1,0 +1,33 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+    <form wicket:id="form">
+        <table>
+            <caption>
+                <wicket:message key="p.horceEdit.caption"></wicket:message>
+            </caption>
+            <tr>
+                <td><label wicket:for="name">
+                    <wicket:message key="p.horceEdit.name"/>
+                    :</label></td>
+                <td><input wicket:id="name" wicket:message="title:p.horceEdit.name" type="text" class="inputfld"></td>
+            </tr>
+            <tr>
+                <td><label wicket:for="trainer">
+                    <wicket:message key="p.horceEdit.trainer"/>
+                    :</label></td>
+                <td><input wicket:id="trainer" wicket:message="title:p.horceEdit.trainer" type="text" class="inputfld">
+                </td>
+            </tr>
+            <tr>
+                <td><label wicket:for="age">
+                    <wicket:message key="p.horceEdit.age"/>
+                    :</label></td>
+                <td><input wicket:id="age" wicket:message="title:p.horceEdit.age" type="text" class="inputfld"></td>
+            </tr>
+        </table>
+        <div>
+            <button type="submit" wicket:id="sumbit-link">
+                <wicket:message key="save"></wicket:message>
+            </button>
+        </div>
+    </form>
+</wicket:extend>
