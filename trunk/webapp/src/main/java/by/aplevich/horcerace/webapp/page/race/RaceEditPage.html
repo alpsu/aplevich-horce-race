@@ -1,11 +1,40 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
     <form wicket:id="form">
         <table>
+            <caption>
+                <wicket:message key="p.raceEdit.caption"></wicket:message>
+            </caption>
             <tr>
-                <td><label wicket:for="name">
-                    <wicket:message key="p.placeEdit.name"/>
+                <td><label wicket:for="place">
+                        <wicket:message key="p.raceEdit.place"/>
                     :</label></td>
-                <td><input wicket:id="name" wicket:message="title:p.placeEdit.name" type="text" class="inputfld"></td>
+                <td>
+                    <select wicket:id="place" wicket:message="title:p.raceEdit.place" class="inputfld"></select>
+                </td>
+            </tr>
+            <tr>
+                <td><label wicket:for="description">
+                    <wicket:message key="p.raceEdit.desc"/>
+                    :</label></td>
+                <td><input wicket:id="description" wicket:message="title:p.raceEdit.desc" type="text" class="inputfld"></td>
+            </tr>
+            <tr>
+                <td><label wicket:for="distance">
+                    <wicket:message key="p.raceEdit.dist"/>
+                    :</label></td>
+                <td><input wicket:id="distance" wicket:message="title:p.raceEdit.dist" type="text" class="inputfld"></td>
+            </tr>
+            <tr>
+                <td><label wicket:for="start">
+                    <wicket:message key="p.raceEdit.date"/>
+                    :</label></td>
+                <td><input wicket:id="start" wicket:message="title:p.raceEdit.date" type="datetime"></td>
+            </tr>
+            <tr>
+                <td><label wicket:for="quantity">
+                    <wicket:message key="p.raceEdit.quantity"/>
+                    :</label></td>
+                <td><input wicket:id="quantity" wicket:message="title:p.raceEdit.quantity" type="text" class="inputfld"></td>
             </tr>
         </table>
         <div>

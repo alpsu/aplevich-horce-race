@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+    <form wicket:id="form">
+        <table>
+            <caption>
+                <wicket:message key="p.jockeyEdit.caption"></wicket:message>
+            </caption>
+            <tr>
+                <td><label wicket:for="fname">
+                    <wicket:message key="p.jockeyEdit.fname"/>
+                    :</label></td>
+                <td><input wicket:id="fname" wicket:message="title:p.jockeyEdit.fname" type="text" class="inputfld"></td>
+            </tr>
+            <tr>
+                <td><label wicket:for="lname">
+                    <wicket:message key="p.jockeyEdit.lname"/>
+                    :</label></td>
+                <td><input wicket:id="lname" wicket:message="title:p.jockeyEdit.lname" type="text" class="inputfld">
+                </td>
+            </tr>
+        </table>
+        <div>
+            <button type="submit" wicket:id="sumbit-link">
+                <wicket:message key="save"></wicket:message>
+            </button>
+        </div>
+    </form>
+</wicket:extend>
