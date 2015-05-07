@@ -17,10 +17,10 @@
         <!-- Start Page Header -->
         <div id="page_header">
             <h1><span>
-                <wicket:message key="p.base.title" />
+                <wicket:message key="p.base.title"/>
             </span></h1>
             <h3><span>
-                <wicket:message key="p.base.title2" />
+                <wicket:message key="p.base.title2"/>
             </span></h3>
         </div>
         <!-- End of Page Header -->
@@ -45,9 +45,9 @@
         <!-- Start of Center Column -->
         <div id="centercolumn">
             <wicket:child/>
+            <div class="feedbackpanel" wicket:id="feedbackpanel"></div>
         </div>
-        <div wicket:id="feedbackpanel">
-        </div>
+
         <!-- End of Center Column -->
         <!-- Start of Right Sidebar -->
         <div id="rightsidebar">
@@ -82,7 +82,8 @@
     <div id="leftcolumn">
         <!-- Start of Recent Record -->
         <div id="recentrecord">
-            <img src="../images/logo.jpg" />
+            <img src="../images/logo.jpg"/>
+
             <div class="clearthis">&nbsp;</div>
         </div>
         <!-- End of Recent Record -->
@@ -97,12 +98,13 @@
                         <div wicket:id="place-panel"></div>
                     </wicket:container>
                 </ul>
-                <!--<div class="more_button"><a href="#"><span>More</span></a></div>-->
+
 
                 <div class="clearthis">&nbsp;</div>
-            </div>
 
+            </div>
             <!-- End of Latest Matches -->
+
         </div>
         <!-- End of Left Sidebar -->
     </div>

@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.ResourceModel;
 
 import javax.inject.Inject;
 
@@ -24,6 +25,7 @@ public class PlaceEditPage extends BaseLayout {
 
         final TextField<String> tfName = new TextField<>("name");
         tfName.add(new PropertyValidator<String>());
+        tfName.setLabel(new ResourceModel("p.placeEdit.name"));
         form.add(tfName);
 
         form.add(new SubmitLink("sumbit-link") {
