@@ -1,11 +1,46 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
-    <form wicket:id="form">
+    <form wicket:id="betForm">
         <table>
+            <caption>
+                <wicket:message key="p.betEdit.caption"></wicket:message>
+            </caption>
             <tr>
-                <td><label wicket:for="name">
-                    <wicket:message key="p.placeEdit.name"/>
+                <td><label wicket:for="type">
+                    <wicket:message key="p.betEdit.type"/>
                     :</label></td>
-                <td><input wicket:id="name" wicket:message="title:p.placeEdit.name" type="text" class="inputfld"></td>
+                <td>
+                    <select wicket:id="type" wicket:message="title:p.betEdit.type" class="inputfld"></select>
+                </td>
+            </tr>
+            <!--<tr>
+                <td><label wicket:for="runner">
+                    <wicket:message key="p.betEdit.runner"/>
+                    :</label></td>
+                <td>
+                    <select wicket:id="runner" wicket:message="title:p.betEdit.runner" class="inputfld"></select>
+                </td>
+            </tr>
+            <tr>
+                <td><label wicket:for="user">
+                    <wicket:message key="p.betEdit.user"/>
+                    :</label></td>
+                <td>
+                    <select wicket:id="user" wicket:message="title:p.betEdit.user" class="inputfld"></select>
+                </td>
+            </tr>-->
+            <tr>
+                <td><label wicket:for="currency">
+                    <wicket:message key="p.betEdit.currency"/>
+                    :</label></td>
+                <td>
+                    <select wicket:id="currency" wicket:message="title:p.betEdit.currency" class="inputfld"></select>
+                </td>
+            </tr>
+            <tr>
+                <td><label wicket:for="sum">
+                    <wicket:message key="p.betEdit.sum"/>
+                    :</label></td>
+                <td><input wicket:id="sum" wicket:message="title:p.betEdit.sum" type="text" class="inputfld"></td>
             </tr>
         </table>
         <div>

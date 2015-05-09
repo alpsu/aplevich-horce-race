@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.persistence.metamodel.SingularAttribute;
 import java.util.List;
 
 @Service
@@ -48,5 +49,10 @@ public class PlaceServiceImpl implements PlaceService{
     @Override
     public List<Place> getAllPlaces() {
         return dao.getAllPlaces();
+    }
+
+    @Override
+    public List<Place> getAllPlaces(SingularAttribute<Place, ?> attr, boolean ascending, int startRecord, int pageSize) {
+        return dao.getAllPlaces(attr,ascending,startRecord,pageSize);
     }
 }

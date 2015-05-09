@@ -1,6 +1,7 @@
 package by.aplevich.horcerace.webapp.page;
 
 import by.aplevich.horcerace.datamodel.Place;
+import by.aplevich.horcerace.datamodel.Place_;
 import by.aplevich.horcerace.services.PlaceService;
 import by.aplevich.horcerace.webapp.page.panel.PlacePanel;
 import org.apache.wicket.markup.html.WebPage;
@@ -24,7 +25,7 @@ public abstract class BaseLayout extends WebPage {
         super.onInitialize();
         add(new Label("headerTitle", getPageTitle()));
         add(new FeedbackPanel("feedbackpanel"));
-        final List<Place> allPlaces = placeService.getAllPlaces();
+        final List<Place> allPlaces = placeService.getAllPlaces(Place_.name,true,0,0);
         add(new ListView<Place>("list-panel", allPlaces) {
             @Override
             protected void populateItem(ListItem<Place> item) {

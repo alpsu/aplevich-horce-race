@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class JockeyServiceImpl implements JockeyService{
@@ -42,5 +43,10 @@ public class JockeyServiceImpl implements JockeyService{
     public void deleteAll() {
         LOGGER.debug("Remove all jockeys");
         dao.deleteAll();
+    }
+
+    @Override
+    public List<Jockey> getAllJockeys() {
+        return dao.getAll();
     }
 }

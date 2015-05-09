@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  * Details of runner
@@ -81,6 +80,12 @@ public class Runner extends AbstractEntity {
 
     public void setRace(Race race) {
         this.race = race;
+    }
+
+    public String getRunner(){
+        return getJockey().getFname() + " " +
+                getJockey().getLname() + ":" +
+                getHorce().getName();
     }
 
     @Override
