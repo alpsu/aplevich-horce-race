@@ -2,6 +2,7 @@ package by.aplevich.horcerace.services;
 
 import by.aplevich.horcerace.datamodel.Place;
 
+import javax.persistence.metamodel.SingularAttribute;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface PlaceService {
     void deleteAll();
 
     List<Place> getAllPlaces();
+
+    List<Place> getAllPlaces(SingularAttribute<Place, ?> attr, boolean ascending, int startRecord, int pageSize);
 }

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class HorceServiceImpl implements HorceService{
@@ -42,5 +43,10 @@ public class HorceServiceImpl implements HorceService{
     public void deleteAll() {
         LOGGER.debug("Remove all horces");
         dao.deleteAll();
+    }
+
+    @Override
+    public List<Horce> getAllHorces(){
+        return dao.getAll();
     }
 }

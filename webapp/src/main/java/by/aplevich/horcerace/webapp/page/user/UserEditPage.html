@@ -1,11 +1,34 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
-    <form wicket:id="form">
+    <form wicket:id="userForm">
         <table>
+            <caption>
+                <wicket:message key="p.userEdit.caption"></wicket:message>
+            </caption>
             <tr>
                 <td><label wicket:for="name">
-                    <wicket:message key="p.placeEdit.name"/>
+                    <wicket:message key="p.userEdit.name"/>
                     :</label></td>
-                <td><input wicket:id="name" wicket:message="title:p.placeEdit.name" type="text" class="inputfld"></td>
+                <td><input wicket:id="name" wicket:message="title:p.userEdit.name" type="text" class="inputfld"></td>
+            </tr>
+            <tr>
+                <td><label wicket:for="login">
+                    <wicket:message key="p.userEdit.login"/>
+                    :</label></td>
+                <td><input wicket:id="login" wicket:message="title:p.userEdit.login" type="text" class="inputfld"></td>
+            </tr>
+            <tr>
+                <td><label wicket:for="password">
+                    <wicket:message key="p.userEdit.password"/>
+                    :</label></td>
+                <td><input wicket:id="password" wicket:message="title:p.userEdit.password" type="password" class="inputfld"></td>
+            </tr>
+            <tr>
+                <td><label wicket:for="role">
+                    <wicket:message key="p.userEdit.role"/>
+                    :</label></td>
+                <td>
+                    <select wicket:id="role" wicket:message="title:p.userEdit.role" class="inputfld"></select>
+                </td>
             </tr>
         </table>
         <div>

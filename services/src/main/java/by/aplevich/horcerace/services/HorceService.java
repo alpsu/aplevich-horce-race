@@ -3,6 +3,7 @@ package by.aplevich.horcerace.services;
 import by.aplevich.horcerace.datamodel.Horce;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface HorceService {
     Horce get(Long id);
@@ -15,4 +16,6 @@ public interface HorceService {
 
     @Transactional
     void deleteAll();
+
+    List<Horce> getAllHorces();
 }
