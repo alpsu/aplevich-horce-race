@@ -34,7 +34,7 @@ public class HorceEditPage extends BaseLayout {
 
         final TextField<Integer> tfAge = new TextField<>("age");
         tfAge.add(new PropertyValidator<Integer>());
-        tfAge.setLabel(new ResourceModel("p.productEdit.age"));
+        tfAge.setLabel(new ResourceModel("p.horceEdit.age"));
         form.add(tfAge);
 
         form.add(new SubmitLink("sumbit-link") {

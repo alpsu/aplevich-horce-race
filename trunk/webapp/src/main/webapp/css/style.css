@@ -601,3 +601,7 @@ caption {
 	caption-side: top;
 	text-align: center;
 }
+
+td span {
+	display: block;
+}

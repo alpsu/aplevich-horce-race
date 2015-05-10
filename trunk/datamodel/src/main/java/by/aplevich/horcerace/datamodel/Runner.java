@@ -20,7 +20,6 @@ public class Runner extends AbstractEntity {
     private double koefficient;
 
     @Column
-    @NotNull
     @Min(value = 0)
     @Max(value = 15)
     private Integer place;

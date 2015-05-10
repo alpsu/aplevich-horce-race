@@ -10,12 +10,12 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.1.6.RELEASE</spring.version>
-        <hibernate.version>4.3.9.Final</hibernate.version>
+        <spring.version>4.0.3.RELEASE</spring.version>
+        <hibernate.version>4.3.8.Final</hibernate.version>
         <common.project.version>1.0</common.project.version>
-        <jetty.version>8.1.16.v20140903</jetty.version>
+        <!--<jetty.version>8.1.16.v20140903</jetty.version>-->
         <wicket.version>6.19.0</wicket.version>
-        <!--<jetty.version>7.6.13.v20130916</jetty.version>-->
+        <jetty.version>7.6.13.v20130916</jetty.version>
     </properties>
 
     <modules>
@@ -143,18 +143,25 @@
             </dependency>
             <dependency>
                 <groupId>org.hibernate.javax.persistence</groupId>
-                <artifactId>hibernate-jpa-2.1-api</artifactId>
-                <version>1.0.0.Draft-16</version>
+                <artifactId>hibernate-jpa-2.0-api</artifactId>
+                <version>1.0.0.Final</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-jpamodelgen</artifactId>
-                <version>${hibernate.version}</version>
+                <version>4.3.1.Final</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
-                <version>5.0.3.Final</version>
+                <version>4.3.1.Final</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>jboss-logging</artifactId>
+                        <groupId>org.jboss.logging</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>c3p0</groupId>
@@ -236,7 +243,7 @@
             <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
-                <version>1.1.0.Final</version>
+                <version>1.0.0.GA</version>
             </dependency>
             <!--Wicket-JQuery-ui -->
             <dependency>
