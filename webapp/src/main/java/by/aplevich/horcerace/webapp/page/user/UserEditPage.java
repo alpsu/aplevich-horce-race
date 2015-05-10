@@ -22,9 +22,9 @@ public class UserEditPage extends BaseLayout{
     @Inject
     private UserService userService;
 
-    public UserEditPage(final UserAccount user) {
+    public UserEditPage(final UserAccount userAccount) {
         super();
-        Form<UserAccount> form = new Form<>("userForm", new CompoundPropertyModel<UserAccount>(user));
+        Form<UserAccount> form = new Form<>("form", new CompoundPropertyModel<UserAccount>(userAccount));
 
         final TextField<String> tfName = new TextField<>("name");
         tfName.add(new PropertyValidator<String>());
@@ -41,13 +41,16 @@ public class UserEditPage extends BaseLayout{
         tfPassword.setLabel(new ResourceModel("p.userEdit.password"));
         form.add(tfPassword);
 
-        form.add(new DropDownChoice<UserRole>("role", Arrays.asList(UserRole.values()), RoleChoiceRenderer.INSTANCE));
+        final DropDownChoice<UserRole> dsc = new DropDownChoice<>("role", Arrays.asList(UserRole.values()), RoleChoiceRenderer.INSTANCE);
+        dsc.add(new PropertyValidator<UserRole>());
+        dsc.setLabel(new ResourceModel("p.userEdit.role"));
+        form.add(dsc);
 
         form.add(new SubmitLink("sumbit-link") {
             @Override
             public void onSubmit() {
                 super.onSubmit();
-                userService.updateUser(user);
+                userService.createNewUser(userAccount);
 
                 HomePage page = new HomePage();
                 setResponsePage(page);

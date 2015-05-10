@@ -40,9 +40,22 @@
     <entry key="p.runnerEdit.jockey">Жокей</entry>
     <entry key="p.runnerEdit.koefficient">Коэффициент</entry>
     <entry key="p.runnerEdit.place">Место</entry>
+    <entry key="p.runnerEdit.race">Турнир</entry>
     <entry key="save">Сохранить</entry>
-    <entry key="add">+</entry>
-    <entry key="edit">Редактировать</entry>
+    <entry key="addPlace">+ Турнир</entry>
+    <entry key="editPlace">Редактировать турнир</entry>
+    <entry key="addHorce">+ Лошадь</entry>
+    <entry key="editHorce">Редактировать лошадь</entry>
+    <entry key="addJockey">+ Жокей</entry>
+    <entry key="editJockey">Редактировать жокея</entry>
+    <entry key="addUser">+ Пользователя</entry>
+    <entry key="editUser">Редактировать клиента</entry>
+    <entry key="addRace">+ Забег</entry>
+    <entry key="editRace">Редактировать забег</entry>
+    <entry key="addRunner">+ Участника</entry>
+    <entry key="editRunner">Редактировать участника</entry>
+    <entry key="addBet">+ Ставку</entry>
+    <entry key="editBet">Редактировать Ставку</entry>
 
 
     <entry key="javax.validation.constraints.Min.message">Значение '${label}' должно быть больше или равно ${value}</entry>

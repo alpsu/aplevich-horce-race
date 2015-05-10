@@ -26,7 +26,7 @@ public class BetEditPage extends BaseLayout{
 
     public BetEditPage(final Bet bet){
         super();
-        Form<Bet> form = new Form<>("betForm");
+        Form<Bet> form = new Form<>("form");
 
         form.add(new DropDownChoice<BetType>("type", Arrays.asList(BetType.values()), TypeChoiceRenderer.INSTANCE));
         //form.add(new DropDownChoice<Runner>("runner", runnerService.getAllRunnerByRace(race), RunnerChoiceRenderer.INSTANCE));

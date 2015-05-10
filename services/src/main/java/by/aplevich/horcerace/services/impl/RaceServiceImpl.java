@@ -1,7 +1,9 @@
 package by.aplevich.horcerace.services.impl;
 
 import by.aplevich.horcerace.dataaccess.RaceDao;
-import by.aplevich.horcerace.datamodel.*;
+import by.aplevich.horcerace.datamodel.Place;
+import by.aplevich.horcerace.datamodel.Race;
+import by.aplevich.horcerace.datamodel.Race_;
 import by.aplevich.horcerace.services.RaceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,5 +56,10 @@ public class RaceServiceImpl implements RaceService {
     @Override
     public List<Race> getAllRacesWithPlace() {
         return dao.getAllRacesWithPlace();
+    }
+
+    @Override
+    public List<Race> getAllRaces() {
+        return dao.getAll();
     }
 }
