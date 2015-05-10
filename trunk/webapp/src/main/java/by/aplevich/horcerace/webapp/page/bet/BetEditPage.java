@@ -1,6 +1,5 @@
 package by.aplevich.horcerace.webapp.page.bet;
 
-
 import by.aplevich.horcerace.datamodel.Bet;
 import by.aplevich.horcerace.datamodel.enums.BetType;
 import by.aplevich.horcerace.datamodel.enums.Currency;
@@ -14,9 +13,11 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 public class BetEditPage extends BaseLayout{
@@ -28,13 +29,21 @@ public class BetEditPage extends BaseLayout{
         super();
         Form<Bet> form = new Form<>("form");
 
-        form.add(new DropDownChoice<BetType>("type", Arrays.asList(BetType.values()), TypeChoiceRenderer.INSTANCE));
+        DropDownChoice<BetType> ddType = new DropDownChoice<>("type", new PropertyModel<>(bet, "type"), Arrays.asList(BetType.values()), TypeChoiceRenderer.INSTANCE);
+        ddType.add(new PropertyValidator<BetType>());
+        ddType.setLabel(new ResourceModel("p.betEdit.type"));
+        form.add(ddType);
+
         //form.add(new DropDownChoice<Runner>("runner", runnerService.getAllRunnerByRace(race), RunnerChoiceRenderer.INSTANCE));
         //form.add(new DropDownChoice<UserAccount>("user", Arrays.asList(BetType.values()), UserAccountChoiceRenderer.INSTANCE));
-        form.add(new DropDownChoice<Currency>("currency", Arrays.asList(Currency.values()), CurrencyChoiceRenderer.INSTANCE));
-;
-        final TextField<String> tfSum = new TextField<>("sum");
-        tfSum.add(new PropertyValidator<String>());
+
+        DropDownChoice<Currency> ddCurrency = new DropDownChoice<>("currency", new PropertyModel<>(bet, "currency"), Arrays.asList(Currency.values()), CurrencyChoiceRenderer.INSTANCE);
+        ddCurrency.add(new PropertyValidator<Currency>());
+        ddCurrency.setLabel(new ResourceModel("p.betEdit.currency"));
+        form.add(ddCurrency);
+
+        final TextField<BigDecimal> tfSum = new TextField<>("sum", new PropertyModel<>(bet, "sum"));
+        tfSum.add(new PropertyValidator<BigDecimal>());
         tfSum.setLabel(new ResourceModel("p.betEdit.sum"));
         form.add(tfSum);
         

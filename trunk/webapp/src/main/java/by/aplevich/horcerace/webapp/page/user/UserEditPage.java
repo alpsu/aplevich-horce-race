@@ -7,10 +7,7 @@ import by.aplevich.horcerace.webapp.page.BaseLayout;
 import by.aplevich.horcerace.webapp.page.home.HomePage;
 import by.aplevich.horcerace.webapp.utils.renderer.RoleChoiceRenderer;
 import org.apache.wicket.bean.validation.PropertyValidator;
-import org.apache.wicket.markup.html.form.DropDownChoice;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.SubmitLink;
-import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.ResourceModel;
 
@@ -36,7 +33,7 @@ public class UserEditPage extends BaseLayout{
         tfLogin.setLabel(new ResourceModel("p.userEdit.login"));
         form.add(tfLogin);
 
-        final TextField<String> tfPassword = new TextField<>("password");
+        final PasswordTextField tfPassword = new PasswordTextField("password");
         tfPassword.add(new PropertyValidator<String>());
         tfPassword.setLabel(new ResourceModel("p.userEdit.password"));
         form.add(tfPassword);
