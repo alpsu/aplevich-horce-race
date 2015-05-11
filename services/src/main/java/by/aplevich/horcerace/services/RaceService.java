@@ -22,5 +22,5 @@ public interface RaceService {
 
     List<Race> getAllRacesWithPlace();
 
-    List<Race> getAllRaces();
+    List<Race> getAllRacesWithPlaceByPlace(Place place);
 }

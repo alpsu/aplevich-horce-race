@@ -3,7 +3,7 @@
 <properties>
     <entry key="p.home.adminlink">К админской странице</entry>
     <entry key="p.home.title">Всегда играй</entry>
-    <entry key="p.home.text">Home Page content</entry>
+    <entry key="p.home.text">Главная страница</entry>
     <entry key="p.base.title">Лошадиные скачки</entry>
     <entry key="p.base.title2">Делайте ваши ставки, господа</entry>
     <entry key="p.base.altlogo">Картинка</entry>
@@ -41,6 +41,15 @@
     <entry key="p.runnerEdit.koefficient">Коэффициент</entry>
     <entry key="p.runnerEdit.place">Место</entry>
     <entry key="p.runnerEdit.race">Турнир</entry>
+    <entry key="p.racePanel.text">Ставки на лошадиные скачки. </entry>
+    <entry key="p.racePanel.dist">Дистанция</entry>
+    <entry key="p.racePanel.quant">Участники </entry>
+    <entry key="p.racePanel.num">№ </entry>
+    <entry key="p.racePanel.horce">Лошадь </entry>
+    <entry key="p.racePanel.trainer">Трененр </entry>
+    <entry key="p.racePanel.jockey">Жокей </entry>
+    <entry key="p.racePanel.age">Возраст </entry>
+    <entry key="p.racePanel.koef">Коэффициент </entry>
     <entry key="save">Сохранить</entry>
     <entry key="addPlace">+ Турнир</entry>
     <entry key="editPlace">Редактировать турнир</entry>

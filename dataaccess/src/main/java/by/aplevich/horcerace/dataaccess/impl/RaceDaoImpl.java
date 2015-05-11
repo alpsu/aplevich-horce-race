@@ -1,6 +1,7 @@
 package by.aplevich.horcerace.dataaccess.impl;
 
 import by.aplevich.horcerace.dataaccess.RaceDao;
+import by.aplevich.horcerace.datamodel.Place;
 import by.aplevich.horcerace.datamodel.Race;
 import by.aplevich.horcerace.datamodel.Race_;
 import org.springframework.stereotype.Repository;
@@ -25,6 +26,23 @@ public class RaceDaoImpl extends AbstractDaoImpl<Long, Race> implements RaceDao 
         Root<Race> root = criteria.from(Race.class);
 
         criteria.select(root);
+        root.fetch(Race_.place);
+        criteria.distinct(true);
+
+        TypedQuery<Race> query = getEm().createQuery(criteria);
+        List<Race> results = query.getResultList();
+        return results;
+    }
+
+    @Override
+    public List<Race> getAllRacesWithPlaceByPlace(Place place) {
+        CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+
+        CriteriaQuery<Race> criteria = cBuilder.createQuery(Race.class);
+        Root<Race> root = criteria.from(Race.class);
+
+        criteria.select(root);
+        criteria.where(cBuilder.equal(root.get(Race_.place), place.getId()));
         root.fetch(Race_.place);
         criteria.distinct(true);
 

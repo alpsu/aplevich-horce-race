@@ -43,7 +43,7 @@ public class Race extends AbstractEntity {
         return id;
     }
 
-    public String getDescription() {
+       public String getDescription() {
         return description;
     }
 

@@ -2,6 +2,7 @@ package by.aplevich.horcerace.webapp.page.runner;
 
 import by.aplevich.horcerace.datamodel.Horce;
 import by.aplevich.horcerace.datamodel.Jockey;
+import by.aplevich.horcerace.datamodel.Race;
 import by.aplevich.horcerace.datamodel.Runner;
 import by.aplevich.horcerace.services.HorceService;
 import by.aplevich.horcerace.services.JockeyService;
@@ -11,6 +12,7 @@ import by.aplevich.horcerace.webapp.page.BaseLayout;
 import by.aplevich.horcerace.webapp.page.home.HomePage;
 import by.aplevich.horcerace.webapp.utils.renderer.HorceChoiceRenderer;
 import by.aplevich.horcerace.webapp.utils.renderer.JockeyChoiceRenderer;
+import by.aplevich.horcerace.webapp.utils.renderer.RaceChoiceRenderer;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -50,10 +52,11 @@ public class RunnerEditPage extends BaseLayout {
         ddJockey.setLabel(new ResourceModel("p.runnerEdit.jockey"));
         form.add(ddJockey);
 
-//        DropDownChoice<Race> ddRace = new DropDownChoice<Race>("race", new PropertyModel<>(runner, "race"), raceService.getAllRaces(), RaceChoiceRenderer.INSTANCE);
-//        ddRace.add(new PropertyValidator<Race>());
-//        ddRace.setLabel(new ResourceModel("p.runnerEdit.race"));
-//        form.add(ddRace);
+
+        DropDownChoice<Race> ddRace = new DropDownChoice<Race>("race", new PropertyModel<>(runner, "race"), raceService.getAllRacesWithPlace(), RaceChoiceRenderer.INSTANCE);
+        ddRace.add(new PropertyValidator<Race>());
+        ddRace.setLabel(new ResourceModel("p.runnerEdit.race"));
+        form.add(ddRace);
 
         final TextField<BigDecimal> tfKoef = new TextField<>("koefficient", new PropertyModel<>(runner, "koefficient"));
         tfKoef.add(new PropertyValidator<BigDecimal>());

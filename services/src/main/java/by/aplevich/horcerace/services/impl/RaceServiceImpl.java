@@ -1,5 +1,6 @@
 package by.aplevich.horcerace.services.impl;
 
+import by.aplevich.horcerace.dataaccess.PlaceDao;
 import by.aplevich.horcerace.dataaccess.RaceDao;
 import by.aplevich.horcerace.datamodel.Place;
 import by.aplevich.horcerace.datamodel.Race;
@@ -59,7 +60,9 @@ public class RaceServiceImpl implements RaceService {
     }
 
     @Override
-    public List<Race> getAllRaces() {
-        return dao.getAll();
+    public List<Race> getAllRacesWithPlaceByPlace(Place place) {
+        return dao.getAllRacesWithPlaceByPlace(place);
     }
+
+
 }
