@@ -21,10 +21,6 @@ a:hover {
 	text-decoration: none;
 }
 
-span {
-	display: none;
-}
-
 img {
 	border: none;
 }
@@ -43,7 +39,7 @@ p {
 }
 
 input {
-	border: 0px;
+	border: 1px solid black;
 	font-family: verdana, arial, sans-serif;
 	font-size: 11px;
 }
@@ -571,11 +567,8 @@ li#roster_nogusta {
 	text-align: center;
 }
 
-.inputfld {
-	border: 1px solid grey;
-}
 .feedbackPanel span {
-	display: list-item;
+	display: block;
 }
 .feedbackPanel li{
 	margin-bottom: 1px;

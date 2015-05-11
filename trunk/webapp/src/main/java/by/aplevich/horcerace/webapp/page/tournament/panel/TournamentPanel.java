@@ -1,11 +1,13 @@
 package by.aplevich.horcerace.webapp.page.tournament.panel;
 
 import by.aplevich.horcerace.datamodel.*;
+import by.aplevich.horcerace.services.RaceService;
 import by.aplevich.horcerace.webapp.page.Place.PlaceEditPage;
 import by.aplevich.horcerace.webapp.page.bet.BetEditPage;
 import by.aplevich.horcerace.webapp.page.horse.HorceEditPage;
 import by.aplevich.horcerace.webapp.page.jockey.JockeyEditPage;
 import by.aplevich.horcerace.webapp.page.race.RaceEditPage;
+import by.aplevich.horcerace.webapp.page.race.panel.RacePanel;
 import by.aplevich.horcerace.webapp.page.runner.RunnerEditPage;
 import by.aplevich.horcerace.webapp.page.user.UserEditPage;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -14,6 +16,8 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+
+import javax.inject.Inject;
 
 public class TournamentPanel extends Panel{
 
@@ -24,7 +28,8 @@ public class TournamentPanel extends Panel{
     private Bet bet;
     private Race race;
     private Runner runner;
-
+    @Inject
+    private RaceService raceService;
     public TournamentPanel(String id, Place place) {
         super(id);
         this.place = place;
@@ -41,7 +46,8 @@ public class TournamentPanel extends Panel{
         WebMarkupContainer liContainer = new WebMarkupContainer("wrapper-li");
         add(liContainer);
 
-        liContainer.add(new Label("name", new Model<String>(place.getName())));
+        liContainer.add(new RacePanel("race-panel", raceService.getAllRacesWithPlaceByPlace(place)));
+
         liContainer.add(new Link("create-new-place-link") {
             @Override
             public void onClick() {

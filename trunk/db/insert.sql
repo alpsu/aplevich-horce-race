@@ -1,4 +1,11 @@
-SET search_path TO 'test';
+SET search_path TO 'public';
+
+DELETE FROM runner;
+DELETE FROM race;
+DELETE FROM user_account;
+DELETE FROM jockey;
+DELETE FROM horce;
+DELETE FROM place;
 
 INSERT INTO place (id, name) VALUES
   (1, 'Кэмптон'), (2, 'Саутвелл'),
@@ -26,3 +33,11 @@ INSERT INTO jockey (id, fname, lname) VALUES
 
 INSERT INTO user_account (id, name, login, password, role) VALUES
   (1, 'Alex', 'admin', 'admin', 1), (2, 'Andrew', 'bookie', 'bookie', 2), (3, 'Vano', 'client', 'client', 0);
+
+INSERT INTO race (id, place_id, description, distance, start, quantity) VALUES
+  (1, 1, 'Королевская гонка', '0m 5f 3y', '2015-05-15 12:00:00', 4), (2, 1, 'Вызов короля', '0m 5f 3y', '2015-05-15 12:30:00', 5);
+
+INSERT INTO runner (id, horce_id, jockey_id, race_id, koefficient, place) VALUES
+  (1, 1, 1, 1, 1, 1), (2, 2, 2, 1, 1, 2), (3, 3, 3, 1, 1, 3),
+  (4, 4, 4, 1, 1, 4), (5, 5, 5, 2, 1, 1), (6, 6, 6, 2, 1, 2),
+  (7, 7, 7, 2, 1, 3), (8, 8, 8, 2, 1, 4), (9, 9, 9, 2, 1, 5);
