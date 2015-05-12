@@ -598,3 +598,32 @@ caption {
 td span {
 	display: block;
 }
+
+.runner-table {
+	border: 1px solid grey;
+	width: 100%;
+}
+
+thead {
+	height: auto;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+td {
+	border-bottom: 1px solid grey;
+	border-top: 1px solid grey;
+	padding-left: 5px;
+}
+
+th {
+	border-bottom: 1px solid grey;
+	border-top: 1px solid grey;
+	padding-left: 5px;
+}
+
+.runnercenter {
+	text-align: center;
+}

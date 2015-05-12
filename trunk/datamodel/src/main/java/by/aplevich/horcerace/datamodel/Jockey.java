@@ -44,6 +44,10 @@ public class Jockey extends AbstractEntity {
         this.lname = lname;
     }
 
+    public String getName(){
+        return getFname() + " " + getLname();
+    }
+
     @Override
     public String toString() {
         return "Jockey{" +
