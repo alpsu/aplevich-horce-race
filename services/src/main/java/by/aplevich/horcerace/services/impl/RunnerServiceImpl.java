@@ -63,6 +63,18 @@ public class RunnerServiceImpl implements RunnerService {
     @Override
     public List<Runner> getAllRunnerByRace(Race race) {
         LOGGER.debug("Get all runner in race: {}", race);
-        return dao.getAllByFieldRestriction(Runner_.race, race.getId());
+        //return dao.getAllByFieldRestriction(Runner_.race, race.getId());
+        return dao.getAllRunnersByRaceWith(race);
+    }
+
+    @Override
+    public List<Runner> getAllRunnerByRace(Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending) {
+        LOGGER.debug("Get all runner in race: {}", raceId);
+        return dao.getAllRunnersByRaceWith(raceId, attr, ascending);
+    }
+
+    @Override
+    public Long getCount(Long raceId) {
+        return dao.getCount(raceId);
     }
 }

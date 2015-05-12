@@ -2,36 +2,30 @@
     <table>
         <thead>
         <tr>
-             <!--wicket:id="sortByNum"--> <th wicket:message key="p.racePanel.num"></th>
-            <th wicket:message key="p.racePanel.horce"></th>
-            <th wicket:message key="p.racePanel.trainer"></th>
-            <th wicket:message key="p.racePanel.jockey"></th>
-            <!--wicket:id="sortByAge"--><th  wicket:message key="p.racePanel.age"></th>
-             <!--wicket:id="sortByKoef"--><th wicket:message key="p.racePanel.koef"></th>
+            <th wicket:id="sortByNum"><wicket:message key="p.racePanel.num"></wicket:message></th>
+            <th><wicket:message key="p.racePanel.horce"></wicket:message></th>
+            <th><wicket:message key="p.racePanel.trainer"></wicket:message></th>
+            <th><wicket:message key="p.racePanel.jockey"></wicket:message></th>
+            <th><wicket:message key="p.racePanel.age"></wicket:message></th>
+            <th wicket:id="sortByKoef"><wicket:message key="p.racePanel.koef"></wicket:message></th>
         </tr>
         </thead>
-       <!-- <tbody>
-        <tr wicket:id="listOfRaces">
-            <td>
-                <wicket:container wicket:id="number"></wicket:container>
-            </td>
-            <td>
-                <wicket:container wicket:id="horce"></wicket:container>
-            </td>
-            <td>
-                <wicket:container wicket:id="trainer"></wicket:container>
-            </td>
-            <td>
-                <wicket:container wicket:id="jockey"></wicket:container>
-            </td>
-            <td>
-                <wicket:container wicket:id="age"></wicket:container>
-            </td>
-            <td><a wicket:id="linkkoef">
+        <tbody wicket:id="wrapper-body">
+        <tr wicket:id="list">
+            <td><wicket:container wicket:id="number"></wicket:container></td>
+            <td><wicket:container wicket:id="horce"></wicket:container></td>
+            <td><wicket:container wicket:id="trainer"></wicket:container></td>
+            <td><wicket:container wicket:id="jockey"></wicket:container></td>
+            <td class="runnercenter"><wicket:container wicket:id="age"></wicket:container></td>
+            <!--<td class="runnercenter"><wicket:container wicket:id="koef"></wicket:container></td>-->
+            <td class="runnercenter"><a  wicket:id="linkBet">
                 <wicket:container wicket:id="koef"></wicket:container>
             </a></td>
+            <!-- <td><a wicket:id="linkkoef">
+                 <wicket:container wicket:id="koef"></wicket:container>
+             </a></td>-->
         </tr>
-        </tbody>-->
+        </tbody>
     </table>
     <br/>
 </wicket:panel>

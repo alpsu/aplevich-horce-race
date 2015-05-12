@@ -46,7 +46,7 @@ public class TournamentPanel extends Panel{
         WebMarkupContainer liContainer = new WebMarkupContainer("wrapper-li");
         add(liContainer);
 
-        liContainer.add(new RacePanel("race-panel", raceService.getAllRacesWithPlaceByPlace(place)));
+        liContainer.add(new RacePanel("race-panel", place.getId()));
 
         liContainer.add(new Link("create-new-place-link") {
             @Override
