@@ -3,7 +3,6 @@ package by.aplevich.horcerace.services.impl;
 import by.aplevich.horcerace.dataaccess.RunnerDao;
 import by.aplevich.horcerace.datamodel.Race;
 import by.aplevich.horcerace.datamodel.Runner;
-import by.aplevich.horcerace.datamodel.Runner_;
 import by.aplevich.horcerace.services.RunnerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,10 +67,22 @@ public class RunnerServiceImpl implements RunnerService {
     }
 
     @Override
-    public List<Runner> getAllRunnerByRace(Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending) {
+    public List<Runner> getAllRunnerByRace(Long placeId, Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending) {
         LOGGER.debug("Get all runner in race: {}", raceId);
-        return dao.getAllRunnersByRaceWith(raceId, attr, ascending);
+
+        List<Runner> allRunnersByRaceWith = dao.getAllRunnersByRaceWith(placeId, raceId, attr, ascending);
+        return allRunnersByRaceWith;
+        //return dao.getAllRunnersByRaceWith(placeId, raceId, attr, ascending);
     }
+
+   /* @Override
+    public List<Object[]> getAllRunnerByRace(Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending) {
+        LOGGER.debug("Get all runner in race: {}", raceId);
+
+        List<Object[]> allRunnersByRaceWith = dao.getAllRunnersByRaceWith(raceId, attr, ascending);
+        return allRunnersByRaceWith;
+        //return dao.getAllRunnersByRaceWith(placeId, raceId, attr, ascending);
+    }*/
 
     @Override
     public Long getCount(Long raceId) {
