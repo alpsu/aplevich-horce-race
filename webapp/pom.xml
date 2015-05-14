@@ -65,4 +65,7 @@
             <artifactId>wicket-jquery-ui-theme-uilightness</artifactId>
         </dependency>
     </dependencies>
+    <build>
+        <finalName>aplevich</finalName>
+    </build>
 </project>

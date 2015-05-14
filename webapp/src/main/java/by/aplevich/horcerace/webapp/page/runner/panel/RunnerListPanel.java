@@ -70,15 +70,15 @@ public class RunnerListPanel extends Panel {
             }
         };
         tableBody.add(dataView);
-        add(new OrderByBorder<SingularAttribute<Runner, ?>>("sortByNum", Runner_.place, runnerDataProvider));
-        add(new OrderByBorder<SingularAttribute<Runner, ?>>("sortByKoef", Runner_.koefficient, runnerDataProvider));
+        //add(new OrderByBorder<SingularAttribute<Runner, ?>>("sortByNum", Runner_.place, runnerDataProvider));
+        //add(new OrderByBorder<SingularAttribute<Runner, ?>>("sortByKoef", Runner_.koefficient, runnerDataProvider));
     }
 
     private class RunnerDataProvider extends SortableDataProvider<Runner, SingularAttribute<Runner, ?>>{
 
         public RunnerDataProvider() {
             super();
-            setSort(Runner_.place, SortOrder.DESCENDING);
+            setSort(Runner_.place, SortOrder.ASCENDING);
         }
 
         @Override
@@ -86,7 +86,8 @@ public class RunnerListPanel extends Panel {
             SingularAttribute<Runner, ?> sortParam = getSort().getProperty();
             SortOrder propertySortOrder = getSortState().getPropertySortOrder(sortParam);
             boolean ascending = SortOrder.ASCENDING.equals(propertySortOrder);
-            return runnerService.getAllRunnerByRace(raceId, sortParam, ascending).iterator();
+
+           return runnerService.getAllRunnerByRace(placeId, raceId, sortParam, ascending).iterator();
         }
 
         @Override

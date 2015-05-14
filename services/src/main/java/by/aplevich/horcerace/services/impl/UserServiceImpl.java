@@ -2,6 +2,8 @@ package by.aplevich.horcerace.services.impl;
 
 import by.aplevich.horcerace.dataaccess.UserDao;
 import by.aplevich.horcerace.datamodel.UserAccount;
+import by.aplevich.horcerace.datamodel.UserAccount_;
+import by.aplevich.horcerace.datamodel.enums.UserRole;
 import by.aplevich.horcerace.services.UserService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -9,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -48,4 +52,20 @@ public class UserServiceImpl implements UserService{
         dao.deleteAll();
     }
 
+   /* @Override
+    public UserAccount getUserByLogin(String userName) {
+        LOGGER.debug("Get user with name: {}", userName);
+        return dao.getUserByLogin(userName);
+    }*/
+
+    @Override
+    public UserAccount getUserByLogin(String userLogin) {
+        final List<UserAccount> allByFieldRestriction = dao.getAllByFieldRestriction(UserAccount_.login, userLogin);
+        return !allByFieldRestriction.isEmpty() ? allByFieldRestriction.get(0) : null;
+    }
+
+    @Override
+    public List<UserRole> getRoles(Long userId) {
+        return dao.getUserRole(userId);
+    }
 }

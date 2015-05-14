@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+    <entry key="p.login.text">Страница входа</entry>
     <entry key="p.home.adminlink">К админской странице</entry>
     <entry key="p.home.title">Всегда играй</entry>
     <entry key="p.home.text">Главная страница</entry>

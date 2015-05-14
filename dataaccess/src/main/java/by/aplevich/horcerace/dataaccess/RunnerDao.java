@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface RunnerDao extends AbstractDao<Long, Runner> {
     List<Runner>  getAllRunnersByRaceWith(Race race);
-    List<Runner> getAllRunnersByRaceWith(Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending);
+    List<Runner> getAllRunnersByRaceWith(Long placeId, Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending);
+    //List<Object[]> getAllRunnersByRaceWith(Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending);
     Long getCount(Long raceId);
 }
