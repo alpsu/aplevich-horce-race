@@ -51,7 +51,7 @@ public class RunnerListPanel extends Panel {
         DataView<Runner> dataView = new DataView<Runner>("list", runnerDataProvider, runnerDataProvider.size()) {
             @Override
             protected void populateItem(Item<Runner> item) {
-                Runner runner = item.getModelObject();
+                final Runner runner = item.getModelObject();
 
                 item.add(new Label("number", runner.getPlace()));
                 item.add(new Label("horce", runner.getHorce().getName()));

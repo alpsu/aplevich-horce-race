@@ -54,7 +54,7 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
             getMarkupSettings().setCompressWhitespace(true);
             getMarkupSettings().setStripWicketTags(true);
         }
-
+        mountPage(LOGIN_URL, LoginPage.class);
     }
 
     @Override
