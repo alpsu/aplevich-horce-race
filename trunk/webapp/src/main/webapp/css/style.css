@@ -457,6 +457,14 @@ li#roster_nogusta {
 	font-weight: bold;
 }
 
+#logo {
+    width: 229px;
+    height: 193px;
+    color: #fff;
+    background: #f21000 url('../images/logo.jpg') repeat-y 0% 0%;
+    font-weight: bold;
+}
+
 #recentrecord a {
 	text-decoration: none;
 }
