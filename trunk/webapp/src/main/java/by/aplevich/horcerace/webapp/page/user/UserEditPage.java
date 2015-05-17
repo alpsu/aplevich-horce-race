@@ -3,9 +3,11 @@ package by.aplevich.horcerace.webapp.page.user;
 import by.aplevich.horcerace.datamodel.UserAccount;
 import by.aplevich.horcerace.datamodel.enums.UserRole;
 import by.aplevich.horcerace.services.UserService;
+import by.aplevich.horcerace.webapp.app.BasicAuthenticationSession;
 import by.aplevich.horcerace.webapp.page.BaseLayout;
-import by.aplevich.horcerace.webapp.page.home.HomePage;
 import by.aplevich.horcerace.webapp.utils.renderer.RoleChoiceRenderer;
+import org.apache.wicket.Application;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.form.validation.EqualPasswordInputValidator;
@@ -15,7 +17,7 @@ import org.apache.wicket.model.ResourceModel;
 import javax.inject.Inject;
 import java.util.Arrays;
 
-public class UserEditPage extends BaseLayout{
+public class UserEditPage extends BaseLayout {
 
     @Inject
     private UserService userService;
@@ -50,24 +52,43 @@ public class UserEditPage extends BaseLayout{
         form.add(dsc);
 
         form.add(new SubmitLink("sumbit-link") {
-            @Override
-            public void onSubmit() {
-                super.onSubmit();
-                //userAccount.setId(userAccount.getId()+3);
-                userService.createNewUser(userAccount);
+                     @Override
+                     public void onSubmit() {
+                         super.onSubmit();
+                         //userAccount.setId(userAccount.getId()+3);
 
-                HomePage page = new HomePage();
-                setResponsePage(page);
-            }
+                         String value = tfLogin.getValue();
+                         if (userService.getUserByLogin(value) == null) {
+                             userService.createNewUser(userAccount);
 
-            @Override
-            public void onError() {
+                             final boolean authResult = AuthenticatedWebSession.get().signIn(userAccount.getLogin(), userAccount.getPassword());
+                             setResponsePage(Application.get().getHomePage());
+                             //HomePage page = new HomePage();
+                             //setResponsePage(page);
+                         } else {
 
-                super.onError();
-            }
-        });
+                             BasicAuthenticationSession.get().error("Пользователь с таким Логином уже существует");
+                             //BasicAuthenticationSession.get().error(new StringResourceModel("error.user.login", new ResourceModel(userAccount)).getString());
+                             UserEditPage page = new UserEditPage(userAccount);
+                             setResponsePage(page);
+                         }
+                     }
+
+                     @Override
+                     public void onError() {
+
+                         super.onError();
+                     }
+                 }
+
+        );
 
         add(form);
-        form.add(new EqualPasswordInputValidator(tfPassword, tfConfPassword));
+
+        form.add(new
+
+                        EqualPasswordInputValidator(tfPassword, tfConfPassword)
+
+        );
     }
 }
