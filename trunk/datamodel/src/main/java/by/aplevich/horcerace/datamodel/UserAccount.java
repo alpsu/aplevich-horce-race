@@ -3,7 +3,6 @@ package by.aplevich.horcerace.datamodel;
 import by.aplevich.horcerace.datamodel.enums.UserRole;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,6 +30,9 @@ public class UserAccount extends AbstractEntity {
     @Size(max = 35, min = 8)
     private String password;
 
+    @Transient
+    private String cpassword;
+
     @Column
     @NotNull
     @Enumerated(EnumType.ORDINAL)
@@ -39,6 +41,10 @@ public class UserAccount extends AbstractEntity {
     @Override
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -72,6 +78,7 @@ public class UserAccount extends AbstractEntity {
     public void setRole(UserRole role) {
         this.role = role;
     }
+
 
     @Override
     public String toString() {

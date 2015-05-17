@@ -11,7 +11,6 @@ import by.aplevich.horcerace.webapp.page.race.RaceEditPage;
 import by.aplevich.horcerace.webapp.page.runner.RunnerEditPage;
 import by.aplevich.horcerace.webapp.page.user.UserEditPage;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
-import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -19,7 +18,7 @@ import org.apache.wicket.model.IModel;
 
 import javax.inject.Inject;
 
-//@AuthorizeInstantiation({"ADMIN", "BOOKIE"})
+//@AuthorizeInstantiation({"ADMIN"})
 public class EditPanel extends Panel {
     private Place place;
     private Horce horce;
@@ -104,12 +103,6 @@ public class EditPanel extends Panel {
             }
         });
 
-        liContainer2.add(new Link("create-new-user-link") {
-            @Override
-            public void onClick() {
-                setResponsePage(new UserEditPage(new UserAccount()));
-            }
-        });
         liContainer2.add(new Link("edit-user-link") {
             @Override
             public void onClick() {

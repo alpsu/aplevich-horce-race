@@ -2,6 +2,7 @@ package by.aplevich.horcerace.dataaccess.impl;
 
 import by.aplevich.horcerace.dataaccess.RunnerDao;
 import by.aplevich.horcerace.datamodel.Race;
+import by.aplevich.horcerace.datamodel.Race_;
 import by.aplevich.horcerace.datamodel.Runner;
 import by.aplevich.horcerace.datamodel.Runner_;
 import org.hibernate.jpa.criteria.OrderImpl;
@@ -49,7 +50,7 @@ public class RunnerDaoImpl extends AbstractDaoImpl<Long, Runner> implements Runn
         criteria.select(root);
         root.fetch(Runner_.horce);
         root.fetch(Runner_.jockey);
-        root.fetch(Runner_.race);
+        root.fetch(Runner_.race).fetch(Race_.place);
         criteria.where(cBuilder.equal(root.get(Runner_.race), raceId));
         criteria.orderBy(new OrderImpl(root.get(attr), ascending));
 
