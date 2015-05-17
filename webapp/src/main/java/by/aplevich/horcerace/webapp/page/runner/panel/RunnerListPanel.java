@@ -1,7 +1,6 @@
 package by.aplevich.horcerace.webapp.page.runner.panel;
 
 import by.aplevich.horcerace.datamodel.Bet;
-import by.aplevich.horcerace.datamodel.Race;
 import by.aplevich.horcerace.datamodel.Runner;
 import by.aplevich.horcerace.datamodel.Runner_;
 import by.aplevich.horcerace.services.RaceService;
@@ -16,11 +15,8 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
-import org.apache.wicket.markup.repeater.data.ListDataProvider;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.model.PropertyModel;
 
 import javax.inject.Inject;
 import javax.persistence.metamodel.SingularAttribute;
@@ -70,8 +66,8 @@ public class RunnerListPanel extends Panel {
             }
         };
         tableBody.add(dataView);
-        //add(new OrderByBorder<SingularAttribute<Runner, ?>>("sortByNum", Runner_.place, runnerDataProvider));
-        //add(new OrderByBorder<SingularAttribute<Runner, ?>>("sortByKoef", Runner_.koefficient, runnerDataProvider));
+        add(new OrderByBorder<SingularAttribute<Runner, ?>>("sortByNum", Runner_.place, runnerDataProvider));
+        add(new OrderByBorder<SingularAttribute<Runner, ?>>("sortByKoef", Runner_.koefficient, runnerDataProvider));
     }
 
     private class RunnerDataProvider extends SortableDataProvider<Runner, SingularAttribute<Runner, ?>>{

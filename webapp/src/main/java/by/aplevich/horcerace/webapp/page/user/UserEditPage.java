@@ -8,6 +8,7 @@ import by.aplevich.horcerace.webapp.page.home.HomePage;
 import by.aplevich.horcerace.webapp.utils.renderer.RoleChoiceRenderer;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.*;
+import org.apache.wicket.markup.html.form.validation.EqualPasswordInputValidator;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.ResourceModel;
 
@@ -19,7 +20,7 @@ public class UserEditPage extends BaseLayout{
     @Inject
     private UserService userService;
 
-    public UserEditPage(final UserAccount userAccount) {
+    public UserEditPage(UserAccount userAccount) {
         super();
         Form<UserAccount> form = new Form<>("form", new CompoundPropertyModel<UserAccount>(userAccount));
 
@@ -38,6 +39,11 @@ public class UserEditPage extends BaseLayout{
         tfPassword.setLabel(new ResourceModel("p.userEdit.password"));
         form.add(tfPassword);
 
+        final PasswordTextField tfConfPassword = new PasswordTextField("cpassword");
+        tfConfPassword.add(new PropertyValidator<String>());
+        tfConfPassword.setLabel(new ResourceModel("p.userEdit.confirmPassword"));
+        form.add(tfConfPassword);
+
         final DropDownChoice<UserRole> dsc = new DropDownChoice<>("role", Arrays.asList(UserRole.values()), RoleChoiceRenderer.INSTANCE);
         dsc.add(new PropertyValidator<UserRole>());
         dsc.setLabel(new ResourceModel("p.userEdit.role"));
@@ -47,6 +53,7 @@ public class UserEditPage extends BaseLayout{
             @Override
             public void onSubmit() {
                 super.onSubmit();
+                //userAccount.setId(userAccount.getId()+3);
                 userService.createNewUser(userAccount);
 
                 HomePage page = new HomePage();
@@ -61,5 +68,6 @@ public class UserEditPage extends BaseLayout{
         });
 
         add(form);
+        form.add(new EqualPasswordInputValidator(tfPassword, tfConfPassword));
     }
 }

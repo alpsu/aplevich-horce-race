@@ -8,6 +8,7 @@
     <entry key="p.base.title">Лошадиные скачки</entry>
     <entry key="p.base.title2">Делайте ваши ставки, господа</entry>
     <entry key="p.base.altlogo">Картинка</entry>
+    <entry key="p.base.createUser">Новый пользователь</entry>
     <entry key="p.tournamentpage.text">Страница данных по турниру</entry>
     <entry key="p.tournamentpage.title">Данные по турниру</entry>
     <entry key="p.placeEdit.name">Название турнира</entry>
@@ -29,6 +30,7 @@
     <entry key="p.userEdit.name">Имя</entry>
     <entry key="p.userEdit.login">Логин</entry>
     <entry key="p.userEdit.password">Пароль</entry>
+    <entry key="p.userEdit.confirmPassword">Повторите пароль</entry>
     <entry key="p.userEdit.role">Роль</entry>
     <entry key="p.betEdit.caption">Редактирование ставки</entry>
     <entry key="p.betEdit.type">Тип</entry>
