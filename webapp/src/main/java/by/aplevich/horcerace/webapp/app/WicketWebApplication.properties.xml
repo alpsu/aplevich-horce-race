@@ -2,13 +2,16 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <entry key="p.login.text">Страница входа</entry>
+    <entry key="p.login.login">Войти</entry>
+    <entry key="p.login.logout">Выйти</entry>
+    <entry key="p.login.createUser">Новый пользователь</entry>
+    <entry key="p.login.editUser">Профиль</entry>
     <entry key="p.home.adminlink">К админской странице</entry>
     <entry key="p.home.title">Всегда играй</entry>
     <entry key="p.home.text">Главная страница</entry>
     <entry key="p.base.title">Лошадиные скачки</entry>
     <entry key="p.base.title2">Делайте ваши ставки, господа</entry>
     <entry key="p.base.altlogo">Картинка</entry>
-    <entry key="p.base.createUser">Новый пользователь</entry>
     <entry key="p.tournamentpage.text">Страница данных по турниру</entry>
     <entry key="p.tournamentpage.title">Данные по турниру</entry>
     <entry key="p.placeEdit.name">Название турнира</entry>
@@ -68,6 +71,7 @@
     <entry key="editRunner">Редактировать участника</entry>
     <entry key="addBet">+ Ставку</entry>
     <entry key="editBet">Редактировать Ставку</entry>
+    <entry key="error.user.login">Пользователь с таким Логином уже существует</entry>
 
 
     <entry key="javax.validation.constraints.Min.message">Значение '${label}' должно быть больше или равно ${value}</entry>

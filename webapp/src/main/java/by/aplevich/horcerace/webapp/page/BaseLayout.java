@@ -2,14 +2,11 @@ package by.aplevich.horcerace.webapp.page;
 
 import by.aplevich.horcerace.datamodel.Place;
 import by.aplevich.horcerace.datamodel.Place_;
-import by.aplevich.horcerace.datamodel.UserAccount;
 import by.aplevich.horcerace.services.PlaceService;
 import by.aplevich.horcerace.webapp.page.login.component.LoginLogoutPanel;
 import by.aplevich.horcerace.webapp.page.panel.PlacePanel;
-import by.aplevich.horcerace.webapp.page.user.UserEditPage;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -30,12 +27,6 @@ public abstract class BaseLayout extends WebPage {
         add(new Label("headerTitle", getPageTitle()));
         add(new FeedbackPanel("feedbackpanel"));
         add(new LoginLogoutPanel("login-logout-panel"));
-        add(new Link("create-user-btn") {
-            @Override
-            public void onClick() {
-                setResponsePage((new UserEditPage(new UserAccount())));
-            }
-        });
         final List<Place> allPlaces = placeService.getAllPlaces(Place_.name,true,0,0);
         add(new ListView<Place>("list-panel", allPlaces) {
             @Override
