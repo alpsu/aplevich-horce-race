@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.persistence.metamodel.SingularAttribute;
 import java.util.List;
 
 @Service
@@ -64,5 +65,13 @@ public class RaceServiceImpl implements RaceService {
         return dao.getAllRacesWithPlaceByPlace(place);
     }
 
+    @Override
+    public List<Race> getAllRacesWithPlaceByPlace(Long placeId, SingularAttribute<Race, ?> attr, boolean ascending, int first, int pageSize) {
+        return dao.getAllRacesWithPlaceByPlace(placeId, attr, ascending, first, pageSize);
+    }
 
+    @Override
+    public Long getCount(Long placeId) {
+        return dao.getCount(placeId);
+    }
 }

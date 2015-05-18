@@ -11,9 +11,6 @@ import javax.inject.Inject;
 
 public class RaceDetail extends Panel {
     @Inject
-    private RunnerService runnerService;
-
-    @Inject
     private RaceService raceService;
 
     private Long placeId;
@@ -35,7 +32,6 @@ public class RaceDetail extends Panel {
         liContainer.add(new Label("desc", raceService.get(raceId).getDescription()));
         liContainer.add(new Label("dist", raceService.get(raceId).getDistance()));
         liContainer.add(new Label("quant", raceService.get(raceId).getQuantity()));
-        //liContainer.add(new RunnerListPanel("runnerlist", runnerService.getAllRunnerByRace(raceService.get(raceId)), raceId));
         liContainer.add(new RunnerListPanel("runnerlist", placeId, raceId));
     }
 }

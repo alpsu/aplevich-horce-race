@@ -2,18 +2,12 @@
     <table>
         <thead>
         <tr>
-            <!--wicket:id="sortByNum"-->
-            <th wicket:id="sortByNum">
-                <wicket:message key="p.racePanel.num"></wicket:message>
-            </th>
+            <th><wicket:message key="p.racePanel.num"></wicket:message></th>
             <th><wicket:message key="p.racePanel.horce"></wicket:message></th>
             <th><wicket:message key="p.racePanel.trainer"></wicket:message></th>
             <th><wicket:message key="p.racePanel.jockey"></wicket:message></th>
             <th><wicket:message key="p.racePanel.age"></wicket:message></th>
-            <th wicket:id="sortByKoef">
-                <wicket:message key="p.racePanel.koef"></wicket:message>
-            </th>
-            <!--wicket:id="sortByKoef"-->
+            <th><wicket:message key="p.racePanel.koef"></wicket:message></th>
         </tr>
         </thead>
         <tbody wicket:id="wrapper-body">
@@ -23,13 +17,9 @@
             <td><wicket:container wicket:id="trainer"></wicket:container></td>
             <td><wicket:container wicket:id="jockey"></wicket:container></td>
             <td class="runnercenter"><wicket:container wicket:id="age"></wicket:container></td>
-            <!--<td class="runnercenter"><wicket:container wicket:id="koef"></wicket:container></td>-->
             <td class="runnercenter"><a  wicket:id="linkBet">
                 <wicket:container wicket:id="koef"></wicket:container>
             </a></td>
-            <!-- <td><a wicket:id="linkkoef">
-                 <wicket:container wicket:id="koef"></wicket:container>
-             </a></td>-->
         </tr>
         </tbody>
     </table>

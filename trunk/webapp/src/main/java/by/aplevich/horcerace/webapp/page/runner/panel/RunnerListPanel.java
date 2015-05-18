@@ -25,12 +25,7 @@ import java.util.List;
 
 public class RunnerListPanel extends Panel {
     @Inject
-    private RaceService raceService;
-
-    @Inject
     private RunnerService runnerService;
-
-    private List<Runner> runners;
 
     private Long raceId;
     private Long placeId;
@@ -54,7 +49,6 @@ public class RunnerListPanel extends Panel {
                 item.add(new Label("trainer", runner.getHorce().getTrainer()));
                 item.add(new Label("jockey", runner.getJockey().getName()));
                 item.add(new Label("age", runner.getHorce().getAge()));
-                //item.add(new Label("koef", runner.getKoefficient()));
 
                 Link actionLink = new Link<String>("linkBet") {
                     @Override
@@ -66,8 +60,6 @@ public class RunnerListPanel extends Panel {
             }
         };
         tableBody.add(dataView);
-        add(new OrderByBorder<SingularAttribute<Runner, ?>>("sortByNum", Runner_.place, runnerDataProvider));
-        add(new OrderByBorder<SingularAttribute<Runner, ?>>("sortByKoef", Runner_.koefficient, runnerDataProvider));
     }
 
     private class RunnerDataProvider extends SortableDataProvider<Runner, SingularAttribute<Runner, ?>>{
