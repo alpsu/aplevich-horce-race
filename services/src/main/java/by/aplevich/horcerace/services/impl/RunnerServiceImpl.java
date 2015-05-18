@@ -71,6 +71,7 @@ public class RunnerServiceImpl implements RunnerService {
         LOGGER.debug("Get all runner in race: {}", raceId);
 
         List<Runner> allRunnersByRaceWith = dao.getAllRunnersByRaceWith(placeId, raceId, attr, ascending);
+        System.out.println(allRunnersByRaceWith);
         return allRunnersByRaceWith;
         //return dao.getAllRunnersByRaceWith(placeId, raceId, attr, ascending);
     }

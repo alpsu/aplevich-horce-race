@@ -8,11 +8,13 @@ import by.aplevich.horcerace.datamodel.Runner_;
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Tuple;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.SingularAttribute;
+import java.util.Arrays;
 import java.util.List;
 
 @Repository
@@ -59,8 +61,31 @@ public class RunnerDaoImpl extends AbstractDaoImpl<Long, Runner> implements Runn
 
         TypedQuery<Runner> query = getEm().createQuery(criteria);
         List<Runner> results = query.getResultList();
+        System.out.println(results);
         return results;
     }
+/*
+    @Override
+    public List<Runner> getAllRunnersByRaceWith(Long placeId, Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending) {
+        CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+
+        CriteriaQuery<Tuple> criteria = cBuilder.createTupleQuery();
+        Root<Runner> root = criteria.from(Runner.class);
+
+        criteria.select(cBuilder.tuple(root.get("horce").get("name"), root.get("horce").get("trainer"),
+                root.get("horce").get("age"), root.get("jockey").get("fname"),
+                root.get("jockey").get("lname"), root.get("koefficient"), root.get("place")));
+        criteria.where(cBuilder.equal(root.get(Runner_.race), raceId));
+        criteria.orderBy(new OrderImpl(root.get(attr), ascending));
+
+        criteria.distinct(true);
+
+
+        List<Tuple> results = getEm().createQuery(criteria).getResultList();
+        return Arrays.asList(results.toArray());
+    }
+    */
+
 
 /*    @Override
     public List<Runner[]> getAllRunnersByRaceWith(Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending) {

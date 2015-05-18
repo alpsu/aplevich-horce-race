@@ -12,7 +12,9 @@ import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.form.validation.EqualPasswordInputValidator;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.model.StringResourceModel;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -55,20 +57,16 @@ public class UserEditPage extends BaseLayout {
                      @Override
                      public void onSubmit() {
                          super.onSubmit();
-                         //userAccount.setId(userAccount.getId()+3);
 
                          String value = tfLogin.getValue();
                          if (userService.getUserByLogin(value) == null) {
                              userService.createNewUser(userAccount);
 
-                             final boolean authResult = AuthenticatedWebSession.get().signIn(userAccount.getLogin(), userAccount.getPassword());
+                             AuthenticatedWebSession.get().signIn(userAccount.getLogin(), userAccount.getPassword());
                              setResponsePage(Application.get().getHomePage());
-                             //HomePage page = new HomePage();
-                             //setResponsePage(page);
                          } else {
 
-                             BasicAuthenticationSession.get().error("Пользователь с таким Логином уже существует");
-                             //BasicAuthenticationSession.get().error(new StringResourceModel("error.user.login", new ResourceModel(userAccount)).getString());
+                             BasicAuthenticationSession.get().error(new StringResourceModel("error.user.login", this, null).getString());
                              UserEditPage page = new UserEditPage(userAccount);
                              setResponsePage(page);
                          }
@@ -80,15 +78,11 @@ public class UserEditPage extends BaseLayout {
                          super.onError();
                      }
                  }
-
         );
 
         add(form);
-
         form.add(new
-
                         EqualPasswordInputValidator(tfPassword, tfConfPassword)
-
         );
     }
 }
