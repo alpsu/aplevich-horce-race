@@ -1,5 +1,13 @@
 SET search_path TO 'public';
 
+DROP TABLE IF EXISTS bet;
+DROP TABLE IF EXISTS runner;
+DROP TABLE IF EXISTS race;
+DROP TABLE IF EXISTS user_account;
+DROP TABLE IF EXISTS horce;
+DROP TABLE IF EXISTS jockey;
+DROP TABLE IF EXISTS place;
+
 CREATE TABLE user_account (
   id       SERIAL                 NOT NULL,
   name     CHARACTER VARYING(100) NOT NULL,

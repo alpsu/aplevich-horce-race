@@ -50,12 +50,8 @@ public class EditPanel extends Panel {
             protected void onBeforeRender() {
                 super.onBeforeRender();
                 Roles roles = BasicAuthenticationSession.get().getRoles();
-                if (roles != null) {
-                    if ((roles.hasRole("ADMIN")) || (roles.hasRole("BOOKIE"))) {
+                if (roles != null && roles.hasRole("ADMIN")) {
                         setVisible(true);
-                    } else {
-                        setVisible(false);
-                    }
                 } else {
                     setVisible(false);
                 }
@@ -100,13 +96,6 @@ public class EditPanel extends Panel {
             @Override
             public void onClick() {
                 setResponsePage(new JockeyEditPage(jockey));
-            }
-        });
-
-        liContainer2.add(new Link("edit-user-link") {
-            @Override
-            public void onClick() {
-                setResponsePage(new UserEditPage(userAccount));
             }
         });
 

@@ -1,5 +1,6 @@
 package by.aplevich.horcerace.webapp.page.login;
 
+import by.aplevich.horcerace.webapp.app.BasicAuthenticationSession;
 import by.aplevich.horcerace.webapp.page.BaseLayout;
 import org.apache.wicket.Application;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
@@ -9,6 +10,7 @@ import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.util.string.Strings;
 
 public class LoginPage extends BaseLayout {
@@ -40,7 +42,8 @@ public class LoginPage extends BaseLayout {
 					// continueToOriginalDestination();
 					setResponsePage(Application.get().getHomePage());
 				} else {
-					error("Ошибка авторизации");
+					//error("Ошибка авторизации");
+					BasicAuthenticationSession.get().error(new StringResourceModel("error.user.auth", this, null).getString());
 				}
 			}
 		};
