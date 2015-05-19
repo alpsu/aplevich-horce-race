@@ -125,7 +125,7 @@ public class EditPanel extends Panel {
             }
         });
 
-        liContainer2.add(new Link("create-new-bet-link") {
+        /*liContainer2.add(new Link("create-new-bet-link") {
             @Override
             public void onClick() {
                 setResponsePage(new BetEditPage(new Bet()));
@@ -136,6 +136,6 @@ public class EditPanel extends Panel {
             public void onClick() {
                 setResponsePage(new BetEditPage(bet));
             }
-        });
+        });*/
     }
 }

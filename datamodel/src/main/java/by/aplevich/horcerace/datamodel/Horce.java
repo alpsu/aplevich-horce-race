@@ -61,8 +61,7 @@ public class Horce extends AbstractEntity {
     @Override
     public String toString() {
         return "Horce{" +
-                "id=" + getId() +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", trainer='" + trainer + '\'' +
                 ", age=" + age +
                 '}';

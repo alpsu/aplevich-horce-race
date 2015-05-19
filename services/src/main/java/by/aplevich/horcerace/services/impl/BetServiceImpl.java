@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.persistence.metamodel.SingularAttribute;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,5 +83,22 @@ public class BetServiceImpl implements BetService {
     public List<Bet> getAllBetsByRunner(Runner runner) {
         LOGGER.debug("Get all bets by runner: {}", runner);
         return dao.getAllByFieldRestriction(Bet_.runner, runner.getId());
+    }
+
+    @Override
+    public Long getCount(UserAccount user) {
+        return dao.getCount(user);
+    }
+
+    @Override
+    public List<Bet> getAllBetsByUser(Long userId, SingularAttribute<Bet, ?> attr, boolean ascending, int startRecord, int pageSize) {
+        List<Bet> allBetsByUser = dao.getAllBetsByUser(userId, attr, ascending, startRecord, pageSize);
+        //System.out.println(allBetsByUser);
+        return allBetsByUser;
+    }
+
+    @Override
+    public BigDecimal getWin(Bet bet) {
+        return BigDecimal.valueOf(0);
     }
 }

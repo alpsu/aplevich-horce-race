@@ -90,8 +90,7 @@ public class Runner extends AbstractEntity {
     @Override
     public String toString() {
         return "Runner{" +
-                "id=" + getId() +
-                ", koefficient=" + koefficient +
+                "koefficient=" + koefficient +
                 ", place=" + place +
                 ", horce=" + horce +
                 ", jockey=" + jockey +

@@ -86,8 +86,7 @@ public class Race extends AbstractEntity {
     @Override
     public String toString() {
         return "Race{" +
-                "id=" + getId() +
-                ", description='" + description + '\'' +
+                "description='" + description + '\'' +
                 ", distance='" + distance + '\'' +
                 ", start=" + start +
                 ", quantity=" + quantity +

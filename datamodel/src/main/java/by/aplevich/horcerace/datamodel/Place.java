@@ -34,8 +34,7 @@ public class Place extends AbstractEntity {
     @Override
     public String toString() {
         return "Place{" +
-                "id=" + getId() +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 '}';
     }
 }

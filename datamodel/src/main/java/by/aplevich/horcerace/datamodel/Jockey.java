@@ -51,8 +51,7 @@ public class Jockey extends AbstractEntity {
     @Override
     public String toString() {
         return "Jockey{" +
-                "id=" + getId() +
-                ", fname='" + fname + '\'' +
+                "fname='" + fname + '\'' +
                 ", lname='" + lname + '\'' +
                 '}';
     }

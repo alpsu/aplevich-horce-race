@@ -53,7 +53,7 @@ public class RunnerListPanel extends Panel {
                 Link actionLink = new Link<String>("linkBet") {
                     @Override
                     public void onClick() {
-                        setResponsePage(new BetEditPage(new Bet()));
+                        setResponsePage(new BetEditPage(new Bet(), runner));
                     }
                 };
                 item.add(actionLink.add(new Label("koef", runner.getKoefficient())));
