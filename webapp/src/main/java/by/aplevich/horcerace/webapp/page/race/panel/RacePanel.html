@@ -1,9 +1,16 @@
 <wicket:panel xmlns:wicket="http://wicket.apache.org">
     <div>
         <ul>
-            <wicket:container wicket:id="race-detail">
-                <div wicket:id="listRaceDetail"></div>
-            </wicket:container>
+            <table>
+                <tbody wicket:id="wrapper-body">
+                <tr wicket:id="list">
+                    <td>
+                        <wicket:container wicket:id="detail"></wicket:container>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div wicket:id="paging"></div>
         </ul>
     </div>
 </wicket:panel>

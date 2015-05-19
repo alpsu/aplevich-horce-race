@@ -170,6 +170,7 @@ li#mainnav_11 a {
     background-color: #fff;
     float: left;
     text-align: center;
+    height: auto;
 }
 
 #centercolumn_2 {
@@ -558,7 +559,7 @@ li#roster_nogusta {
     color: #fff;
     background-color: #464646;
     position: relative;
-    top: -20px;
+    top: 0px;
 }
 
 .savebtn {

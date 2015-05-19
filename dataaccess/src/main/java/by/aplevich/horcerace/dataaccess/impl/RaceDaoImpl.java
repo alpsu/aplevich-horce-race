@@ -68,6 +68,8 @@ public class RaceDaoImpl extends AbstractDaoImpl<Long, Race> implements RaceDao 
         criteria.distinct(true);
 
         TypedQuery<Race> query = getEm().createQuery(criteria);
+        query.setFirstResult(first);
+        query.setMaxResults(pageSize);
         List<Race> results = query.getResultList();
         return results;
     }
