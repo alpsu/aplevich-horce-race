@@ -1,0 +1,21 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+    <table>
+        <thead>
+        <tr>
+            <th><wicket:message key="p.betEdit.currency"></wicket:message></th>
+            <th><wicket:message key="p.betEdit.sum"></wicket:message></th>
+            <th><wicket:message key="p.betEdit.type"></wicket:message></th>
+            <th><wicket:message key="p.betEdit.sum2"></wicket:message></th>
+        </tr>
+        </thead>
+        <tbody wicket:id="wrapper-body">
+        <tr class="runnercenter" wicket:id="list">
+            <td><wicket:container wicket:id="currency"></wicket:container></td>
+            <td><wicket:container wicket:id="sum"></wicket:container></td>
+            <td><wicket:container wicket:id="type"></wicket:container></td>
+            <td><wicket:container wicket:id="sum2"></wicket:container></td>
+        </tr>
+        </tbody>
+    </table>
+    <div wicket:id="paging"></div>
+</wicket:panel>

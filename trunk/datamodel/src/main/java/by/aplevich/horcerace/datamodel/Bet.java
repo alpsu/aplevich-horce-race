@@ -91,10 +91,7 @@ public class Bet extends AbstractEntity {
     public String toString() {
         return "Bet{" +
                 "currency=" + currency +
-                ", id=" + getId() +
                 ", type=" + type +
-                ", runner=" + runner +
-                ", user=" + userAccount +
                 ", sum=" + sum +
                 '}';
     }

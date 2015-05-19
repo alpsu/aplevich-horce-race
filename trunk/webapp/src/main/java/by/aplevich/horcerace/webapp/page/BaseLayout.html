@@ -22,8 +22,9 @@
         <div id="mainnav">
             <ul>
                 <li id="mainnav_01"><a href="#"><span></span></a></li>
-                <li id="mainnav_08"><a href="#"><span></span></a></li>
-                <li id="mainnav_09"><a href="#"><span></span></a></li>
+                <li><button wicket:id="edit-btn">
+                    <wicket:message key="p.placeEdit.caption"></wicket:message>
+                </button></li>
                 <li><span wicket:id="login-logout-panel"></span></li>
                 <li style="float: right; padding-top: 5px; padding-right: 5px;"><span wicket:id="language-panel"></span></li>
             </ul>
@@ -41,24 +42,9 @@
         <div id="rightsidebar">
             <!-- Start of Team Roster -->
             <div id="teamroster">
-                <div id="teamroster_header">
-                    <h2><span></span></h2>
-                </div>
                 <div id="teamroster_content">
-                    <div id="teamroster_categories"><a href="#">Staff</a> | <a href="#">Captains</a></div>
-                    <ul>
-                        <li id="roster_twitch"><a href="#">twitch</a></li>
-                        <li id="roster_rock"><a href="#">rock</a></li>
-                        <li id="roster_badkarma"><a href="#">BadKarma</a></li>
-                        <li id="roster_mostly"><a href="#">mostly</a></li>
-                        <li id="roster_thebowl"><a href="#">TheBowl</a></li>
-                        <li id="roster_doggerz"><a href="#">doggerz</a></li>
-                        <li id="roster_drew"><a href="#">Drew</a></li>
-                        <li id="roster_nogusta"><a href="#">Nogusta</a></li>
-                    </ul>
+                    <wicket:container wicket:id="bet-panel"></wicket:container>
                     <div class="clearthis">&nbsp;</div>
-                    <div class="more_button"><a href="#"><span></span></a></div>
-
                 </div>
             </div>
             <!-- End of Team Roster -->

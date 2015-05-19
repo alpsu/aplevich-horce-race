@@ -83,8 +83,7 @@ public class UserAccount extends AbstractEntity {
     @Override
     public String toString() {
         return "UserAccount{" +
-                "id=" + getId() +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +

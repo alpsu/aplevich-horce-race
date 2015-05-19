@@ -1,9 +1,11 @@
 package by.aplevich.horcerace.webapp.page.bet;
 
 import by.aplevich.horcerace.datamodel.Bet;
+import by.aplevich.horcerace.datamodel.Runner;
 import by.aplevich.horcerace.datamodel.enums.BetType;
 import by.aplevich.horcerace.datamodel.enums.Currency;
 import by.aplevich.horcerace.services.BetService;
+import by.aplevich.horcerace.webapp.app.BasicAuthenticationSession;
 import by.aplevich.horcerace.webapp.page.BaseLayout;
 import by.aplevich.horcerace.webapp.page.home.HomePage;
 import by.aplevich.horcerace.webapp.utils.renderer.CurrencyChoiceRenderer;
@@ -25,7 +27,7 @@ public class BetEditPage extends BaseLayout{
     @Inject
     private BetService betService;
 
-    public BetEditPage(final Bet bet){
+    public BetEditPage(final Bet bet, Runner runner){
         super();
         Form<Bet> form = new Form<>("form");
 
@@ -51,6 +53,8 @@ public class BetEditPage extends BaseLayout{
             @Override
             public void onSubmit() {
                 super.onSubmit();
+                bet.setUserAccount(BasicAuthenticationSession.get().getUser());
+                bet.setRunner(runner);
                 betService.saveOrUpdate(bet);
 
                 HomePage page = new HomePage();

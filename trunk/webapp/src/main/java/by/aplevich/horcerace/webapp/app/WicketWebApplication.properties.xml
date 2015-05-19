@@ -41,6 +41,7 @@
     <entry key="p.betEdit.user">Клиент</entry>
     <entry key="p.betEdit.currency">Валюта</entry>
     <entry key="p.betEdit.sum">Величина</entry>
+    <entry key="p.betEdit.sum2">Выигрыш</entry>
     <entry key="p.runnerEdit.caption">Редактируем участника</entry>
     <entry key="p.runnerEdit.horce">Лошадь</entry>
     <entry key="p.runnerEdit.jockey">Жокей</entry>
