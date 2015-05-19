@@ -23,7 +23,8 @@ public interface RunnerService {
     void deleteAllInRace(Race race);
 
     List<Runner> getAllRunnerByRace(Race race);
-    List<Runner> getAllRunnerByRace(Long placeId, Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending);
-    //List<Object[]> getAllRunnerByRace(Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending);
+
+    List<Runner> getAllRunnerByRace(Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending, int startRecord, int pageSize);
+
     Long getCount(Long raceId);
 }

@@ -32,6 +32,6 @@ public class RaceDetail extends Panel {
         liContainer.add(new Label("desc", raceService.get(raceId).getDescription()));
         liContainer.add(new Label("dist", raceService.get(raceId).getDistance()));
         liContainer.add(new Label("quant", raceService.get(raceId).getQuantity()));
-        liContainer.add(new RunnerListPanel("runnerlist", placeId, raceId));
+        liContainer.add(new RunnerListPanel("runnerlist", raceId));
     }
 }
