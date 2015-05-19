@@ -3,7 +3,6 @@ package by.aplevich.horcerace.webapp.page.runner.panel;
 import by.aplevich.horcerace.datamodel.Bet;
 import by.aplevich.horcerace.datamodel.Runner;
 import by.aplevich.horcerace.datamodel.Runner_;
-import by.aplevich.horcerace.services.RaceService;
 import by.aplevich.horcerace.services.RunnerService;
 import by.aplevich.horcerace.webapp.page.bet.BetEditPage;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
@@ -12,6 +11,7 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvid
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
@@ -21,28 +21,26 @@ import org.apache.wicket.model.IModel;
 import javax.inject.Inject;
 import javax.persistence.metamodel.SingularAttribute;
 import java.util.Iterator;
-import java.util.List;
 
 public class RunnerListPanel extends Panel {
     @Inject
     private RunnerService runnerService;
 
     private Long raceId;
-    private Long placeId;
 
-    public RunnerListPanel(String id, Long placeId, Long raceId) {
+    public RunnerListPanel(String id, Long raceId) {
         super(id);
-        this.placeId = placeId;
+        setOutputMarkupId(true);
         this.raceId = raceId;
 
         RunnerDataProvider runnerDataProvider = new RunnerDataProvider();
 
         WebMarkupContainer tableBody = new WebMarkupContainer("wrapper-body");
         add(tableBody);
-        DataView<Runner> dataView = new DataView<Runner>("list", runnerDataProvider, runnerDataProvider.size()) {
+        DataView<Runner> dataView = new DataView<Runner>("list", runnerDataProvider, 3) {
             @Override
             protected void populateItem(Item<Runner> item) {
-                final Runner runner = item.getModelObject();
+                Runner runner = item.getModelObject();
 
                 item.add(new Label("number", runner.getPlace()));
                 item.add(new Label("horce", runner.getHorce().getName()));
@@ -60,6 +58,10 @@ public class RunnerListPanel extends Panel {
             }
         };
         tableBody.add(dataView);
+
+        add(new PagingNavigator("paging", dataView));
+        //add(new OrderByBorder<SingularAttribute<Runner, ?>>("sortByPlace", Runner_.place, runnerDataProvider));
+        //add(new OrderByBorder<SingularAttribute<Runner, ?>>("sortByKoef", Runner_.koefficient, runnerDataProvider));
     }
 
     private class RunnerDataProvider extends SortableDataProvider<Runner, SingularAttribute<Runner, ?>>{
@@ -75,7 +77,7 @@ public class RunnerListPanel extends Panel {
             SortOrder propertySortOrder = getSortState().getPropertySortOrder(sortParam);
             boolean ascending = SortOrder.ASCENDING.equals(propertySortOrder);
 
-           return runnerService.getAllRunnerByRace(placeId, raceId, sortParam, ascending).iterator();
+           return runnerService.getAllRunnerByRace(raceId, sortParam, ascending, (int) first, (int) count).iterator();
         }
 
         @Override

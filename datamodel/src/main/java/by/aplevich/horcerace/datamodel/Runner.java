@@ -94,7 +94,6 @@ public class Runner extends AbstractEntity {
                 ", place=" + place +
                 ", horce=" + horce +
                 ", jockey=" + jockey +
-                ", race=" + race +
                 '}';
     }
 }
