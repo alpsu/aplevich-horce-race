@@ -10,4 +10,6 @@ public interface BetDao extends AbstractDao<Long, Bet>{
     Long getCount(UserAccount user);
 
     List<Bet> getAllBetsByUser(Long userId, SingularAttribute<Bet, ?> attr, boolean ascending, int startRecord, int pageSize);
+
+    Bet getByIdWithRunner(Long betId);
 }
