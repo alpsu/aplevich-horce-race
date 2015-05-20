@@ -51,7 +51,6 @@ public class BetPanel extends Panel {
                 item.add(new Label("currency", bet.getCurrency().toString()));
                 item.add(new Label("sum", bet.getSum().toString()));
                 item.add(new Label("type", bet.getType().toString()));
-                //item.add(new Label("sum2", betService.getWin(bet).toString()));
                 item.add(new Label("sum2", betService.getWin(bet.getId()).toString()));
             }
         };
