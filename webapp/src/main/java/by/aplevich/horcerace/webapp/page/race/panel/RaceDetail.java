@@ -5,7 +5,11 @@ import by.aplevich.horcerace.datamodel.Runner;
 import by.aplevich.horcerace.datamodel.Runner_;
 import by.aplevich.horcerace.services.RaceService;
 import by.aplevich.horcerace.services.RunnerService;
+import by.aplevich.horcerace.webapp.app.BasicAuthenticationSession;
 import by.aplevich.horcerace.webapp.page.bet.BetEditPage;
+import by.aplevich.horcerace.webapp.page.race.RaceEditPage;
+import by.aplevich.horcerace.webapp.page.runner.RunnerEditPage;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -36,6 +40,8 @@ public class RaceDetail extends Panel {
         setOutputMarkupId(true);
         RunnerDataProvider runnerDataProvider = new RunnerDataProvider();
 
+        Roles roles = BasicAuthenticationSession.get().getRoles();
+
         add(new Label("startTime", raceService.get(raceId).getStart().toString()));
         add(new Label("desc", raceService.get(raceId).getDescription()));
         add(new Label("dist", raceService.get(raceId).getDistance()));
@@ -47,16 +53,47 @@ public class RaceDetail extends Panel {
             protected void populateItem(Item<Runner> item) {
                 Runner runner = item.getModelObject();
 
-                item.add(new Label("number", runner.getPlace()));
+                Link<String> placeLink = new Link<String>("linkPlace") {
+                    @Override
+                    protected void onConfigure() {
+                        super.onConfigure();
+                        if (roles != null && roles.hasRole("ADMIN")) {
+                            setEnabled(true);
+                        } else {
+                            setEnabled(false);
+                        }
+                    }
+
+                    @Override
+                    public void onClick() {
+                        //setResponsePage(new BetEditPage(new Bet(), runner));
+                    }
+                };
+
+                item.add(placeLink.add(new Label("number", runner.getPlace())));
                 item.add(new Label("horce", runner.getHorce().getName()));
                 item.add(new Label("trainer", runner.getHorce().getTrainer()));
                 item.add(new Label("jockey", runner.getJockey().getName()));
                 item.add(new Label("age", runner.getHorce().getAge()));
 
-                Link actionLink = new Link<String>("linkBet") {
+                Link<String> actionLink = new Link<String>("linkBet") {
+                    @Override
+                    protected void onConfigure() {
+                        super.onConfigure();
+                        if (roles != null && (roles.hasRole("CLIENT")|| roles.hasRole("BOOKIE"))) {
+                            setEnabled(true);
+                        } else {
+                            setEnabled(false);
+                        }
+                    }
+
                     @Override
                     public void onClick() {
-                        setResponsePage(new BetEditPage(new Bet(), runner));
+                        if (roles.hasRole("CLIENT")) {
+                            setResponsePage(new BetEditPage(new Bet(), runner));
+                        } else {
+                            setResponsePage(new RunnerEditPage(runner.));
+                        }
                     }
                 };
                 item.add(actionLink.add(new Label("koef", runner.getKoefficient())));

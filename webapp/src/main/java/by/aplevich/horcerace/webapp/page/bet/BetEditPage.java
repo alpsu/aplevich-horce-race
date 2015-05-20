@@ -10,6 +10,7 @@ import by.aplevich.horcerace.webapp.page.BaseLayout;
 import by.aplevich.horcerace.webapp.page.home.HomePage;
 import by.aplevich.horcerace.webapp.utils.renderer.CurrencyChoiceRenderer;
 import by.aplevich.horcerace.webapp.utils.renderer.TypeChoiceRenderer;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -22,6 +23,7 @@ import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
+@AuthorizeInstantiation({"CLIENT"})
 public class BetEditPage extends BaseLayout{
 
     @Inject
@@ -35,9 +37,6 @@ public class BetEditPage extends BaseLayout{
         ddType.add(new PropertyValidator<BetType>());
         ddType.setLabel(new ResourceModel("p.betEdit.type"));
         form.add(ddType);
-
-        //form.add(new DropDownChoice<Runner>("runner", runnerService.getAllRunnerByRace(race), RunnerChoiceRenderer.INSTANCE));
-        //form.add(new DropDownChoice<UserAccount>("user", Arrays.asList(BetType.values()), UserAccountChoiceRenderer.INSTANCE));
 
         DropDownChoice<Currency> ddCurrency = new DropDownChoice<>("currency", new PropertyModel<>(bet, "currency"), Arrays.asList(Currency.values()), CurrencyChoiceRenderer.INSTANCE);
         ddCurrency.add(new PropertyValidator<Currency>());

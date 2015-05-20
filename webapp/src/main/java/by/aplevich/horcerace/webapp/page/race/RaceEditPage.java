@@ -8,6 +8,7 @@ import by.aplevich.horcerace.services.RaceService;
 import by.aplevich.horcerace.webapp.page.BaseLayout;
 import by.aplevich.horcerace.webapp.page.home.HomePage;
 import by.aplevich.horcerace.webapp.utils.renderer.PlaceChoiceRenderer;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.extensions.yui.calendar.DateTimeField;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -20,6 +21,7 @@ import org.apache.wicket.model.ResourceModel;
 import javax.inject.Inject;
 import java.util.Date;
 
+@AuthorizeInstantiation({"BOOKIE", "ADMIN"})
 public class RaceEditPage extends BaseLayout {
 
     @Inject
