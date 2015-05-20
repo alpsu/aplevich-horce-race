@@ -35,5 +35,5 @@ public interface BetService {
 
     List<Bet> getAllBetsByUser(Long userId, SingularAttribute<Bet, ?> attr, boolean ascending, int startRecord, int pageSize);
 
-    BigDecimal getWin(Bet bet);
+    BigDecimal getWin(Long betId);
 }

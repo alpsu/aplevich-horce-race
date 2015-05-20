@@ -42,4 +42,18 @@ public class BetDaoImpl extends AbstractDaoImpl<Long, Bet> implements BetDao {
         List<Bet> results = query.getResultList();
         return results;
     }
+
+    @Override
+    public Bet getByIdWithRunner(Long betId) {
+        CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+        CriteriaQuery<Bet> criteria = cBuilder.createQuery(Bet.class);
+        Root<Bet> root = criteria.from(Bet.class);
+
+        criteria.select(root);
+        root.fetch(Bet_.runner).fetch(Runner_.race);
+        criteria.where(cBuilder.equal(root.get(Bet_.id), betId));
+
+        TypedQuery<Bet> query = getEm().createQuery(criteria);
+        return query.getSingleResult();
+    }
 }
