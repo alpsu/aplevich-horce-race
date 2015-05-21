@@ -13,6 +13,7 @@
     <entry key="p.base.altlogo">Image</entry>
     <entry key="p.tournamentpage.text">Tournament data</entry>
     <entry key="p.tournamentpage.title">Tournament data</entry>
+    <entry key="p.helpPage.text">Help Page</entry>
     <entry key="p.placeEdit.name">Tournament name</entry>
     <entry key="p.placeEdit.caption">Edit tournament</entry>
     <entry key="p.horceEdit.caption">Edit horce</entry>
@@ -70,4 +71,6 @@
     <entry key="editBet">Edit Bet</entry>
     <entry key="error.user.login">Users login exist</entry>
     <entry key="error.user.auth">Authentication error</entry>
+    <entry key="login">Enter</entry>
+    <entry key="help">Help</entry>
 </properties>

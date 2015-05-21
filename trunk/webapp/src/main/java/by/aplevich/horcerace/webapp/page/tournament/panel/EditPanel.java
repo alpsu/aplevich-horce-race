@@ -112,18 +112,18 @@ public class EditPanel extends Panel {
             }
         });
 
-        liContainer2.add(new Link("create-new-runner-link") {
-            @Override
-            public void onClick() {
-                setResponsePage(new RunnerEditPage(new Runner()));
-            }
-        });
-        liContainer2.add(new Link("edit-runner-link") {
-            @Override
-            public void onClick() {
-                setResponsePage(new RunnerEditPage(runner));
-            }
-        });
+//        liContainer2.add(new Link("create-new-runner-link") {
+//            @Override
+//            public void onClick() {
+//                setResponsePage(new RunnerEditPage(new Runner()));
+//            }
+//        });
+//        liContainer2.add(new Link("edit-runner-link") {
+//            @Override
+//            public void onClick() {
+//                setResponsePage(new RunnerEditPage(runner));
+//            }
+//        });
 
         /*liContainer2.add(new Link("create-new-bet-link") {
             @Override

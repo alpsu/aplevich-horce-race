@@ -5,17 +5,11 @@
                 <wicket:message key="p.runnerEdit.caption"></wicket:message>
             </caption>
             <tr>
-                <td><label wicket:for="place">
-                    <wicket:message key="p.runnerEdit.place"/>
-                    :</label></td>
-                <td><input wicket:id="place" wicket:message="title:p.runnerEdit.place" type="text" class="inputfld"></td>
-            </tr>
-            <tr>
-                <td><label wicket:for="name">
+                <td><label wicket:for="horce">
                     <wicket:message key="p.runnerEdit.horce"/>
                     :</label></td>
                 <td>
-                    <input wicket:id="name" wicket:message="title:p.runnerEdit.horce" class="inputfld">
+                    <select wicket:id="horce" wicket:message="title:p.runnerEdit.horce" class="inputfld"></select>
                 </td>
             </tr>
             <tr>
@@ -23,24 +17,29 @@
                     <wicket:message key="p.runnerEdit.jockey"/>
                     :</label></td>
                 <td>
-                    <input wicket:id="jockey" wicket:message="title:p.runnerEdit.jockey" class="inputfld">
+                    <select wicket:id="jockey" wicket:message="title:p.runnerEdit.jockey" class="inputfld"></select>
                 </td>
             </tr>
-            <!--<tr>
-                <td><label wicket:for="race">
-                    <wicket:message key="p.runnerEdit.race"/>
-                    :</label></td>
-                <td>
-                    <select wicket:id="race" wicket:message="title:p.runnerEdit.race" class="inputfld"></select>
-                </td>
-            </tr>-->
+            <tr>
+            <td><label wicket:for="race">
+            <wicket:message key="p.runnerEdit.race"/>
+            :</label></td>
+            <td>
+            <select wicket:id="race" wicket:message="title:p.runnerEdit.race" class="inputfld"></select>
+            </td>
+            </tr>
             <tr>
                 <td><label wicket:for="koefficient">
                     <wicket:message key="p.runnerEdit.koefficient"/>
                     :</label></td>
                 <td><input wicket:id="koefficient" wicket:message="title:p.runnerEdit.koefficient" type="text" class="inputfld"></td>
             </tr>
-
+            <tr>
+                <td><label wicket:for="place">
+                    <wicket:message key="p.runnerEdit.place"/>
+                    :</label></td>
+                <td><input wicket:id="place" wicket:message="title:p.runnerEdit.place" type="text" class="inputfld"></td>
+            </tr>
         </table>
         <div>
             <button type="submit" wicket:id="sumbit-link">

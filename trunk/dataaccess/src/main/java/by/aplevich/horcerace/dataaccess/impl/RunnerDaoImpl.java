@@ -43,6 +43,24 @@ public class RunnerDaoImpl extends AbstractDaoImpl<Long, Runner> implements Runn
     }
 
     @Override
+    public Runner getWithAllByRunner(Long runnerId) {
+        CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+
+        CriteriaQuery<Runner> criteria = cBuilder.createQuery(Runner.class);
+        Root<Runner> root = criteria.from(Runner.class);
+
+        criteria.select(root);
+        criteria.where(cBuilder.equal(root.get(Runner_.id), runnerId));
+        //root.fetch(Runner_.race);
+        root.fetch(Runner_.horce);
+        root.fetch(Runner_.jockey);
+
+        TypedQuery<Runner> query = getEm().createQuery(criteria);
+        Runner result = query.getSingleResult();
+        return result;
+    }
+
+    @Override
     public List<Runner> getAllRunnersByRaceWith(Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending, int startRecord, int pageSize) {
         CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
 

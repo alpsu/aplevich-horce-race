@@ -66,7 +66,7 @@ public class RaceDetail extends Panel {
 
                     @Override
                     public void onClick() {
-                        //setResponsePage(new BetEditPage(new Bet(), runner));
+                        setResponsePage(new RunnerEditPage(runner.getId()));
                     }
                 };
 
@@ -92,7 +92,7 @@ public class RaceDetail extends Panel {
                         if (roles.hasRole("CLIENT")) {
                             setResponsePage(new BetEditPage(new Bet(), runner));
                         } else {
-                            setResponsePage(new RunnerEditPage(runner.));
+                            setResponsePage(new RunnerEditPage(runner.getId()));
                         }
                     }
                 };

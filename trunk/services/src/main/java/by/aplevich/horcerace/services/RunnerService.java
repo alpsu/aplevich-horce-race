@@ -26,5 +26,7 @@ public interface RunnerService {
 
     List<Runner> getAllRunnerByRace(Long raceId, SingularAttribute<Runner, ?> attr, boolean ascending, int startRecord, int pageSize);
 
+    Runner getWithAllByRunner(Long runnerId);
+
     Long getCount(Long raceId);
 }

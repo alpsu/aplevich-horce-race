@@ -78,4 +78,9 @@ public class RunnerServiceImpl implements RunnerService {
     public Long getCount(Long raceId) {
         return dao.getCount(raceId);
     }
+
+    @Override
+    public Runner getWithAllByRunner(Long runnerId) {
+        return dao.getWithAllByRunner(runnerId);
+    }
 }
