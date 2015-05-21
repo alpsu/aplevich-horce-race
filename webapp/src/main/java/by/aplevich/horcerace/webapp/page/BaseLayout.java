@@ -7,6 +7,7 @@ import by.aplevich.horcerace.webapp.app.BasicAuthenticationSession;
 import by.aplevich.horcerace.webapp.page.bet.panel.BetPanel;
 import by.aplevich.horcerace.webapp.page.login.component.LoginLogoutPanel;
 import by.aplevich.horcerace.webapp.page.panel.PlacePanel;
+import by.aplevich.horcerace.webapp.page.tournament.HelpPage;
 import by.aplevich.horcerace.webapp.page.tournament.panel.LanguagePanel;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.markup.html.WebPage;
@@ -49,6 +50,13 @@ public abstract class BaseLayout extends WebPage {
             @Override
             public void onClick() {
                 //setResponsePage(new EditPage());
+            }
+        });
+
+        add(new Link("help") {
+            @Override
+            public void onClick() {
+                setResponsePage(new HelpPage());
             }
         });
 
