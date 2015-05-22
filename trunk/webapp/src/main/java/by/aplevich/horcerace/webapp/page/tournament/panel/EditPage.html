@@ -10,15 +10,34 @@
                     <select wicket:id="place" wicket:message="title:p.raceEdit.place"></select>
                 </td>
                 <td>
-                    <a wicket:id="editplace">
+
+                    <input type="submit" value="Edit"/>
+                </td>
+                <td>
+                    <a wicket:id="newPlace">
+                        <wicket:message key="new"/>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label wicket:for="race">
+                    <wicket:message key="race"/>
+                    :</label></td>
+                <td>
+                    <select wicket:id="race"></select>
+                </td>
+                <td>
+                    <a wicket:id="editRace">
                         <wicket:message key="edit"/>
                     </a>
                 </td>
-                <td>edit</td>
+                <td>
+                    <a wicket:id="newRace">
+                        <wicket:message key="new"/>
+                    </a>
+                </td>
             </tr>
-            <!--<tr colspan="4">
-                <wicket:container wicket:id="race"/>
-            </tr>-->
         </table>
     </form>
 </wicket:extend>

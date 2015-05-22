@@ -5,69 +5,54 @@ import by.aplevich.horcerace.services.PlaceService;
 import by.aplevich.horcerace.services.RaceService;
 import by.aplevich.horcerace.webapp.page.BaseLayout;
 import by.aplevich.horcerace.webapp.page.Place.PlaceEditPage;
+import by.aplevich.horcerace.webapp.page.race.RaceEditPage;
 import by.aplevich.horcerace.webapp.utils.renderer.PlaceChoiceRenderer;
+import by.aplevich.horcerace.webapp.utils.renderer.RaceChoiceRenderer;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 
 import javax.inject.Inject;
+import java.util.Collections;
+import java.util.List;
 
 //@AuthorizeInstantiation({"ADMIN"})
 public class EditPage extends BaseLayout {
     @Inject
     private PlaceService placeService;
-
-    private Place place;
-
-    private IModel<Place> dropdownModel = new PropertyModel<Place>(this, "place");
-    private Horce horce;
-    private Jockey jockey;
-    private UserAccount userAccount;
-    private Bet bet;
-    private Race race;
-    private Runner runner;
-
     @Inject
     private RaceService raceService;
 
+    private Place place;
+    private Race race;
+    private IModel<Place> ddModelPlace = new PropertyModel<Place>(this, "place");
+    private IModel<Race> ddModelRace = new PropertyModel<Race>(this, "race");
+
+    IModel<List<? extends Race>> races = new AbstractReadOnlyModel<List<? extends Race>>()
+    {
+        @Override
+        public List<Race> getObject()
+        {
+            if (place == null)
+            {
+                return Collections.emptyList();
+            }
+            return raceService.getAllRacesWithPlaceByPlace(place);
+        }
+    };
+
+    private Horce horce;
+    private Jockey jockey;
+    private Runner runner;
+
     public EditPage() {
         super();
-
-        Form form = new Form("f1"){
-            @Override
-            protected void onSubmit() {
-                place = dropdownModel.getObject();
-            }
-        };
-
-        DropDownChoice<Place> ddPlace = new DropDownChoice<Place>("place", dropdownModel,  placeService.getAllPlaces(Place_.name, true, 0, 0), PlaceChoiceRenderer.INSTANCE);
-        ddPlace.setLabel(new ResourceModel("p.raceEdit.place"));
-        form.add(ddPlace);
-
-        Link<String> actionLink = new Link<String>("editplace") {
-            @Override
-            protected void onConfigure() {
-                super.onConfigure();
-                if (place == null) {
-                    setEnabled(false);
-                }
-            }
-
-            @Override
-            public void onClick() {
-
-                setResponsePage(new PlaceEditPage(place));
-            }
-        };
-        form.add(actionLink);
-
-
-        add(form);
-        //add(actionLink.add(new Label("", new ResourceModel("edit"))));
     }
 
     public EditPage(String id, IModel<?> model) {
@@ -78,75 +63,60 @@ public class EditPage extends BaseLayout {
     protected void onInitialize() {
         super.onInitialize();
 
-//        WebMarkupContainer liContainer2 = new WebMarkupContainer("edit");
-//
-//        add(liContainer2);
-//
-//        liContainer2.add(new Link("create-new-place-link") {
-//            @Override
-//            public void onClick() {
-//                setResponsePage(new PlaceEditPage(new Place()));
-//            }
-//        });
-//        liContainer2.add(new Link("edit-place-link") {
-//            @Override
-//            public void onClick() {
-//                setResponsePage(new PlaceEditPage(place));
-//            }
-//        });
-//
-//        liContainer2.add(new Link("create-new-horce-link") {
-//            @Override
-//            public void onClick() {
-//                setResponsePage(new HorceEditPage(new Horce()));
-//            }
-//        });
-//        liContainer2.add(new Link("edit-horce-link") {
-//            @Override
-//            public void onClick() {
-//                setResponsePage(new HorceEditPage(horce));
-//            }
-//        });
-//
-//        liContainer2.add(new Link("create-new-jockey-link") {
-//            @Override
-//            public void onClick() {
-//                setResponsePage(new JockeyEditPage(new Jockey()));
-//            }
-//        });
-//        liContainer2.add(new Link("edit-jockey-link") {
-//            @Override
-//            public void onClick() {
-//                setResponsePage(new JockeyEditPage(jockey));
-//            }
-//        });
-//
-//        liContainer2.add(new Link("create-new-race-link") {
-//            @Override
-//            public void onClick() {
-//                setResponsePage(new RaceEditPage(new Race()));
-//            }
-//        });
-//        liContainer2.add(new Link("edit-race-link") {
-//            @Override
-//            public void onClick() {
-//                setResponsePage(new RaceEditPage(race));
-//            }
-//        });
+        Form form = new Form("f1"){
+            @Override
+            protected void onSubmit() {
+                place = ddModelPlace.getObject();
+                if(place == null) {
+                    place = new Place();
+                }
+                setResponsePage(new PlaceEditPage(place));
+            }
+        };
 
-//        liContainer2.add(new Link("create-new-runner-link") {
-//            @Override
-//            public void onClick() {
-//                setResponsePage(new RunnerEditPage(new Runner()));
-//            }
-//        });
-//        liContainer2.add(new Link("edit-runner-link") {
-//            @Override
-//            public void onClick() {
-//                setResponsePage(new RunnerEditPage(runner));
-//            }
-//        });
+        DropDownChoice<Place> ddPlace = new DropDownChoice<Place>("place", ddModelPlace,  placeService.getAllPlaces(Place_.name, true, 0, 0), PlaceChoiceRenderer.INSTANCE);
+        form.add(ddPlace);
 
+       Link<String> actionLink = new Link<String>("newPlace") {
+            @Override
+            public void onClick() {
+                setResponsePage(new PlaceEditPage(new Place()));
+            }
+        };
+        form.add(actionLink);
+
+        DropDownChoice<Race> ddRace = new DropDownChoice<Race>("race", ddModelRace, races , RaceChoiceRenderer.INSTANCE);
+        ddRace.setOutputMarkupId(true);
+        form.add(ddRace);
+
+        add(form);
+
+
+        ddPlace.add(new AjaxFormComponentUpdatingBehavior("change")
+        {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target)
+            {
+                target.add(ddRace);
+            }
+        });
+
+        Link<String> editRaceLink = new Link<String>("editRace") {
+            @Override
+            public void onClick() {
+                setResponsePage(new RaceEditPage(race));
+            }
+        };
+        form.add(editRaceLink);
+
+        Link<String> newRaceLink = new Link<String>("newRace") {
+            @Override
+            public void onClick() {
+                setResponsePage(new RaceEditPage(new Race()));
+            }
+        };
+
+        form.add(newRaceLink);
     }
 
     @Override
@@ -154,3 +124,61 @@ public class EditPage extends BaseLayout {
         return new ResourceModel("p.placeEdit.caption");
     }
 }
+
+/*
+public class ChoicePage extends BasePage
+{
+    public ChoicePage()
+    {
+        modelsMap.put("AUDI", Arrays.asList("A4", "A6", "TT"));
+        modelsMap.put("CADILLAC", Arrays.asList("CTS", "DTS", "ESCALADE", "SRX", "DEVILLE"));
+        modelsMap.put("FORD", Arrays.asList("CROWN", "ESCAPE", "EXPEDITION", "EXPLORER", "F-150"));
+
+        IModel<List<? extends String>> makeChoices = new AbstractReadOnlyModel<List<? extends String>>()
+        {
+            @Override
+            public List<String> getObject()
+            {
+                return new ArrayList<String>(modelsMap.keySet());
+            }
+
+        };
+
+        IModel<List<? extends String>> modelChoices = new AbstractReadOnlyModel<List<? extends String>>()
+        {
+            @Override
+            public List<String> getObject()
+            {
+                List<String> models = modelsMap.get(selectedMake);
+                if (models == null)
+                {
+                    models = Collections.emptyList();
+                }
+                return models;
+            }
+
+        };
+
+        Form<?> form = new Form("form");
+        add(form);
+
+        final DropDownChoice<String> makes = new DropDownChoice<String>("makes",
+                new PropertyModel<String>(this, "selectedMake"), makeChoices);
+
+        final DropDownChoice<String> models = new DropDownChoice<String>("models",
+                new Model<String>(), modelChoices);
+        models.setOutputMarkupId(true);
+
+        form.add(makes);
+        form.add(models);
+
+        makes.add(new AjaxFormComponentUpdatingBehavior("change")
+        {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target)
+            {
+                target.add(models);
+            }
+        });
+    }
+}*/
