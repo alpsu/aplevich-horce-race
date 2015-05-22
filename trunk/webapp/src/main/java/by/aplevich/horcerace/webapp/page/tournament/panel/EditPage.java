@@ -64,26 +64,34 @@ public class EditPage extends BaseLayout {
         super.onInitialize();
 
         Form form = new Form("f1"){
-            @Override
-            protected void onSubmit() {
-                place = ddModelPlace.getObject();
-                if(place == null) {
-                    place = new Place();
-                }
-                setResponsePage(new PlaceEditPage(place));
-            }
+//            @Override
+//            protected void onSubmit() {
+//                place = ddModelPlace.getObject();
+//                if(place == null) {
+//                    place = new Place();
+//                }
+//                setResponsePage(new PlaceEditPage(place));
+//            }
         };
 
         DropDownChoice<Place> ddPlace = new DropDownChoice<Place>("place", ddModelPlace,  placeService.getAllPlaces(Place_.name, true, 0, 0), PlaceChoiceRenderer.INSTANCE);
         form.add(ddPlace);
 
-       Link<String> actionLink = new Link<String>("newPlace") {
+        Link<String> editPlaceLink = new Link<String>("editPlace") {
+            @Override
+            public void onClick() {
+                setResponsePage(new PlaceEditPage(place));
+            }
+        };
+        form.add(editPlaceLink);
+
+       Link<String> newPlaceLink = new Link<String>("newPlace") {
             @Override
             public void onClick() {
                 setResponsePage(new PlaceEditPage(new Place()));
             }
         };
-        form.add(actionLink);
+        form.add(newPlaceLink);
 
         DropDownChoice<Race> ddRace = new DropDownChoice<Race>("race", ddModelRace, races , RaceChoiceRenderer.INSTANCE);
         ddRace.setOutputMarkupId(true);
