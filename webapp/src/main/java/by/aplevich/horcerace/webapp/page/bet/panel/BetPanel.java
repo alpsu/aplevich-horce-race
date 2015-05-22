@@ -19,6 +19,8 @@ import org.apache.wicket.model.IModel;
 
 import javax.inject.Inject;
 import javax.persistence.metamodel.SingularAttribute;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Iterator;
 
 public class BetPanel extends Panel {
@@ -43,6 +45,9 @@ public class BetPanel extends Panel {
 
         WebMarkupContainer tableBody = new WebMarkupContainer("wrapper-body");
         add(tableBody);
+        NumberFormat format = DecimalFormat.getInstance();
+        format.setMaximumFractionDigits(2);
+        //text = format.format(Double.parseDouble(text));
         DataView<Bet> dataView = new DataView<Bet>("list", betDataProvider, 3) {
             @Override
             protected void populateItem(Item<Bet> item) {
@@ -51,7 +56,7 @@ public class BetPanel extends Panel {
                 item.add(new Label("currency", bet.getCurrency().toString()));
                 item.add(new Label("sum", bet.getSum().toString()));
                 item.add(new Label("type", bet.getType().toString()));
-                item.add(new Label("sum2", betService.getWin(bet.getId()).toString()));
+                item.add(new Label("sum2", format.format(betService.getWin(bet.getId()))));
             }
         };
         tableBody.add(dataView);

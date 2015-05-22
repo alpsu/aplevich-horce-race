@@ -3,6 +3,7 @@ package by.aplevich.horcerace.webapp.page;
 import by.aplevich.horcerace.datamodel.Place;
 import by.aplevich.horcerace.datamodel.Place_;
 import by.aplevich.horcerace.services.PlaceService;
+import by.aplevich.horcerace.services.RaceService;
 import by.aplevich.horcerace.webapp.app.BasicAuthenticationSession;
 import by.aplevich.horcerace.webapp.page.bet.panel.BetPanel;
 import by.aplevich.horcerace.webapp.page.login.component.LoginLogoutPanel;
@@ -26,6 +27,8 @@ public abstract class BaseLayout extends WebPage {
 
     @Inject
     private PlaceService placeService;
+    @Inject
+    private RaceService raceService;
 
     @Override
     protected void onInitialize() {
@@ -65,6 +68,9 @@ public abstract class BaseLayout extends WebPage {
             @Override
             protected void populateItem(ListItem<Place> item) {
                 Place place = item.getModelObject();
+                /*if (raceService.getAllRaceByPlace(place).size() > 0) {
+                    item.add((new PlacePanel("place-panel", place)));
+                }*/
                 item.add((new PlacePanel("place-panel", place)));
             }
         });
