@@ -2,6 +2,7 @@ package by.aplevich.horcerace.webapp.page;
 
 import by.aplevich.horcerace.datamodel.Place;
 import by.aplevich.horcerace.datamodel.Place_;
+import by.aplevich.horcerace.datamodel.Race;
 import by.aplevich.horcerace.services.PlaceService;
 import by.aplevich.horcerace.services.RaceService;
 import by.aplevich.horcerace.webapp.app.BasicAuthenticationSession;
@@ -9,6 +10,7 @@ import by.aplevich.horcerace.webapp.page.bet.panel.BetPanel;
 import by.aplevich.horcerace.webapp.page.login.component.LoginLogoutPanel;
 import by.aplevich.horcerace.webapp.page.panel.PlacePanel;
 import by.aplevich.horcerace.webapp.page.tournament.HelpPage;
+import by.aplevich.horcerace.webapp.page.tournament.panel.EditPage;
 import by.aplevich.horcerace.webapp.page.tournament.panel.LanguagePanel;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.markup.html.WebPage;
@@ -52,7 +54,7 @@ public abstract class BaseLayout extends WebPage {
 
             @Override
             public void onClick() {
-                //setResponsePage(new EditPage());
+               setResponsePage(new EditPage());
             }
         });
 
@@ -68,9 +70,6 @@ public abstract class BaseLayout extends WebPage {
             @Override
             protected void populateItem(ListItem<Place> item) {
                 Place place = item.getModelObject();
-                /*if (raceService.getAllRaceByPlace(place).size() > 0) {
-                    item.add((new PlacePanel("place-panel", place)));
-                }*/
                 item.add((new PlacePanel("place-panel", place)));
             }
         });

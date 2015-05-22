@@ -7,5 +7,8 @@ import java.util.List;
 
 public interface PlaceDao extends AbstractDao<Long, Place>{
     List<Place> getAllPlaces();
+
+    Place getByName(String name);
+
     List<Place> getAllPlaces(SingularAttribute<Place, ?> attr, boolean ascending, int startRecord, int pageSize);
 }

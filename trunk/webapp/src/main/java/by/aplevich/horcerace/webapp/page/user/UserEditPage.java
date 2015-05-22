@@ -11,10 +11,7 @@ import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.form.validation.EqualPasswordInputValidator;
-import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.model.StringResourceModel;
+import org.apache.wicket.model.*;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -84,5 +81,10 @@ public class UserEditPage extends BaseLayout {
         form.add(new
                         EqualPasswordInputValidator(tfPassword, tfConfPassword)
         );
+    }
+
+    @Override
+    protected IModel<String> getPageTitle() {
+        return new ResourceModel("p.userEdit.caption");
     }
 }
