@@ -40,6 +40,7 @@ public class PlaceDaoImpl extends AbstractDaoImpl<Long, Place> implements PlaceD
         Root<Place> root = criteria.from(Place.class);
 
         criteria.select(root);
+
         criteria.orderBy(new OrderImpl(root.get(attr), ascending));
         TypedQuery<Place> query = getEm().createQuery(criteria);
         query.setFirstResult(startRecord);

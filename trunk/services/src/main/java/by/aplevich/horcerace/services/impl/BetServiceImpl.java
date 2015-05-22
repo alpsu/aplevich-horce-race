@@ -105,7 +105,8 @@ public class BetServiceImpl implements BetService {
 
 
         if (bet.getType() == BetType.SINGLE) {
-            return getSingle(bet, BigDecimal.ZERO, bet.getSum());
+            BigDecimal single = getSingle(bet, BigDecimal.ZERO, bet.getSum());
+            return single;
         } else {
             BigDecimal single = getSingle(bet, BigDecimal.ZERO, bet.getSum().divide(BigDecimal.valueOf(2)));
             BigDecimal ew = getEW(bet, BigDecimal.ZERO, bet.getSum().divide(BigDecimal.valueOf(2)));
