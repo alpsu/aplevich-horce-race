@@ -43,6 +43,6 @@ public class TournamentPanel extends Panel{
 
         liContainer.add(new RacePanel("race-panel", place.getId()));
 
-        add(new EditPanel("edit-panel", place));
+        //add(new EditPanel("edit-panel", place));
     }
 }

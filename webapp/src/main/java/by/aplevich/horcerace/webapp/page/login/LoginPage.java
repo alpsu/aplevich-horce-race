@@ -7,10 +7,7 @@ import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.RequiredTextField;
-import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.model.StringResourceModel;
+import org.apache.wicket.model.*;
 import org.apache.wicket.util.string.Strings;
 
 public class LoginPage extends BaseLayout {
@@ -56,7 +53,7 @@ public class LoginPage extends BaseLayout {
 
 	@Override
 	protected IModel<String> getPageTitle() {
-		return new Model<String>("Login page");
+		return new ResourceModel("p.login.text");
 	}
 
 }

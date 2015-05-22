@@ -1,0 +1,24 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+    <wicket:message key="p.placeEdit.caption"/>
+    <form wicket:id="f1">
+        <table>
+            <tr>
+                <td><label wicket:for="place">
+                    <wicket:message key="p.placeEdit.name"/>
+                    :</label></td>
+                <td>
+                    <select wicket:id="place" wicket:message="title:p.raceEdit.place"></select>
+                </td>
+                <td>
+                    <a wicket:id="editplace">
+                        <wicket:message key="edit"/>
+                    </a>
+                </td>
+                <td>edit</td>
+            </tr>
+            <!--<tr colspan="4">
+                <wicket:container wicket:id="race"/>
+            </tr>-->
+        </table>
+    </form>
+</wicket:extend>

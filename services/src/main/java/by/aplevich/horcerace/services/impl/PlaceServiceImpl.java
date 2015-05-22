@@ -55,4 +55,9 @@ public class PlaceServiceImpl implements PlaceService{
     public List<Place> getAllPlaces(SingularAttribute<Place, ?> attr, boolean ascending, int startRecord, int pageSize) {
         return dao.getAllPlaces(attr,ascending,startRecord,pageSize);
     }
+
+    @Override
+    public Place getByName(String name) {
+        return dao.getByName(name);
+    }
 }

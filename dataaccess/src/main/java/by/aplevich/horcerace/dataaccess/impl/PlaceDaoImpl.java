@@ -2,6 +2,7 @@ package by.aplevich.horcerace.dataaccess.impl;
 
 import by.aplevich.horcerace.dataaccess.PlaceDao;
 import by.aplevich.horcerace.datamodel.Place;
+import by.aplevich.horcerace.datamodel.Place_;
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 
@@ -48,5 +49,21 @@ public class PlaceDaoImpl extends AbstractDaoImpl<Long, Place> implements PlaceD
 
         List<Place> results = query.getResultList();
         return results;
+    }
+
+    @Override
+    public Place getByName(String name) {
+        CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+
+        CriteriaQuery<Place> criteria = cBuilder.createQuery(Place.class);
+        Root<Place> root = criteria.from(Place.class);
+
+        criteria.select(root);
+        criteria.where(cBuilder.equal(root.get(Place_.name), name));
+
+        TypedQuery<Place> query = getEm().createQuery(criteria);
+
+        Place result = query.getSingleResult();
+        return result;
     }
 }
