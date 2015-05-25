@@ -34,10 +34,10 @@ public class RaceEditPage extends BaseLayout {
         super();
         Form<Race> form = new Form<>("form");
 
-        DropDownChoice<Place> ddPlace = new DropDownChoice<Place>("place", new PropertyModel<Place>(race, "place"), placeService.getAllPlaces(Place_.name, true, 0, 0), PlaceChoiceRenderer.INSTANCE);
+        /*DropDownChoice<Place> ddPlace = new DropDownChoice<Place>("place", new PropertyModel<Place>(race, "place"), placeService.getAllPlaces(Place_.name, true, 0, 0), PlaceChoiceRenderer.INSTANCE);
         ddPlace.add(new PropertyValidator<Place>());
         ddPlace.setLabel(new ResourceModel("p.raceEdit.place"));
-        form.add(ddPlace);
+        form.add(ddPlace);*/
 
         final TextField<String> tfDesc = new TextField<>("description", new PropertyModel<>(race, "description"));
         tfDesc.add(new PropertyValidator<String>());
