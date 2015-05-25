@@ -1,13 +1,15 @@
 package by.aplevich.horcerace.webapp.page.tournament.panel;
 
 import by.aplevich.horcerace.datamodel.*;
-import by.aplevich.horcerace.services.PlaceService;
-import by.aplevich.horcerace.services.RaceService;
+import by.aplevich.horcerace.services.*;
 import by.aplevich.horcerace.webapp.page.BaseLayout;
 import by.aplevich.horcerace.webapp.page.Place.PlaceEditPage;
+import by.aplevich.horcerace.webapp.page.horse.HorceEditPage;
+import by.aplevich.horcerace.webapp.page.jockey.JockeyEditPage;
 import by.aplevich.horcerace.webapp.page.race.RaceEditPage;
-import by.aplevich.horcerace.webapp.utils.renderer.PlaceChoiceRenderer;
-import by.aplevich.horcerace.webapp.utils.renderer.RaceChoiceRenderer;
+import by.aplevich.horcerace.webapp.page.runner.RunnerEditPage;
+import by.aplevich.horcerace.webapp.page.runner.RunnersEditPage;
+import by.aplevich.horcerace.webapp.utils.renderer.*;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -28,28 +30,44 @@ public class EditPage extends BaseLayout {
     private PlaceService placeService;
     @Inject
     private RaceService raceService;
+    @Inject
+    private HorceService horceService;
+    @Inject
+    private JockeyService jockeyService;
+    @Inject
+    private RunnerService runnerService;
 
     private Place place;
     private Race race;
+    private Horce horce;
+    private Jockey jockey;
+    private Runner runner;
+
     private IModel<Place> ddModelPlace = new PropertyModel<Place>(this, "place");
     private IModel<Race> ddModelRace = new PropertyModel<Race>(this, "race");
+    private IModel<Runner> ddModelRunner = new PropertyModel<Runner>(this, "runner");
+    private IModel<Horce> ddModelHorce = new PropertyModel<Horce>(this, "horce");
+    private IModel<Jockey> ddModelJockey = new PropertyModel<Jockey>(this, "jockey");
 
-    IModel<List<? extends Race>> races = new AbstractReadOnlyModel<List<? extends Race>>()
-    {
+    IModel<List<? extends Race>> races = new AbstractReadOnlyModel<List<? extends Race>>() {
         @Override
-        public List<Race> getObject()
-        {
-            if (place == null)
-            {
+        public List<Race> getObject() {
+            if (place == null) {
                 return Collections.emptyList();
             }
             return raceService.getAllRacesWithPlaceByPlace(place);
         }
     };
 
-    private Horce horce;
-    private Jockey jockey;
-    private Runner runner;
+    IModel<List<? extends Runner>> runners = new AbstractReadOnlyModel<List<? extends Runner>>() {
+        @Override
+        public List<Runner> getObject() {
+            if ((place == null) || (race == null)) {
+                return Collections.emptyList();
+            }
+            return runnerService.getAllRunnerByRace(race);
+        }
+    };
 
     public EditPage() {
         super();
@@ -63,19 +81,18 @@ public class EditPage extends BaseLayout {
     protected void onInitialize() {
         super.onInitialize();
 
-        Form form = new Form("f1"){
-//            @Override
-//            protected void onSubmit() {
-//                place = ddModelPlace.getObject();
-//                if(place == null) {
-//                    place = new Place();
-//                }
-//                setResponsePage(new PlaceEditPage(place));
-//            }
-        };
+        Form form = new Form("f1");
+        form.setOutputMarkupId(true);
 
-        DropDownChoice<Place> ddPlace = new DropDownChoice<Place>("place", ddModelPlace,  placeService.getAllPlaces(Place_.name, true, 0, 0), PlaceChoiceRenderer.INSTANCE);
+        // Block Place
+        DropDownChoice<Place> ddPlace = new DropDownChoice<Place>("place", ddModelPlace, placeService.getAllPlaces(Place_.name, true, 0, 0), PlaceChoiceRenderer.INSTANCE);
         form.add(ddPlace);
+        ddPlace.add(new AjaxFormComponentUpdatingBehavior("change") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                target.add(form);
+            }
+        });
 
         Link<String> editPlaceLink = new Link<String>("editPlace") {
             @Override
@@ -85,7 +102,7 @@ public class EditPage extends BaseLayout {
         };
         form.add(editPlaceLink);
 
-       Link<String> newPlaceLink = new Link<String>("newPlace") {
+        Link<String> newPlaceLink = new Link<String>("newPlace") {
             @Override
             public void onClick() {
                 setResponsePage(new PlaceEditPage(new Place()));
@@ -93,19 +110,13 @@ public class EditPage extends BaseLayout {
         };
         form.add(newPlaceLink);
 
-        DropDownChoice<Race> ddRace = new DropDownChoice<Race>("race", ddModelRace, races , RaceChoiceRenderer.INSTANCE);
-        ddRace.setOutputMarkupId(true);
+        // Block Race
+        DropDownChoice<Race> ddRace = new DropDownChoice<Race>("race", ddModelRace, races, RaceChoiceRenderer.INSTANCE);
         form.add(ddRace);
-
-        add(form);
-
-
-        ddPlace.add(new AjaxFormComponentUpdatingBehavior("change")
-        {
+        ddRace.add(new AjaxFormComponentUpdatingBehavior("change") {
             @Override
-            protected void onUpdate(AjaxRequestTarget target)
-            {
-                target.add(ddRace);
+            protected void onUpdate(AjaxRequestTarget target) {
+                target.add(form);
             }
         });
 
@@ -123,8 +134,88 @@ public class EditPage extends BaseLayout {
                 setResponsePage(new RaceEditPage(new Race()));
             }
         };
-
         form.add(newRaceLink);
+
+        //Block Runner
+        DropDownChoice<Runner> ddRunner = new DropDownChoice<Runner>("runner", ddModelRunner, runners, RunnerChoiceRenderer.INSTANCE);
+        form.add(ddRunner);
+        ddRunner.add(new AjaxFormComponentUpdatingBehavior("change") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                target.add(form);
+            }
+        });
+
+        Link<String> editRunnerLink = new Link<String>("editRunner") {
+            @Override
+            public void onClick() {
+                setResponsePage(new RunnersEditPage(runner));
+            }
+        };
+        form.add(editRunnerLink);
+
+        Link<String> newRunnerLink = new Link<String>("newRunner") {
+            @Override
+            public void onClick() {
+                setResponsePage(new RunnersEditPage(new Runner()));
+            }
+        };
+        form.add(newRunnerLink);
+
+        //Block Horce
+        DropDownChoice<Horce> ddHorce = new DropDownChoice<Horce>("horce", ddModelHorce, horceService.getAllHorces(), HorceChoiceRenderer.INSTANCE);
+        form.add(ddHorce);
+        ddHorce.add(new AjaxFormComponentUpdatingBehavior("change") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                target.add(form);////
+            }
+        });
+
+        Link<String> editHorceLink = new Link<String>("editHorce") {
+            @Override
+            public void onClick() {
+                setResponsePage(new HorceEditPage(horce));
+            }
+        };
+        form.add(editHorceLink);
+
+        Link<String> newHorceLink = new Link<String>("newHorce") {
+            @Override
+            public void onClick() {
+                setResponsePage(new HorceEditPage(new Horce()));
+            }
+        };
+        form.add(newHorceLink);
+
+        //Block Jockey
+        DropDownChoice<Jockey> ddJockey = new DropDownChoice<Jockey>("jockey", ddModelJockey, jockeyService.getAllJockeys(), JockeyChoiceRenderer.INSTANCE);
+        form.add(ddJockey);
+        ddJockey.add(new AjaxFormComponentUpdatingBehavior("change") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                target.add(form);////
+            }
+        });
+
+        Link<String> editJockeyLink = new Link<String>("editJockey") {
+            @Override
+            public void onClick() {
+                setResponsePage(new JockeyEditPage(jockey));
+            }
+        };
+        form.add(editJockeyLink);
+
+        Link<String> newJockeyLink = new Link<String>("newJockey") {
+            @Override
+            public void onClick() {
+                setResponsePage(new JockeyEditPage(new Jockey()));
+            }
+        };
+        form.add(newJockeyLink);
+
+        // add Form
+        add(form);
     }
 
     @Override
@@ -132,61 +223,3 @@ public class EditPage extends BaseLayout {
         return new ResourceModel("p.placeEdit.caption");
     }
 }
-
-/*
-public class ChoicePage extends BasePage
-{
-    public ChoicePage()
-    {
-        modelsMap.put("AUDI", Arrays.asList("A4", "A6", "TT"));
-        modelsMap.put("CADILLAC", Arrays.asList("CTS", "DTS", "ESCALADE", "SRX", "DEVILLE"));
-        modelsMap.put("FORD", Arrays.asList("CROWN", "ESCAPE", "EXPEDITION", "EXPLORER", "F-150"));
-
-        IModel<List<? extends String>> makeChoices = new AbstractReadOnlyModel<List<? extends String>>()
-        {
-            @Override
-            public List<String> getObject()
-            {
-                return new ArrayList<String>(modelsMap.keySet());
-            }
-
-        };
-
-        IModel<List<? extends String>> modelChoices = new AbstractReadOnlyModel<List<? extends String>>()
-        {
-            @Override
-            public List<String> getObject()
-            {
-                List<String> models = modelsMap.get(selectedMake);
-                if (models == null)
-                {
-                    models = Collections.emptyList();
-                }
-                return models;
-            }
-
-        };
-
-        Form<?> form = new Form("form");
-        add(form);
-
-        final DropDownChoice<String> makes = new DropDownChoice<String>("makes",
-                new PropertyModel<String>(this, "selectedMake"), makeChoices);
-
-        final DropDownChoice<String> models = new DropDownChoice<String>("models",
-                new Model<String>(), modelChoices);
-        models.setOutputMarkupId(true);
-
-        form.add(makes);
-        form.add(models);
-
-        makes.add(new AjaxFormComponentUpdatingBehavior("change")
-        {
-            @Override
-            protected void onUpdate(AjaxRequestTarget target)
-            {
-                target.add(models);
-            }
-        });
-    }
-}*/

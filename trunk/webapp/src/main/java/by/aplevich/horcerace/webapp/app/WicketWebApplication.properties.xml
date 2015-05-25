@@ -78,6 +78,8 @@
     <entry key="edit">Ред.</entry>
     <entry key="new">+</entry>
     <entry key="race">Заезд</entry>
+    <entry key="horce">Лошадь</entry>
+    <entry key="jockey">Жокей</entry>
 
     <entry key="javax.validation.constraints.Min.message">Значение '${label}' должно быть больше или равно ${value}</entry>
     <entry key="javax.validation.constraints.Max.message">Значение '${label}' должно быть меньше или равно ${value}</entry>

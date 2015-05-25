@@ -24,7 +24,7 @@ import org.apache.wicket.model.ResourceModel;
 import javax.inject.Inject;
 import java.math.BigDecimal;
 
-public class Copy_Of_RunnerEditPage extends BaseLayout {
+public class RunnersEditPage extends BaseLayout {
 
     @Inject
     private RunnerService runnerService;
@@ -38,7 +38,7 @@ public class Copy_Of_RunnerEditPage extends BaseLayout {
     @Inject
     private RaceService raceService;
 
-    public Copy_Of_RunnerEditPage(final Runner runner) {
+    public RunnersEditPage(final Runner runner) {
         super();
         Form<Runner> form = new Form<>("form");
 
@@ -52,11 +52,11 @@ public class Copy_Of_RunnerEditPage extends BaseLayout {
         ddJockey.setLabel(new ResourceModel("p.runnerEdit.jockey"));
         form.add(ddJockey);
 
-
+/*
         DropDownChoice<Race> ddRace = new DropDownChoice<Race>("race", new PropertyModel<>(runner, "race"), raceService.getAllRacesWithPlace(), RaceChoiceRenderer.INSTANCE);
         ddRace.add(new PropertyValidator<Race>());
         ddRace.setLabel(new ResourceModel("p.runnerEdit.race"));
-        form.add(ddRace);
+        form.add(ddRace);*/
 
         final TextField<BigDecimal> tfKoef = new TextField<>("koefficient", new PropertyModel<>(runner, "koefficient"));
         tfKoef.add(new PropertyValidator<BigDecimal>());
