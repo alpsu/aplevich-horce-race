@@ -94,9 +94,7 @@ public class BetServiceImpl implements BetService {
 
     @Override
     public List<Bet> getAllBetsByUser(Long userId, SingularAttribute<Bet, ?> attr, boolean ascending, int startRecord, int pageSize) {
-        List<Bet> allBetsByUser = dao.getAllBetsByUser(userId, attr, ascending, startRecord, pageSize);
-        //System.out.println(allBetsByUser);
-        return allBetsByUser;
+        return dao.getAllBetsByUser(userId, attr, ascending, startRecord, pageSize);
     }
 
     @Override

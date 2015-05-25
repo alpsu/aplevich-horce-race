@@ -10,6 +10,8 @@ public interface RaceDao extends AbstractDao<Long, Race> {
     List<Race> getAllRacesWithPlace();
 
     List<Race> getAllRacesWithPlaceByPlace(Place place);
+
     List<Race> getAllRacesWithPlaceByPlace(Long placeId, SingularAttribute<Race, ?> attr, boolean ascending, int first, int pageSize);
+
     Long getCount(Long placeId);
 }

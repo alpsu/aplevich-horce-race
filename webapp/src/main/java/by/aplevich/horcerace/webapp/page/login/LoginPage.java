@@ -36,10 +36,8 @@ public class LoginPage extends BaseLayout {
 				}
 				final boolean authResult = AuthenticatedWebSession.get().signIn(username, password);
 				if (authResult) {
-					// continueToOriginalDestination();
 					setResponsePage(Application.get().getHomePage());
 				} else {
-					//error("Ошибка авторизации");
 					BasicAuthenticationSession.get().error(new StringResourceModel("error.user.auth", this, null).getString());
 				}
 			}
@@ -55,5 +53,4 @@ public class LoginPage extends BaseLayout {
 	protected IModel<String> getPageTitle() {
 		return new ResourceModel("p.login.text");
 	}
-
 }

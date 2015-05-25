@@ -29,7 +29,6 @@ public class LoginLogoutPanel extends Panel {
 				super.onConfigure();
 				boolean isLoginPage = LoginPage.class.equals(getPage().getClass());
 				boolean isLogged = BasicAuthenticationSession.get().isSignedIn();
-
 				setVisible(!(isLogged || isLoginPage));
 			}
 
@@ -51,7 +50,6 @@ public class LoginLogoutPanel extends Panel {
 				final HttpServletRequest servletReq = (HttpServletRequest) getRequest().getContainerRequest();
 				servletReq.getSession().invalidate();
 				getSession().invalidate();
-				//getRequestCycle().scheduleRequestHandlerAfterCurrent(new RedirectRequestHandler(WicketWebApplication.LOGIN_URL));
 				getRequestCycle().scheduleRequestHandlerAfterCurrent(new RedirectRequestHandler(WicketWebApplication.HOME_URL));
 
 			}

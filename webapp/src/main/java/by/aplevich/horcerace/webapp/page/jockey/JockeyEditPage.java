@@ -1,11 +1,11 @@
 package by.aplevich.horcerace.webapp.page.jockey;
 
-import by.aplevich.horcerace.datamodel.Horce;
 import by.aplevich.horcerace.datamodel.Jockey;
 import by.aplevich.horcerace.services.JockeyService;
 import by.aplevich.horcerace.webapp.page.BaseLayout;
-import by.aplevich.horcerace.webapp.page.home.HomePage;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.bean.validation.PropertyValidator;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow.PageCreator;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
@@ -14,42 +14,44 @@ import org.apache.wicket.model.ResourceModel;
 
 import javax.inject.Inject;
 
-public class JockeyEditPage  extends BaseLayout {
+@AuthorizeInstantiation({"ADMIN"})
+public class JockeyEditPage extends BaseLayout {
 
-        @Inject
-        private JockeyService jockeyService;
+    @Inject
+    private JockeyService jockeyService;
 
-        public JockeyEditPage(final Jockey jockey) {
-            super();
-            Form<Jockey> form = new Form<>("form", new CompoundPropertyModel<Jockey>(jockey));
+    private PageCreator pageCreator;
 
-            final TextField<String> tffName = new TextField<>("fname");
-            tffName.add(new PropertyValidator<String>());
-            tffName.setLabel(new ResourceModel("p.jockeyEdit.fname"));
-            form.add(tffName);
+    public JockeyEditPage(final Jockey jockey, PageCreator pageCreator) {
+        super();
+        this.pageCreator = pageCreator;
 
-            final TextField<String> tflName = new TextField<>("lname");
-            tflName.add(new PropertyValidator<String>());
-            tflName.setLabel(new ResourceModel("p.jockeyEdit.lname"));
-            form.add(tflName);
+        Form<Jockey> form = new Form<>("form", new CompoundPropertyModel<Jockey>(jockey));
 
-            form.add(new SubmitLink("sumbit-link") {
-                @Override
-                public void onSubmit() {
-                    super.onSubmit();
-                    jockeyService.saveOrUpdate(jockey);
+        final TextField<String> tffName = new TextField<>("fname");
+        tffName.add(new PropertyValidator<String>());
+        tffName.setLabel(new ResourceModel("p.jockeyEdit.fname"));
+        form.add(tffName);
 
-                    HomePage page = new HomePage();
-                    setResponsePage(page);
-                }
+        final TextField<String> tflName = new TextField<>("lname");
+        tflName.add(new PropertyValidator<String>());
+        tflName.setLabel(new ResourceModel("p.jockeyEdit.lname"));
+        form.add(tflName);
 
-                @Override
-                public void onError() {
+        form.add(new SubmitLink("sumbit-link") {
+            @Override
+            public void onSubmit() {
+                super.onSubmit();
+                jockeyService.saveOrUpdate(jockey);
+                setResponsePage(pageCreator.createPage());
+            }
 
-                    super.onError();
-                }
-            });
+            @Override
+            public void onError() {
+                super.onError();
+            }
+        });
 
-            add(form);
-        }
+        add(form);
     }
+}

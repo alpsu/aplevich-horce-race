@@ -2,18 +2,16 @@ package by.aplevich.horcerace.webapp.page.runner;
 
 import by.aplevich.horcerace.datamodel.Horce;
 import by.aplevich.horcerace.datamodel.Jockey;
-import by.aplevich.horcerace.datamodel.Race;
 import by.aplevich.horcerace.datamodel.Runner;
 import by.aplevich.horcerace.services.HorceService;
 import by.aplevich.horcerace.services.JockeyService;
-import by.aplevich.horcerace.services.RaceService;
 import by.aplevich.horcerace.services.RunnerService;
 import by.aplevich.horcerace.webapp.page.BaseLayout;
-import by.aplevich.horcerace.webapp.page.home.HomePage;
 import by.aplevich.horcerace.webapp.utils.renderer.HorceChoiceRenderer;
 import by.aplevich.horcerace.webapp.utils.renderer.JockeyChoiceRenderer;
-import by.aplevich.horcerace.webapp.utils.renderer.RaceChoiceRenderer;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.bean.validation.PropertyValidator;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow.PageCreator;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
@@ -24,22 +22,21 @@ import org.apache.wicket.model.ResourceModel;
 import javax.inject.Inject;
 import java.math.BigDecimal;
 
+@AuthorizeInstantiation({"ADMIN"})
 public class RunnersEditPage extends BaseLayout {
-
     @Inject
     private RunnerService runnerService;
-
     @Inject
     private HorceService horceService;
-
     @Inject
     private JockeyService jockeyService;
 
-    @Inject
-    private RaceService raceService;
+    private PageCreator pageCreator;
 
-    public RunnersEditPage(final Runner runner) {
+    public RunnersEditPage(final Runner runner, PageCreator pageCreator) {
         super();
+        this.pageCreator = pageCreator;
+
         Form<Runner> form = new Form<>("form");
 
         DropDownChoice<Horce> ddHorce = new DropDownChoice<Horce>("horce", new PropertyModel<>(runner, "horce"), horceService.getAllHorces(), HorceChoiceRenderer.INSTANCE);
@@ -51,12 +48,6 @@ public class RunnersEditPage extends BaseLayout {
         ddJockey.add(new PropertyValidator<Jockey>());
         ddJockey.setLabel(new ResourceModel("p.runnerEdit.jockey"));
         form.add(ddJockey);
-
-/*
-        DropDownChoice<Race> ddRace = new DropDownChoice<Race>("race", new PropertyModel<>(runner, "race"), raceService.getAllRacesWithPlace(), RaceChoiceRenderer.INSTANCE);
-        ddRace.add(new PropertyValidator<Race>());
-        ddRace.setLabel(new ResourceModel("p.runnerEdit.race"));
-        form.add(ddRace);*/
 
         final TextField<BigDecimal> tfKoef = new TextField<>("koefficient", new PropertyModel<>(runner, "koefficient"));
         tfKoef.add(new PropertyValidator<BigDecimal>());
@@ -73,14 +64,11 @@ public class RunnersEditPage extends BaseLayout {
             public void onSubmit() {
                 super.onSubmit();
                 runnerService.saveOrUpdate(runner);
-
-                HomePage page = new HomePage();
-                setResponsePage(page);
+                setResponsePage(pageCreator.createPage());
             }
 
             @Override
             public void onError() {
-
                 super.onError();
             }
         });

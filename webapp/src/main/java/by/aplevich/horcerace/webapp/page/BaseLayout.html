@@ -21,14 +21,19 @@
         <!-- Start of Main Navigation Menu -->
         <div id="mainnav">
             <ul>
-                <li><button wicket:id="help">
-                    <wicket:message key="help" />
-                </button></li>
-                <li><button wicket:id="edit-btn">
-                    <wicket:message key="edit" />
-                </button></li>
+                <li>
+                    <button wicket:id="help">
+                        <wicket:message key="help"/>
+                    </button>
+                </li>
+                <li>
+                    <button wicket:id="edit-btn">
+                        <wicket:message key="edit"/>
+                    </button>
+                </li>
                 <li><span wicket:id="login-logout-panel"></span></li>
-                <li style="float: right; padding-top: 5px; padding-right: 5px;"><span wicket:id="language-panel"></span></li>
+                <li style="float: right; padding-top: 5px; padding-right: 5px;"><span wicket:id="language-panel"></span>
+                </li>
             </ul>
             <div class="clearthis">&nbsp;</div>
         </div>
@@ -38,14 +43,13 @@
             <wicket:child/>
             <div class="feedbackpanel" wicket:id="feedbackpanel"></div>
         </div>
-
         <!-- End of Center Column -->
         <!-- Start of Right Sidebar -->
         <div id="rightsidebar">
             <!-- Start of Team Roster -->
             <div id="teamroster">
                 <div id="teamroster_content">
-                    <wicket:container wicket:id="bet-panel" />
+                    <wicket:container wicket:id="bet-panel"/>
                     <div class="clearthis">&nbsp;</div>
                 </div>
             </div>
@@ -66,20 +70,15 @@
         <!-- Start of Left Sidebar -->
         <div id="leftsidebar">
             <!-- Start of Latest Matches -->
-
             <div id="latestmatch">
                 <ul>
                     <wicket:container wicket:id="list-panel">
                         <div wicket:id="place-panel"></div>
                     </wicket:container>
                 </ul>
-
-
                 <div class="clearthis">&nbsp;</div>
-
             </div>
             <!-- End of Latest Matches -->
-
         </div>
         <!-- End of Left Sidebar -->
     </div>
@@ -90,6 +89,5 @@
         <small>Web design by <a href="http://www.freewebsitetemplates.com">Free Website Templates</a></small>
     </div>
 </div>
-
 </body>
 </html>

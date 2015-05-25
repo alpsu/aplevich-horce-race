@@ -52,12 +52,6 @@ public class UserServiceImpl implements UserService{
         dao.deleteAll();
     }
 
-   /* @Override
-    public UserAccount getUserByLogin(String userName) {
-        LOGGER.debug("Get user with name: {}", userName);
-        return dao.getUserByLogin(userName);
-    }*/
-
     @Override
     public UserAccount getUserByLogin(String userLogin) {
         final List<UserAccount> allByFieldRestriction = dao.getAllByFieldRestriction(UserAccount_.login, userLogin);
