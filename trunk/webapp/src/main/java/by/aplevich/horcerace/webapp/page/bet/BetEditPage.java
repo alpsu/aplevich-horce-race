@@ -63,7 +63,6 @@ public class BetEditPage extends BaseLayout{
             @Override
             public void onError() {
 
-                super.onError();
             }
         });
 

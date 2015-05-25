@@ -47,7 +47,6 @@ public class BetPanel extends Panel {
         add(tableBody);
         NumberFormat format = DecimalFormat.getInstance();
         format.setMaximumFractionDigits(2);
-        //text = format.format(Double.parseDouble(text));
         DataView<Bet> dataView = new DataView<Bet>("list", betDataProvider, 3) {
             @Override
             protected void populateItem(Item<Bet> item) {
@@ -74,7 +73,6 @@ public class BetPanel extends Panel {
             SingularAttribute<Bet, ?> sortParam = getSort().getProperty();
             SortOrder propertySortOrder = getSortState().getPropertySortOrder(sortParam);
             boolean ascending = SortOrder.ASCENDING.equals(propertySortOrder);
-
             return betService.getAllBetsByUser(user.getId(), sortParam, ascending, (int) first, (int) count).iterator();
         }
 

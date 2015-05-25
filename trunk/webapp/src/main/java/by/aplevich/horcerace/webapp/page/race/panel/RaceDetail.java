@@ -7,7 +7,6 @@ import by.aplevich.horcerace.services.RaceService;
 import by.aplevich.horcerace.services.RunnerService;
 import by.aplevich.horcerace.webapp.app.BasicAuthenticationSession;
 import by.aplevich.horcerace.webapp.page.bet.BetEditPage;
-import by.aplevich.horcerace.webapp.page.race.RaceEditPage;
 import by.aplevich.horcerace.webapp.page.runner.RunnerEditPage;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
@@ -103,7 +102,6 @@ public class RaceDetail extends Panel {
     }
 
     private class RunnerDataProvider extends SortableDataProvider<Runner, SingularAttribute<Runner, ?>> {
-
         public RunnerDataProvider() {
             super();
             setSort(Runner_.place, SortOrder.ASCENDING);
@@ -114,7 +112,6 @@ public class RaceDetail extends Panel {
             SingularAttribute<Runner, ?> sortParam = getSort().getProperty();
             SortOrder propertySortOrder = getSortState().getPropertySortOrder(sortParam);
             boolean ascending = SortOrder.ASCENDING.equals(propertySortOrder);
-
             return runnerService.getAllRunnerByRace(raceId, sortParam, ascending, (int) first, (int) count).iterator();
         }
 

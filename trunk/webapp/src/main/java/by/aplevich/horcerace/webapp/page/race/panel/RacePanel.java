@@ -1,16 +1,11 @@
 package by.aplevich.horcerace.webapp.page.race.panel;
 
-import by.aplevich.horcerace.datamodel.*;
-import by.aplevich.horcerace.services.PlaceService;
+import by.aplevich.horcerace.datamodel.Race;
+import by.aplevich.horcerace.datamodel.Race_;
 import by.aplevich.horcerace.services.RaceService;
-import by.aplevich.horcerace.webapp.page.bet.BetEditPage;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
@@ -21,15 +16,11 @@ import org.apache.wicket.model.IModel;
 import javax.inject.Inject;
 import javax.persistence.metamodel.SingularAttribute;
 import java.util.Iterator;
-import java.util.List;
 
 public class RacePanel extends Panel{
 
     @Inject
     private RaceService raceService;
-
-    @Inject
-    private PlaceService placeService;
 
     private Long placeId;
 
@@ -45,7 +36,6 @@ public class RacePanel extends Panel{
             @Override
             protected void populateItem(Item<Race> item) {
                 Race race = item.getModelObject();
-
                 item.add(new RaceDetail("detail", race.getId()));
             }
         };
@@ -54,7 +44,6 @@ public class RacePanel extends Panel{
     }
 
     private class RaceDataProvider extends SortableDataProvider<Race, SingularAttribute<Race, ?>> {
-
         public RaceDataProvider() {
             super();
             setSort(Race_.start, SortOrder.ASCENDING);
@@ -65,7 +54,6 @@ public class RacePanel extends Panel{
             SingularAttribute<Race, ?> sortParam = getSort().getProperty();
             SortOrder propertySortOrder = getSortState().getPropertySortOrder(sortParam);
             boolean ascending = SortOrder.ASCENDING.equals(propertySortOrder);
-
             return raceService.getAllRacesWithPlaceByPlace(placeId, sortParam, ascending, (int) first, (int) count).iterator();
         }
 

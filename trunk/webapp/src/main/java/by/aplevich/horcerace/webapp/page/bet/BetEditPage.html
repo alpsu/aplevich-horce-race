@@ -2,7 +2,7 @@
     <form wicket:id="form">
         <table>
             <caption>
-                <wicket:message key="p.betEdit.caption"></wicket:message>
+                <wicket:message key="p.betEdit.caption"/>
             </caption>
             <tr>
                 <td><label wicket:for="type">
@@ -12,22 +12,6 @@
                     <select wicket:id="type" wicket:message="title:p.betEdit.type" class="inputfld"></select>
                 </td>
             </tr>
-            <!--<tr>
-                <td><label wicket:for="runner">
-                    <wicket:message key="p.betEdit.runner"/>
-                    :</label></td>
-                <td>
-                    <select wicket:id="runner" wicket:message="title:p.betEdit.runner" class="inputfld"></select>
-                </td>
-            </tr>
-            <tr>
-                <td><label wicket:for="user">
-                    <wicket:message key="p.betEdit.user"/>
-                    :</label></td>
-                <td>
-                    <select wicket:id="user" wicket:message="title:p.betEdit.user" class="inputfld"></select>
-                </td>
-            </tr>-->
             <tr>
                 <td><label wicket:for="currency">
                     <wicket:message key="p.betEdit.currency"/>
@@ -45,9 +29,8 @@
         </table>
         <div>
             <button type="submit" wicket:id="sumbit-link">
-                <wicket:message key="save"></wicket:message>
+                <wicket:message key="save"/>
             </button>
         </div>
     </form>
-
 </wicket:extend>

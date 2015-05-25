@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Service
-public class JockeyServiceImpl implements JockeyService{
+public class JockeyServiceImpl implements JockeyService {
     private static final Logger LOGGER = LoggerFactory.getLogger(JockeyServiceImpl.class);
 
     @Inject
@@ -30,7 +30,7 @@ public class JockeyServiceImpl implements JockeyService{
         } else {
             LOGGER.debug("Update: {}", jockey);
             dao.update(jockey);
-    }
+        }
     }
 
     @Override

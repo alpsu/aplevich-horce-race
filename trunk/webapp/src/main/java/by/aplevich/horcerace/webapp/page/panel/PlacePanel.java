@@ -29,6 +29,5 @@ public class PlacePanel extends Panel {
             }
         };
         liContainer.add(actionLink.add(new Label("linkname", new Model<>(place.getName()))));
-
     }
 }

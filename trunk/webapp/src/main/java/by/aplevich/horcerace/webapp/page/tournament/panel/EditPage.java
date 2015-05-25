@@ -7,11 +7,13 @@ import by.aplevich.horcerace.webapp.page.Place.PlaceEditPage;
 import by.aplevich.horcerace.webapp.page.horse.HorceEditPage;
 import by.aplevich.horcerace.webapp.page.jockey.JockeyEditPage;
 import by.aplevich.horcerace.webapp.page.race.RaceEditPage;
-import by.aplevich.horcerace.webapp.page.runner.RunnerEditPage;
 import by.aplevich.horcerace.webapp.page.runner.RunnersEditPage;
 import by.aplevich.horcerace.webapp.utils.renderer.*;
+import org.apache.wicket.Page;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow.PageCreator;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.Link;
@@ -24,7 +26,7 @@ import javax.inject.Inject;
 import java.util.Collections;
 import java.util.List;
 
-//@AuthorizeInstantiation({"ADMIN"})
+@AuthorizeInstantiation({"ADMIN"})
 public class EditPage extends BaseLayout {
     @Inject
     private PlaceService placeService;
@@ -42,6 +44,7 @@ public class EditPage extends BaseLayout {
     private Horce horce;
     private Jockey jockey;
     private Runner runner;
+    private PageCreator pageCreator;
 
     private IModel<Place> ddModelPlace = new PropertyModel<Place>(this, "place");
     private IModel<Race> ddModelRace = new PropertyModel<Race>(this, "race");
@@ -73,6 +76,11 @@ public class EditPage extends BaseLayout {
         super();
     }
 
+    public EditPage(PageCreator pageCreator) {
+        super();
+        this.pageCreator = pageCreator;
+    }
+
     public EditPage(String id, IModel<?> model) {
         super();
     }
@@ -81,7 +89,13 @@ public class EditPage extends BaseLayout {
     protected void onInitialize() {
         super.onInitialize();
 
-        Form form = new Form("f1");
+        Form form = new Form("f1") {
+            @Override
+            protected void onSubmit() {
+                super.onSubmit();
+                setResponsePage(pageCreator.createPage());
+            }
+        };
         form.setOutputMarkupId(true);
 
         // Block Place
@@ -97,7 +111,12 @@ public class EditPage extends BaseLayout {
         Link<String> editPlaceLink = new Link<String>("editPlace") {
             @Override
             public void onClick() {
-                setResponsePage(new PlaceEditPage(place));
+                setResponsePage(new PlaceEditPage(place, new PageCreator() {
+                    @Override
+                    public Page createPage() {
+                        return new EditPage();
+                    }
+                }));
             }
         };
         form.add(editPlaceLink);
@@ -105,7 +124,12 @@ public class EditPage extends BaseLayout {
         Link<String> newPlaceLink = new Link<String>("newPlace") {
             @Override
             public void onClick() {
-                setResponsePage(new PlaceEditPage(new Place()));
+                setResponsePage(new PlaceEditPage(new Place(), new PageCreator() {
+                    @Override
+                    public Page createPage() {
+                        return new EditPage();
+                    }
+                }));
             }
         };
         form.add(newPlaceLink);
@@ -123,7 +147,12 @@ public class EditPage extends BaseLayout {
         Link<String> editRaceLink = new Link<String>("editRace") {
             @Override
             public void onClick() {
-                setResponsePage(new RaceEditPage(race));
+                setResponsePage(new RaceEditPage(race, new PageCreator() {
+                    @Override
+                    public Page createPage() {
+                        return new EditPage();
+                    }
+                }));
             }
         };
         form.add(editRaceLink);
@@ -131,7 +160,12 @@ public class EditPage extends BaseLayout {
         Link<String> newRaceLink = new Link<String>("newRace") {
             @Override
             public void onClick() {
-                setResponsePage(new RaceEditPage(new Race()));
+                setResponsePage(new RaceEditPage(new Race(), new PageCreator() {
+                    @Override
+                    public Page createPage() {
+                        return new EditPage();
+                    }
+                }));
             }
         };
         form.add(newRaceLink);
@@ -149,7 +183,12 @@ public class EditPage extends BaseLayout {
         Link<String> editRunnerLink = new Link<String>("editRunner") {
             @Override
             public void onClick() {
-                setResponsePage(new RunnersEditPage(runner));
+                setResponsePage(new RunnersEditPage(runner, new PageCreator() {
+                    @Override
+                    public Page createPage() {
+                        return new EditPage();
+                    }
+                }));
             }
         };
         form.add(editRunnerLink);
@@ -157,7 +196,12 @@ public class EditPage extends BaseLayout {
         Link<String> newRunnerLink = new Link<String>("newRunner") {
             @Override
             public void onClick() {
-                setResponsePage(new RunnersEditPage(new Runner()));
+                setResponsePage(new RunnersEditPage(new Runner(), new PageCreator() {
+                    @Override
+                    public Page createPage() {
+                        return new EditPage();
+                    }
+                }));
             }
         };
         form.add(newRunnerLink);
@@ -175,7 +219,12 @@ public class EditPage extends BaseLayout {
         Link<String> editHorceLink = new Link<String>("editHorce") {
             @Override
             public void onClick() {
-                setResponsePage(new HorceEditPage(horce));
+                setResponsePage(new HorceEditPage(horce, new PageCreator() {
+                    @Override
+                    public Page createPage() {
+                        return new EditPage();
+                    }
+                }));
             }
         };
         form.add(editHorceLink);
@@ -183,7 +232,12 @@ public class EditPage extends BaseLayout {
         Link<String> newHorceLink = new Link<String>("newHorce") {
             @Override
             public void onClick() {
-                setResponsePage(new HorceEditPage(new Horce()));
+                setResponsePage(new HorceEditPage(new Horce(), new PageCreator() {
+                    @Override
+                    public Page createPage() {
+                        return new EditPage();
+                    }
+                }));
             }
         };
         form.add(newHorceLink);
@@ -201,7 +255,12 @@ public class EditPage extends BaseLayout {
         Link<String> editJockeyLink = new Link<String>("editJockey") {
             @Override
             public void onClick() {
-                setResponsePage(new JockeyEditPage(jockey));
+                setResponsePage(new JockeyEditPage(jockey, new PageCreator() {
+                    @Override
+                    public Page createPage() {
+                        return new EditPage();
+                    }
+                }));
             }
         };
         form.add(editJockeyLink);
@@ -209,7 +268,12 @@ public class EditPage extends BaseLayout {
         Link<String> newJockeyLink = new Link<String>("newJockey") {
             @Override
             public void onClick() {
-                setResponsePage(new JockeyEditPage(new Jockey()));
+                setResponsePage(new JockeyEditPage(new Jockey(), new PageCreator() {
+                    @Override
+                    public Page createPage() {
+                        return new EditPage();
+                    }
+                }));
             }
         };
         form.add(newJockeyLink);

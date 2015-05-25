@@ -2,9 +2,7 @@ package by.aplevich.horcerace.webapp.page;
 
 import by.aplevich.horcerace.datamodel.Place;
 import by.aplevich.horcerace.datamodel.Place_;
-import by.aplevich.horcerace.datamodel.Race;
 import by.aplevich.horcerace.services.PlaceService;
-import by.aplevich.horcerace.services.RaceService;
 import by.aplevich.horcerace.webapp.app.BasicAuthenticationSession;
 import by.aplevich.horcerace.webapp.page.bet.panel.BetPanel;
 import by.aplevich.horcerace.webapp.page.login.component.LoginLogoutPanel;
@@ -12,7 +10,9 @@ import by.aplevich.horcerace.webapp.page.panel.PlacePanel;
 import by.aplevich.horcerace.webapp.page.tournament.HelpPage;
 import by.aplevich.horcerace.webapp.page.tournament.panel.EditPage;
 import by.aplevich.horcerace.webapp.page.tournament.panel.LanguagePanel;
+import org.apache.wicket.Page;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow.PageCreator;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -29,8 +29,6 @@ public abstract class BaseLayout extends WebPage {
 
     @Inject
     private PlaceService placeService;
-    @Inject
-    private RaceService raceService;
 
     @Override
     protected void onInitialize() {
@@ -54,7 +52,12 @@ public abstract class BaseLayout extends WebPage {
 
             @Override
             public void onClick() {
-               setResponsePage(new EditPage());
+                setResponsePage(new EditPage(new PageCreator() {
+                    @Override
+                    public Page createPage() {
+                        return new EditPage();
+                    }
+                }));
             }
         });
 
@@ -65,7 +68,7 @@ public abstract class BaseLayout extends WebPage {
             }
         });
 
-        final List<Place> allPlaces = placeService.getAllPlaces(Place_.name,true,0,0);
+        final List<Place> allPlaces = placeService.getAllPlaces(Place_.name, true, 0, 0);
         add(new ListView<Place>("list-panel", allPlaces) {
             @Override
             protected void populateItem(ListItem<Place> item) {
