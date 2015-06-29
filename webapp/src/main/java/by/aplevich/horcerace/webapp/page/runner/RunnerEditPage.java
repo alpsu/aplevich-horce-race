@@ -6,6 +6,7 @@ import by.aplevich.horcerace.webapp.app.BasicAuthenticationSession;
 import by.aplevich.horcerace.webapp.page.BaseLayout;
 import by.aplevich.horcerace.webapp.page.home.HomePage;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
@@ -16,7 +17,7 @@ import org.apache.wicket.model.ResourceModel;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
-
+@AuthorizeInstantiation({"ADMIN", "BOOKIE"})
 public class RunnerEditPage extends BaseLayout {
     @Inject
     private RunnerService runnerService;
