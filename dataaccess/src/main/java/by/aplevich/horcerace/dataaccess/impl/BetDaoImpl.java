@@ -31,10 +31,8 @@ public class BetDaoImpl extends AbstractDaoImpl<Long, Bet> implements BetDao {
 
         criteria.select(root);
         root.fetch(Bet_.userAccount);
-        //root.fetch(Bet_.runner);
         criteria.where(cBuilder.equal(root.get(Bet_.userAccount), userId));
         criteria.orderBy(new OrderImpl(root.get(attr), ascending));
-        criteria.distinct(true);
 
         TypedQuery<Bet> query = getEm().createQuery(criteria);
         query.setFirstResult(startRecord);

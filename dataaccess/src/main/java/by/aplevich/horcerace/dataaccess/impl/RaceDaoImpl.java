@@ -29,7 +29,6 @@ public class RaceDaoImpl extends AbstractDaoImpl<Long, Race> implements RaceDao 
 
         criteria.select(root);
         root.fetch(Race_.place);
-        criteria.distinct(true);
 
         TypedQuery<Race> query = getEm().createQuery(criteria);
         List<Race> results = query.getResultList();
@@ -46,7 +45,6 @@ public class RaceDaoImpl extends AbstractDaoImpl<Long, Race> implements RaceDao 
         criteria.select(root);
         criteria.where(cBuilder.equal(root.get(Race_.place), place.getId()));
         root.fetch(Race_.place);
-        criteria.distinct(true);
 
         TypedQuery<Race> query = getEm().createQuery(criteria);
         List<Race> results = query.getResultList();
@@ -65,8 +63,6 @@ public class RaceDaoImpl extends AbstractDaoImpl<Long, Race> implements RaceDao 
         criteria.where(cBuilder.equal(root.get(Race_.place), placeId));
         criteria.orderBy(new OrderImpl(root.get(attr), ascending));
 
-        criteria.distinct(true);
-
         TypedQuery<Race> query = getEm().createQuery(criteria);
         query.setFirstResult(first);
         query.setMaxResults(pageSize);
@@ -83,7 +79,6 @@ public class RaceDaoImpl extends AbstractDaoImpl<Long, Race> implements RaceDao 
 
         criteria.select(root);
         criteria.where(cBuilder.equal(root.get(Race_.place), placeId));
-        criteria.distinct(true);
 
         TypedQuery<Race> query = getEm().createQuery(criteria);
         List<Race> results = query.getResultList();

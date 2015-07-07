@@ -41,5 +41,4 @@ public class PlaceServiceTest extends AbstractServiceTest{
         List<Place> places = placeService.getAllPlaces();
         Assert.assertEquals(places.size(), num);
     }
-
 }

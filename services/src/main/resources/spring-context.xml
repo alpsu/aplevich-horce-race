@@ -21,10 +21,12 @@
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"/>
-    <tx:annotation-driven/>
+
     <bean id="dataSource"
           class="by.aplevich.horcerace.util.SchemaNameAwareBasicDataSource"
           destroy-method="close" p:driverClassName="org.postgresql.Driver"
           p:url="${jdbc.url}" p:username="${jdbc.username}" p:password="${jdbc.password}"
           p:schema="${db.schema}"/>
+
+    <tx:annotation-driven/>
 </beans>

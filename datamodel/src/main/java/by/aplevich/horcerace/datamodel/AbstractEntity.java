@@ -4,7 +4,7 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 /**
- * Common fields in all datamodel classe
+ * Common fields in all datamodel classes
  */
 
 @MappedSuperclass

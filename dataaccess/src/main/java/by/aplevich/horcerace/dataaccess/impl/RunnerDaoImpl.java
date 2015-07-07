@@ -35,7 +35,6 @@ public class RunnerDaoImpl extends AbstractDaoImpl<Long, Runner> implements Runn
         root.fetch(Runner_.race);
         root.fetch(Runner_.horce);
         root.fetch(Runner_.jockey);
-        criteria.distinct(true);
 
         TypedQuery<Runner> query = getEm().createQuery(criteria);
         List<Runner> results = query.getResultList();
@@ -51,7 +50,6 @@ public class RunnerDaoImpl extends AbstractDaoImpl<Long, Runner> implements Runn
 
         criteria.select(root);
         criteria.where(cBuilder.equal(root.get(Runner_.id), runnerId));
-        //root.fetch(Runner_.race);
         root.fetch(Runner_.horce);
         root.fetch(Runner_.jockey);
 
@@ -70,11 +68,8 @@ public class RunnerDaoImpl extends AbstractDaoImpl<Long, Runner> implements Runn
         criteria.select(root);
         root.fetch(Runner_.horce);
         root.fetch(Runner_.jockey);
-        //root.fetch(Runner_.race).fetch(Race_.place);
         criteria.where(cBuilder.equal(root.get(Runner_.race), raceId));
         criteria.orderBy(new OrderImpl(root.get(attr), ascending));
-
-        criteria.distinct(true);
 
         TypedQuery<Runner> query = getEm().createQuery(criteria);
         query.setFirstResult(startRecord);
@@ -93,7 +88,6 @@ public class RunnerDaoImpl extends AbstractDaoImpl<Long, Runner> implements Runn
 
         criteria.select(root);
         criteria.where(cBuilder.equal(root.get(Runner_.race), raceId));
-        criteria.distinct(true);
 
         TypedQuery<Runner> query = getEm().createQuery(criteria);
         List<Runner> results = query.getResultList();

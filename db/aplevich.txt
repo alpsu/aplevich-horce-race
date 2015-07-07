@@ -1,0 +1,7 @@
+Имя базы db_aplevich
+Имя датасорса jdbc/ds_aplevich
+
+jdbc.url=jdbc:postgresql://localhost:5432/db_aplevich
+jdbc.username=test
+jdbc.password=test
+db.schema=public
