@@ -22,6 +22,7 @@ import org.apache.wicket.model.ResourceModel;
 import javax.inject.Inject;
 import java.math.BigDecimal;
 
+//called by edit page only for admin
 @AuthorizeInstantiation({"ADMIN"})
 public class RunnersEditPage extends BaseLayout {
     @Inject

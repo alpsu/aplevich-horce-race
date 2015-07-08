@@ -16,6 +16,7 @@ import org.apache.wicket.model.ResourceModel;
 import javax.inject.Inject;
 import java.util.Date;
 
+//called by edit page only for admin
 @AuthorizeInstantiation({"ADMIN"})
 public class RaceEditPage extends BaseLayout {
 

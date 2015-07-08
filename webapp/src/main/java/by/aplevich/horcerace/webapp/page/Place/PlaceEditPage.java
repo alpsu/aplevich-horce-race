@@ -14,6 +14,7 @@ import org.apache.wicket.model.ResourceModel;
 
 import javax.inject.Inject;
 
+//called by edit page only for admin
 @AuthorizeInstantiation({"ADMIN"})
 public class PlaceEditPage extends BaseLayout {
     @Inject

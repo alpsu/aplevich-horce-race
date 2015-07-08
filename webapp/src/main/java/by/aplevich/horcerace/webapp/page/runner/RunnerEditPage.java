@@ -17,6 +17,8 @@ import org.apache.wicket.model.ResourceModel;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
+
+// admin can edit place,  bookie can edit koeff
 @AuthorizeInstantiation({"ADMIN", "BOOKIE"})
 public class RunnerEditPage extends BaseLayout {
     @Inject

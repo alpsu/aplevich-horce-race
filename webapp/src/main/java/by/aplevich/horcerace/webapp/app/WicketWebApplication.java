@@ -22,7 +22,6 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
     @Inject
     private ApplicationContext applicationContext;
 
-    public static final String LOGIN_URL = "/login";
     public static final String HOME_URL = "/home";
 
     /**
@@ -55,7 +54,6 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
             getMarkupSettings().setCompressWhitespace(true);
             getMarkupSettings().setStripWicketTags(true);
         }
-        //mountPage(LOGIN_URL, LoginPage.class);
         mountPage(HOME_URL, HomePage.class);
     }
 
